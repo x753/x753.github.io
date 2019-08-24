@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Waifu Generator</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        textarea {
+            font-size:16px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .centerpoint {
+            display: flex;
+            justify-content: center;
+        }
+
+        input[type=text], select {
+            font-size:16px;
+            width: 150px;
+            padding: 12px 20px;
+            margin: 20px 8px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        img {
+            margin: 20px 8px;
+        }
+
+        button {
+            font-size:16px;
+            width: 300px;
+            background-color: rgb(77, 77, 77);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #686868;
+        }
+
+        .painted {
+            background-color: rgb(240, 240, 240);
+        }
+
+        .crop {
+            width: 400px;
+            height: 400px;
+            margin: 20px 8px;
+            overflow: hidden;
+        }
+
+        .crop img {
+            width: 512px;
+            height: 512px;
+            margin: -56px -56px -56px -56px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <br><br>
+    <div class="painted">
+        <form id="generateByValue" onsubmit="generateByValue(); return false;" autocomplete="off"> <!-- Wrapping this in a form lets you hit enter to submit, return false; prevents the page from refreshing on submission -->
+        <div class="centerpoint">
+            <img src='https://cdn.discordapp.com/attachments/418284341890777090/604117189154308106/pose_icon.png' title="pose">
+            <input type="text" id="pose" placeholder="Enter value...">
+            <img src='https://cdn.discordapp.com/attachments/418284341890777090/603869572763746304/base_icon.png' title="base">
+            <input type="text" id="base" placeholder="Enter value...">
+            <img src='https://cdn.discordapp.com/attachments/418284341890777090/603870379135467572/color_icon.png' title="color">
+            <input type="text" id="color" placeholder="Enter value...">
+            <button id="waifuGenByName" onclick="generateByValue()" style="margin: 21px 8px; width: 200px">Generate from Values</button>
+        </div>
+        </form>
+    </div>
+    <br>
+    <div class="painted">
+        <form id="generateByName" onsubmit="generateByName(); return false;" autocomplete="off"> <!-- Wrapping this in a form lets you hit enter to submit, return false; prevents the page from refreshing on submission -->
+        <div class="centerpoint">
+            <img src='https://cdn.discordapp.com/attachments/418284341890777090/604100718776811520/name_icon.png' title="name">
+            <input type="text" id="waifuName" placeholder="Enter waifu name..." style="width: 500px">
+            <button id="waifuGenByName" onclick="generateByName()" style="margin: 21px 8px; width: 200px">Generate from Name</button>
+        </div>
+        </form>
+    </div>
+
+    <br>
+    <div class="painted">
+        <div class="centerpoint">
+            <img id="waifu" src="https://cdn.discordapp.com/attachments/418284341890777090/603871798836199445/5pDlqpxO5M7Ca6fUWxrGqYebJ5EIgmCH7BPO7QMo3Q1eAAAAAElFTkSuQmCC.png" width=400 height=400 title="0, 0, 0">
+            <div class="crop">
+            <img id="poster" src="https://cdn.discordapp.com/attachments/570261968158720040/604041869239910621/7f89gXTHnB5cAAAAAElFTkSuQmCC.png" title="0, 0, 0"> <!-- The poster isn't actually 400x400, we need to crop it -->
+            </div>
+        </div>
+    </div>
+
+    <div class="centerpoint">
+        <p style="color:rgb(150, 150, 150)">API created by Sizigi Studios and officially available at waifulabs.com</p>
+    </div>
+
+    <!-- JAVASCRIPT BEYOND THIS POINT, BE WARNED -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    function generateByValue()
+    {
+        base = document.getElementById("base").value;
+        color = document.getElementById("color").value;
+        pose = document.getElementById("pose").value;
+        
+        if(base === "") { base = 0; }
+        if(color === "") { color = 0; }
+        if(pose === "") { pose = 0; }
+
+        // The API can only handle 9 digit positive integers, anything else we can hash
+        if (/[^$,\.\d]/.test(base) || base.toString().length > 9 || (base.length > 1 && base.charAt(0) == '0'))
+        {
+            baseHash = base.hashCode();
+            base = baseHash.toString().substr(0,8);
+            if(base.charAt(0) == '-')
+            {
+                base = base.substr(1);
+            }
+        }
+        if (/[^$,\.\d]/.test(color) || color.toString().length > 9 || (color.length > 1 && color.charAt(0) == '0'))
+        {
+            colorHash = color.hashCode();
+            color = colorHash.toString().substr(0,8);
+            if(color.charAt(0) == '-')
+            {
+                color = color.substr(1);
+            }
+        }
+        if (/[^$,\.\d]/.test(pose) || pose.toString().length > 9 || (pose.length > 1 && pose.charAt(0) == '0'))
+        {
+            poseHash = pose.hashCode();
+            pose = poseHash.toString().substr(0,8);
+            if(pose.charAt(0) == '-')
+            {
+                pose = pose.substr(1);
+            }
+        }
+
+        document.getElementById("waifu").title = document.getElementById("poster").title = "".concat(pose, ", ", base, ", ", color);
+
+        dna = '{"currentGirl":['.concat(pose, ',0,0,0,', base, ',0,0,0,0,0,0,0,', color, ',0,0,0,0,[0.0,0.0,0.0]],"step":4}');
+        poster = '{"currentGirl":['.concat(pose, ',0,0,0,', base, ',0,0,0,0,0,0,0,', color, ',0,0,0,0,[0.0,0.0,0.0]],"step":4,"product":"POSTER"}');
+
+        $.ajax
+        ({
+            type: "POST",
+            url: 'https://api.waifulabs.com/generate_big',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: dna,
+            success: function(data, textStatus, xhr) { waifu = 'data:image/png;charset=utf-8;base64,'.concat(JSON.stringify(data).substr(9).slice(0,-2)); document.getElementById("waifu").src = waifu;}
+        })
+        $.ajax
+        ({
+            type: "POST",
+            url: 'https://api.waifulabs.com/generate_preview',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: poster,
+            success: function(data, textStatus, xhr) { waifu = 'data:image/png;charset=utf-8;base64,'.concat(JSON.stringify(data).substr(9).slice(0,-2)); document.getElementById("poster").src = waifu;}
+        })
+    }
+
+    // "borrowed" from Stack Overflow
+    String.prototype.hashCode = function() // now we can do str.hashCode() to get a hashCode for a string
+    {
+        var hash = 0;
+        var i;
+        var chr;
+        if (this.length === 0) return hash;
+        for (i = 0; i < this.length; i++) {
+            chr   = this.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+    };
+
+    function generateByName()
+    {
+        waifuName = document.getElementById("waifuName").value;
+
+        seed = "";
+
+        if (!(waifuName.length > 1 && waifuName.charAt(0) == '0') && (/^\d+$/.test(waifuName) && waifuName.toString().length < 10)) // Makes it so "753" as the value matches "753" as the name
+        {
+            seed = waifuName;
+        }
+        else // Hash the value into a valid 1 to 9 digit positive integer
+        {
+            nameHash = waifuName.hashCode();
+            seed = nameHash.toString().substr(0,8);
+            if(seed.charAt(0) == '-')
+            {
+                seed = seed.substr(1);
+            }
+        }
+        document.getElementById("waifu").title = document.getElementById("poster").title = seed.concat(", ", seed, ", ", seed);
+
+        dna = '{"currentGirl":['.concat(seed, ',0,0,0,', seed, ',0,0,0,0,0,0,0,', seed, ',0,0,0,0,[0.0,0.0,0.0]],"step":4}');
+        poster = '{"currentGirl":['.concat(seed, ',0,0,0,', seed, ',0,0,0,0,0,0,0,', seed, ',0,0,0,0,[0.0,0.0,0.0]],"step":4,"product":"POSTER"}');
+
+        $.ajax
+        ({
+            type: "POST",
+            url: 'https://api.waifulabs.com/generate_big',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: dna,
+            success: function(data, textStatus, xhr) { waifu = 'data:image/png;charset=utf-8;base64,'.concat(JSON.stringify(data).substr(9).slice(0,-2)); document.getElementById("waifu").src = waifu;}
+        })
+        $.ajax
+        ({
+            type: "POST",
+            url: 'https://api.waifulabs.com/generate_preview',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: poster,
+            success: function(data, textStatus, xhr) { waifu = 'data:image/png;charset=utf-8;base64,'.concat(JSON.stringify(data).substr(9).slice(0,-2)); document.getElementById("poster").src = waifu;}
+        })
+    }
+    </script>
+
+</body>
+
+
+
+
+
+</html>
