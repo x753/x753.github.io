@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: 753.network
+Token: 24f4fd6f4eb451a9fcf168a4d04d06cf1d8fb1d5b2bf776d57599a9017db1b5f
