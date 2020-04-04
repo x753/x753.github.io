@@ -8,44 +8,102 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <style>
-        html, body, .container {
+        html,
+        body,
+        .container {
             height: 95%;
         }
-        .container
-        {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding:0;
-            margin:0;
-            line-height: 0;
+        
+        .linenum {
+            margin-top: 50px;
+            margin-left: 230px;
+            text-align: right;
+            color: #858585;
+            position: fixed;
+            float: left;
+            font-family: "Cascadia Code", monospace;
         }
-
-        .square
-        {
-            display: inline-block;
-            background-color: white;
-            width: 80px;
-            height: 80px;
-            margin: 4px;
+        
+        .codetext {
+            margin-top: 50px;
+            margin-left: 280px;
+            color: #C6C6C6;
+            position: fixed;
+            float: left;
+            font-family: "Cascadia Code", monospace;
+            white-space: nowrap;
+        }
+        
+        .topbar {
+            height: 30px;
+            width: 100%;
+            position: fixed;
+            z-index: 3;
+            top: 0;
+            left: 0;
+            background-color: #3C3C3C;
+            overflow-x: hidden;
+        }
+        
+        .sidebar1 {
+            height: 100%;
+            width: 50px;
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            background-color: #333333;
+            overflow-x: hidden;
+        }
+        
+        .sidebar2 {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #252526;
+            overflow-x: hidden;
         }
     </style>
 
 </head>
 
-<body bgcolor=#000000>
+<div class="sidebar1"></div>
+<div class="sidebar2"></div>
+<div class="topbar"></div>
 
-    <div class=container><span><center>
+<body bgcolor=1E1E1E>
 
-    <div class=square></div><div class=square></div><div class=square></div>
-    <br>
-    <div class=square></div><div class=square style="visibility: hidden"></div><div class=square></div>
-    <br>
-    <div class=square style="visibility: hidden"></div><div class=square></div><div class=square></div>
-    <br>
-    <p>
-    <font color="white">Website currently under construction.</font>
-    </center></span></div>
+    <div class="linenum">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22</div>
+    <div class="codetext">
+        <font color="#569CD6">using</font> <font color="#4EC9B0">System</font>;
+        <br>
+        <br><font color="#6A9955">// namespace can't start with a number I guess</font>
+        <br><font color="#569CD6">namespace</font> <font color="#4EC9B0">x753network</font>
+        <br>{
+        <br>&emsp;&emsp;<font color="#569CD6">public class</font> <font color="#4EC9B0">MyWebsite</font>
+        <br>&emsp;&emsp;{
+        <br>&emsp;&emsp;&emsp;&emsp;<font color="#569CD6">public static void</font> <font color="#DCDCAA">UsefulLinks</font>()
+        <br>&emsp;&emsp;&emsp;&emsp;{
+        <a href="https://github.com/x753" style="text-decoration: none; color: #C6C6C6;">
+        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#6A9955">// Link to my GitHub</font>
+        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://github.com/x753"</font>);
+        <a>
+        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <a href="https://www.patreon.com/x753" style="text-decoration: none; color: #C6C6C6;">
+        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#6A9955">// Link to my Patreon</font>
+        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://www.patreon.com/x753"</font>);
+        </a>
+        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <a href="https://discord.gg/fGSneSe" style="text-decoration: none; color: #C6C6C6;">
+        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#6A9955">// Link to my Discord Server</font>
+        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://discord.gg/fGSneSe"</font>);
+        </a>
+        <br>&emsp;&emsp;&emsp;&emsp;}
+        <br>&emsp;&emsp;}
+        <br>}
 
 </body>
 
