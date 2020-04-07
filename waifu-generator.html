@@ -86,7 +86,7 @@
             <input type="text" id="base" placeholder="Enter value...">
             <img src='images/color_icon.png' title="color">
             <input type="text" id="color" placeholder="Enter value...">
-            <button id="waifuGenByValue" onclick="generateByValue()" style="margin: 21px 8px; width: 200px">Generate from Values</button>
+            <button type="button" id="waifuGenByValue" onclick="generateByValue()" style="margin: 21px 8px; width: 200px">Generate from Values</button>
         </div>
         </form>
     </div>
@@ -96,10 +96,12 @@
         <div class="centerpoint">
             <img src='images/name_icon.png' title="name">
             <input type="text" id="waifuName" placeholder="Enter waifu name..." style="width: 500px">
-            <button id="waifuGenByName" onclick="generateByName()" style="margin: 21px 8px; width: 200px">Generate from Name</button>
+            <button type="button" id="waifuGenByName" onclick="generateByName()" style="margin: 21px 8px; width: 200px">Generate from Name</button>
         </div>
         </form>
     </div>
+
+    <!-- Apparently buttons need to be of the type button to not double-submit... -->
 
     <br>
     <div class="painted">
