@@ -101,7 +101,6 @@
     </div>
 
     <!-- JAVASCRIPT BEYOND THIS POINT, BE WARNED -->
-
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -134,13 +133,20 @@
         }
         else // Hash the value into a valid 1 to 9 digit positive integer
         {
-            seedHash = seed.hashCode();
-            seedHash = Math.abs(seedHash);
-            while(seedHash.toString().length < 6)
+            while(true)
             {
-                seedHash = seedHash + seedHash;
+                seedHash = seed.hashCode();
+                seedHash = Math.abs(seedHash);
+                while(seedHash.toString().length < 6)
+                {
+                    seedHash = seedHash + seedHash;
+                }
+                seed = seedHash.toString().substr(0,6);
+                if(seed.charCodeAt(0) < 114)
+                {
+                    break;
+                }
             }
-            seed = seedHash.toString().substr(0,6);
         }
 
         document.getElementById("screenshot").title = seed;
@@ -172,11 +178,13 @@
     }
     function generateRandomScreenshot()
     {
-        seed = Math.random().toString(36).slice(2).substr(0,6);
-
-        while(seed.length < 6)
+        while(true)
         {
-            seed = seed + seed;
+            seed = Math.random().toString(36).slice(2).substr(0,6);
+            if(seed.charCodeAt(0) < 114 && seed.length == 6)
+            {
+                break;
+            }
         }
 
         document.getElementById("seed").value = seed;
