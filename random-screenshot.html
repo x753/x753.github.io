@@ -58,24 +58,11 @@
         .painted {
             background-color: rgb(240, 240, 240);
         }
-
-        .crop {
-            width: 400px;
-            height: 400px;
-            margin: 20px 8px;
-            overflow: hidden;
-        }
-
-        .crop img {
-            width: 512px;
-            height: 512px;
-            margin: -56px -56px -56px -56px;
-        }
     </style>
 
 </head>
 
-<body>
+<body onresize="resizeImages()">
     <br><br>
     <div class="painted">
         <form id="generateForm" onsubmit="generateSeededScreenshot(); return false;" autocomplete="off"> <!-- Wrapping this in a form lets you hit enter to submit, return false; prevents the page from refreshing on submission -->
@@ -93,7 +80,15 @@
     <br>
     <div class="painted">
         <div class="centerpoint">
-            <img id="screenshot" referrerpolicy="no-referrer" src="images/screenshot_software.png" title="seeds will be displayed here">
+            <img id="screenshot" style="width: auto;" referrerpolicy="no-referrer" src="images/screenshot_software.png" title="seeds will be displayed here">
+            <!-- Resize the image automatically so it fits on the page -->
+            <script>
+                document.getElementById("screenshot").style.maxHeight = window.innerHeight - 200 + "px";
+                function resizeImages()
+                {
+                    document.getElementById("screenshot").style.maxHeight = window.innerHeight - 200 + "px";
+                }
+            </script>
         </div>
     </div>
 
