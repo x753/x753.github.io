@@ -93,7 +93,7 @@
     <br>
     <div class="painted">
         <div class="centerpoint">
-            <img id="screenshot" referrerpolicy="no-referrer" crossorigin="anonymous" src="images/screenshot_software.png" title="seeds will be displayed here">
+            <img id="screenshot" referrerpolicy="no-referrer" src="images/screenshot_software.png" title="seeds will be displayed here">
         </div>
     </div>
 
@@ -123,6 +123,8 @@
 
     function generateSeededScreenshot()
     {
+        document.getElementById("screenshot").src = "images/loading.gif";
+
         seed = document.getElementById("seed").value;
         if(seed == "") { seed = "null"; }
 
@@ -166,7 +168,7 @@
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
                 
-                if(imageUrl.substring(0,2) == "//")
+                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
                 {
                     document.getElementById("screenshot").src = "error";
                 }
@@ -179,6 +181,8 @@
     }
     function generateRandomScreenshot()
     {
+        document.getElementById("screenshot").src = "images/loading.gif";
+
         while(true)
         {
             seed = Math.random().toString(36).slice(2).substr(0,6);
@@ -206,7 +210,7 @@
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
                 
-                if(imageUrl.substring(0,2) == "//")
+                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
                 {
                     document.getElementById("screenshot").src = "error";
                 }
@@ -220,6 +224,8 @@
 
     function generateRecentScreenshot()
     {
+        document.getElementById("screenshot").src = "images/loading.gif";
+
         recentCharacters = document.getElementById("recentCharacters").value;
         if(recentCharacters == "")
         {
@@ -278,7 +284,7 @@
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
                 
-                if(imageUrl.substring(0,2) == "//")
+                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
                 {
                     document.getElementById("screenshot").src = "error";
                 }
