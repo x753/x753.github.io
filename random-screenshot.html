@@ -80,13 +80,14 @@
     <div class="painted">
         <form id="generateForm" onsubmit="generateSeededScreenshot(); return false;" autocomplete="off"> <!-- Wrapping this in a form lets you hit enter to submit, return false; prevents the page from refreshing on submission -->
         <div class="centerpoint">
-            <img src='images/seed_icon.png' title="name">
+            <img src='images/seed_icon.png' title="seed">
             <input type="text" id="seed" placeholder="Enter seed..." style="width: 300px">
             <button type="button" onclick="generateSeededScreenshot()" style="margin: 21px 8px; width: 200px">Generate with Seed</button>
             <button type="button" onclick="generateRandomScreenshot()" style="margin: 21px 8px; width: 200px">Generate Random</button>
+            <button type="button" onclick="generateRecentScreenshot()" style="margin: 21px 8px; width: 200px">Generate Recent</button>
         </div>
         </form>
-        
+        <input type="hidden" id="recentCharacters" value="">
     </div>
 
     <br>
@@ -97,7 +98,7 @@
     </div>
 
     <div class="centerpoint">
-        <p style="color:rgb(150, 150, 150)">Screenshots taken from Lightshot</p>
+        <p style="color:rgb(150, 150, 150)">Screenshots taken from Lightshot: https://prnt.sc/</p>
     </div>
 
     <!-- JAVASCRIPT BEYOND THIS POINT, BE WARNED -->
@@ -215,6 +216,88 @@
                 }
             }
         })
+    }
+
+    function generateRecentScreenshot()
+    {
+        recentCharacters = document.getElementById("recentCharacters").value;
+        if(recentCharacters == "")
+        {
+            recentCharacters = "rt";
+            // Request the website to find out how many screenshots they claim are uploaded on the site
+            $.ajax
+            ({
+                type: "GET",
+                url: 'https://shrouded-caverns-08066.herokuapp.com/https://prnt.sc/',
+                dataType : 'text/html',
+                crossDomain: true,
+                error: function(data, textStatus, xhr)
+                {
+                    startIndex = data.responseText.indexOf('<div class=\"loaded-info__numbs\"> ') + 35;
+                    endIndex = data.responseText.indexOf(' </div> shots uploaded </div>');
+                    
+                    recentNumber = data.responseText.substr(startIndex, endIndex - startIndex);
+                    recentNumber = parseInt(recentNumber.split(' ').join(''));
+
+                    // based on how many new screenshots there have been, calculate what a recent URL should start with
+                    characterIncrements = Math.floor((recentNumber - 1634030522)/1679616);
+                    characterIncrements1 = Math.floor(characterIncrements/36);
+                    characterIncrements2 = characterIncrements - 36 * Math.floor(characterIncrements/36);
+
+                    recentCharacters = nextChar('r', characterIncrements1) + nextChar('0', characterIncrements2);
+                }
+            })
+        }
+
+        while(true)
+        {
+            seed = Math.random().toString(36).slice(2).substr(0,4);
+            if(seed.charCodeAt(0) < 114 && seed.length == 4)
+            {
+                break;
+            }
+        }
+
+        seed = recentCharacters + seed;
+
+        document.getElementById("seed").value = seed;
+
+        document.getElementById("screenshot").title = seed;
+        
+        window.console.log(seed);
+        $.ajax
+        ({
+            type: "GET",
+            url: 'https://shrouded-caverns-08066.herokuapp.com/https://prnt.sc/' + seed,
+            dataType : 'text/html',
+            crossDomain: true,
+            error: function(data, textStatus, xhr)
+            {
+                startIndex = data.responseText.indexOf('class="no-click screenshot-image" src="') + 39;
+                endIndex = data.responseText.indexOf('" crossorigin="anonymous" alt="Lightshot screenshot"');
+                
+                imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
+                
+                if(imageUrl.substring(0,2) == "//")
+                {
+                    document.getElementById("screenshot").src = "error";
+                }
+                else
+                {
+                    document.getElementById("screenshot").src = imageUrl;
+                }
+            }
+        })
+    }
+
+    function nextChar(c, x)
+    {
+        newNumber = c.charCodeAt(0) + x;
+        if(newNumber > 57 && newNumber < 97)
+        {
+            newNumber += 39;
+        }
+        return String.fromCharCode(newNumber);
     }
     </script>
     
