@@ -71,10 +71,9 @@
             <input type="text" id="seed" placeholder="Enter seed..." style="width: 280px">
             <button type="button" onclick="generateSeededScreenshot()" style="margin: 21px 8px; width: 180px">Generate with Seed</button>
             <button type="button" onclick="generateRandomScreenshot()" style="margin: 21px 8px; width: 180px">Generate Random</button>
-            <button type="button" onclick="generateRecentScreenshot()" style="margin: 21px 8px; width: 180px">Generate Recent</button>
+            <button type="button" onclick="generateNext()" style="margin: 21px 8px; width: 100px">Next</button>
         </div>
         </form>
-        <input type="hidden" id="recentCharacters" value="">
     </div>
 
     <br>
@@ -140,7 +139,7 @@
                     seedHash = seedHash + seedHash;
                 }
                 seed = seedHash.toString().substr(0,6);
-                if(seed.charCodeAt(0) < 114)
+                if(seed.charCodeAt(0) < 114) // we don't want a screenshot that doesn't exist yet
                 {
                     break;
                 }
@@ -181,7 +180,7 @@
         while(true)
         {
             seed = Math.random().toString(36).slice(2).substr(0,6);
-            if(seed.charCodeAt(0) < 114 && seed.length == 6)
+            if(seed.charCodeAt(0) < 114)
             {
                 break;
             }
@@ -217,52 +216,27 @@
         })
     }
 
-    function generateRecentScreenshot()
+    function generateNext()
     {
         document.getElementById("screenshot").src = "images/loading.gif";
 
-        recentCharacters = document.getElementById("recentCharacters").value;
-        if(recentCharacters == "")
+        seed = document.getElementById("seed").value;
+
+        if(seed.length != 6) // can't increment the seed unless it's a valid seed
         {
-            recentCharacters = "rt";
-            // Request the website to find out how many screenshots they claim are uploaded on the site
-            $.ajax
-            ({
-                type: "GET",
-                url: 'https://shrouded-caverns-08066.herokuapp.com/https://prnt.sc/',
-                dataType : 'text/html',
-                crossDomain: true,
-                error: function(data, textStatus, xhr)
-                {
-                    startIndex = data.responseText.indexOf('<div class=\"loaded-info__numbs\"> ') + 35;
-                    endIndex = data.responseText.indexOf(' </div> shots uploaded </div>');
-                    
-                    recentNumber = data.responseText.substr(startIndex, endIndex - startIndex);
-                    recentNumber = parseInt(recentNumber.split(' ').join(''));
-
-                    // based on how many new screenshots there have been, calculate what a recent URL should start with
-                    characterIncrements = Math.floor((recentNumber - 1634030522)/1679616);
-                    characterIncrements1 = Math.floor(characterIncrements/36);
-                    characterIncrements2 = characterIncrements - 36 * Math.floor(characterIncrements/36);
-
-                    recentCharacters = nextChar('r', characterIncrements1) + nextChar('0', characterIncrements2);
-                }
-            })
-        }
-
-        while(true)
-        {
-            seed = Math.random().toString(36).slice(2).substr(0,4);
-            if(seed.charCodeAt(0) < 114 && seed.length == 4)
+            while(true)
             {
-                break;
+                seed = Math.random().toString(36).slice(2).substr(0,6);
+                if(seed.charCodeAt(0) < 114)
+                {
+                    break;
+                }
             }
         }
 
-        seed = recentCharacters + seed;
+        seed = incrementBase36(seed);
 
         document.getElementById("seed").value = seed;
-
         document.getElementById("screenshot").title = seed;
         
         window.console.log(seed);
@@ -291,14 +265,9 @@
         })
     }
 
-    function nextChar(c, x)
+    function incrementBase36(x)
     {
-        newNumber = c.charCodeAt(0) + x;
-        if(newNumber > 57 && newNumber < 97)
-        {
-            newNumber += 39;
-        }
-        return String.fromCharCode(newNumber);
+        return (parseInt(1+x,36)+1).toString(36).slice(1); // gracefully stolen from Arnauld on Code Golf Stack Exchange
     }
     </script>
     
