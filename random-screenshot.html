@@ -42,10 +42,10 @@
 
         button {
             font-size:16px;
-            width: 300px;
+            height: 58px;
+            margin: 21px 8px;
             background-color: rgb(77, 77, 77);
             color: white;
-            padding: 14px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -67,11 +67,11 @@
     <div class="painted">
         <form id="generateForm" onsubmit="generateSeededScreenshot(); return false;" autocomplete="off"> <!-- Wrapping this in a form lets you hit enter to submit, return false; prevents the page from refreshing on submission -->
         <div class="centerpoint">
-            <img src='images/seed_icon.png' title="seed">
+            <img src='images/seed_icon.png' title="seed" style="height: 58px">
             <input type="text" id="seed" placeholder="Enter seed..." style="width: 280px">
-            <button type="button" onclick="generateSeededScreenshot()" style="margin: 21px 8px; width: 180px">Generate with Seed</button>
-            <button type="button" onclick="generateRandomScreenshot()" style="margin: 21px 8px; width: 180px">Generate Random</button>
-            <button type="button" onclick="generateNext()" style="margin: 21px 8px; width: 100px">Next</button>
+            <button type="button" onclick="generateSeededScreenshot()" style="width: 180px">Generate with Seed</button>
+            <button type="button" onclick="generateRandomScreenshot()" style="width: 180px">Generate Random</button>
+            <button type="button" onclick="generateNext()" style="width: 100px">Next</button>
         </div>
         </form>
     </div>
