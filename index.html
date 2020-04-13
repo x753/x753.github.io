@@ -10,27 +10,14 @@
     <style>
         html,
         body,
-        .container {
-            height: 95%;
-        }
-        
-        .linenum {
-            margin-top: 50px;
-            margin-left: 230px;
-            text-align: right;
-            color: #858585;
-            position: fixed;
-            float: left;
-            font-family: "Cascadia Code", monospace;
-        }
         
         .codetext {
-            margin-top: 50px;
-            margin-left: 280px;
+            margin-top: 23px;
+            margin-left: 80px;
             color: #C6C6C6;
-            position: fixed;
+            position: right;
             float: left;
-            font-family: "Cascadia Code", monospace;
+            font-family: "Consolas", monospace;
             white-space: nowrap;
         }
         
@@ -42,7 +29,6 @@
             top: 0;
             left: 0;
             background-color: #3C3C3C;
-            overflow-x: hidden;
         }
         
         .sidebar1 {
@@ -53,7 +39,6 @@
             top: 0;
             left: 0;
             background-color: #333333;
-            overflow-x: hidden;
         }
         
         .sidebar2 {
@@ -64,7 +49,17 @@
             top: 0;
             left: 0;
             background-color: #252526;
-            overflow-x: hidden;
+        }
+
+        .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+            position: relative;
+            color: #858585;
         }
     </style>
 
@@ -76,35 +71,36 @@
 
 <body bgcolor=1E1E1E>
 
-    <div class="linenum">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22</div>
     <div class="codetext">
-        <font color="#569CD6">using</font> <font color="#4EC9B0">System</font>;
-        <br>
-        <br><font color="#6A9955">// namespace can't start with a number I guess</font>
-        <br><font color="#569CD6">namespace</font> <font color="#4EC9B0">x753network</font>
-        <br>{
-        <br>&emsp;&emsp;<font color="#569CD6">public partial class</font> <font color="#4EC9B0">MyWebsite</font>
-        <br>&emsp;&emsp;{
-        <br>&emsp;&emsp;&emsp;&emsp;<font color="#569CD6">public static void</font> <font color="#DCDCAA">UsefulLinks</font>()
-        <br>&emsp;&emsp;&emsp;&emsp;{
+        <text class="noselect">&nbsp;1&nbsp;&nbsp;&nbsp;</text><font color="#569CD6">using</font> <font color="#4EC9B0">System</font>;
+        <br><text class="noselect">&nbsp;2&nbsp;&nbsp;&nbsp;</text>
+        <br><text class="noselect">&nbsp;3&nbsp;&nbsp;&nbsp;</text><font color="#6A9955">// namespace can't start with a number I guess</font>
+        <br><text class="noselect">&nbsp;4&nbsp;&nbsp;&nbsp;</text><font color="#569CD6">namespace</font> <font color="#4EC9B0">x753network</font>
+        <br><text class="noselect">&nbsp;5&nbsp;&nbsp;&nbsp;</text>{
+        <br><text class="noselect">&nbsp;6&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;<font color="#569CD6">public partial class</font> <font color="#4EC9B0">MyWebsite</font>
+        <br><text class="noselect">&nbsp;7&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;{
+        <br><text class="noselect">&nbsp;8&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#569CD6">public static void</font> <font color="#DCDCAA">UsefulLinks</font>()
+        <br><text class="noselect">&nbsp;9&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
         <a href="https://github.com/x753" style="text-decoration: none; color: #C6C6C6;">
-        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#6A9955">// Link to my GitHub</font>
-        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://github.com/x753"</font>);
+        <br><text class="noselect">10&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my GitHub</font>
+        <br><text class="noselect">11&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://github.com/x753"</font>);
         <a>
-        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <br><text class="noselect">12&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="https://www.patreon.com/x753" style="text-decoration: none; color: #C6C6C6;">
-        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#6A9955">// Link to my Patreon</font>
-        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://www.patreon.com/x753"</font>);
+        <br><text class="noselect">13&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my Patreon</font>
+        <br><text class="noselect">14&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://www.patreon.com/x753"</font>);
         </a>
-        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <br><text class="noselect">15&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="https://discord.gg/fGSneSe" style="text-decoration: none; color: #C6C6C6;">
-        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#6A9955">// Link to my Discord Server</font>
-        <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://discord.gg/fGSneSe"</font>);
+        <br><text class="noselect">16&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my Discord Server</font>
+        <br><text class="noselect">17&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://discord.gg/fGSneSe"</font>);
         </a>
-        <br>&emsp;&emsp;&emsp;&emsp;}
-        <br>&emsp;&emsp;}
-        <br>}
+        <br><text class="noselect">18&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+        <br><text class="noselect">19&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;}
+        <br><text class="noselect">20&nbsp;&nbsp;&nbsp;</text>}
+        <br><text class="noselect">21&nbsp;&nbsp;&nbsp;</text>
 
 </body>
 
 </html>
+
