@@ -210,7 +210,12 @@
     </div>
 
     <script>
-        window.onload = function loadPage()
+        // Firefox has a bug with onLoad when Ctrl-F5 hard refreshing
+        window.addEventListener('DOMContentLoaded', (event) => {
+            loadPage();
+        });
+
+        function loadPage()
         {
             for(i = 1; i <= 36; i++)
             {
