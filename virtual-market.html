@@ -93,7 +93,7 @@
 
 </head>
 
-<body onload='loadPage()'>
+<body>
 
     <div id="div01" onclick='clickItem(this)'>
         <div class="highlight">PARAREAL TOKYO</div><div class="version" style="background-color: rgba(100, 100, 100, 0.8);">HUB WORLD</div>
@@ -210,7 +210,7 @@
     </div>
 
     <script>
-        function loadPage()
+        window.onload = function loadPage()
         {
             for(i = 1; i <= 36; i++)
             {
