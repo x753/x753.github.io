@@ -30,21 +30,27 @@
             background: rgba(0, 200, 255, 0.17);
             position: absolute;
         }
-        
-        #windowVSC {
+
+        .container {
+            position: absolute;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.753);
+            overflow: hidden;
+        }
+
+        #VSC {
             top: calc(50% - 250px);
             left: calc(50% - 400px);
-            position: absolute;
             width: 800px;
             height: 500px;
             z-index: 9;
             border: 1px solid #000;
             background-color: #1E1E1E;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.753);
-            overflow: hidden;
+            min-width: 405px;
+            min-height: 255px;
+            resize: both;
         }
 
-        #windowVSC-bar {
+        #VSC-bar {
             height: 33px;
             cursor: move;
             z-index: 10;
@@ -57,10 +63,21 @@
             padding-left: 6px;
             position: absolute;
         }
-        .titlebar-buttons {
-            right: 0px;
+        .titlebar-button {
+            height: 33px;
+            width: 33px;
+            color: #AAAAAA;
+            text-align: center;
             position: absolute;
+            cursor: default;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
         }
+        .titlebar-button:hover {background: rgba(255,255,255, 0.1);}
 
         .codetext {
             margin-top: 30px;
@@ -110,12 +127,12 @@
 
 </head>
 
-<body onresize="resizeWindows()">
+<body onresize="resizeContainers()">
 
     <div id="canvas"></div>
 
-    <div id="windowVSC">
-        <div id="windowVSC-bar"><img class="titlebar-icon noselect" src="images/VSC_icon.png"><img class="titlebar-buttons noselect" src="images/VSC_buttons.png"></div>
+    <div id="VSC" class="container">
+        <div id="VSC-bar"><span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span><span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span><img class="titlebar-icon noselect" src="images/VSC_icon.png"></div>
 
         <div class="topbarVSC"></div>
         <div class="sidebarVSC"></div>
@@ -154,47 +171,91 @@
     <script>
         // Firefox has a bug with onLoad when Ctrl-F5 hard refreshing
         window.addEventListener('DOMContentLoaded', (event) => {
-            resizeWindows();
+            resizeContainers();
         });
 
-        function resizeWindows()
+        window.onmouseup = function()
         {
-            var w = window.innerWidth;
-            var h = window.innerHeight;
+            fitContainersOnScreen();
+        }
 
+        function resizeContainers()
+        {
             var canvas = document.getElementById("canvas"); // fullscreen canvas
-            canvas.style.width = (w+5).toString()+"px";
-            canvas.style.height = (h+5).toString()+"px";
+            canvas.style.width = (window.innerWidth+5).toString()+"px";
+            canvas.style.height = (window.innerHeight+5).toString()+"px";
 
-            var windowVSC = document.getElementById("windowVSC"); // keep windows inside screen bounds
-            if(parseInt(windowVSC.style.top) < 0)
+            fitContainersOnScreen();
+        }
+
+        function fitContainersOnScreen()
+        {
+            var containers = document.getElementsByClassName("container");
+            for (var i = 0; i < containers.length; i++)
             {
-                windowVSC.style.top = "0px";
-            }
-            if(parseInt(windowVSC.style.left) < 0)
-            {
-                windowVSC.style.left = "0px";
-            }
-            if(parseInt(windowVSC.style.top) > (parseInt(window.innerHeight) - 500))
-            {
-                windowVSC.style.top = window.innerHeight-500 + "px";
-            }
-            if(parseInt(windowVSC.style.left) > (parseInt(window.innerWidth) - 800))
-            {
-                windowVSC.style.left = window.innerWidth-800 + "px";
+                // Explicitly redefine the properties of the container so we have proper access to them
+                containers[i].style.height = window.getComputedStyle(containers[i]).height;
+                containers[i].style.width = window.getComputedStyle(containers[i]).width;
+                containers[i].style.top = window.getComputedStyle(containers[i]).top;
+                containers[i].style.left = window.getComputedStyle(containers[i]).left;
+
+                if(parseInt(containers[i].style.height) > window.innerHeight)
+                {
+                    containers[i].style.height = window.innerHeight + "px";
+                }
+                if(parseInt(containers[i].style.width) > window.innerWidth)
+                {
+                    containers[i].style.width = window.innerWidth + "px";
+                }
+                if(parseInt(containers[i].style.top) < 0)
+                {
+                    containers[i].style.top = "0px";
+                }
+                if(parseInt(containers[i].style.left) < 0)
+                {
+                    containers[i].style.left = "0px";
+                }
+                if(parseInt(containers[i].style.top) > (window.innerHeight - parseInt(containers[i].style.height)))
+                {
+                    containers[i].style.top = window.innerHeight-parseInt(containers[i].style.height) + "px";
+                }
+                if(parseInt(containers[i].style.left) > (window.innerWidth - parseInt(containers[i].style.width)))
+                {
+                    containers[i].style.left = window.innerWidth-parseInt(containers[i].style.width) + "px";
+                }
             }
         }
     </script>
 
     <script>
-        windowMove(document.getElementById("windowVSC"));
+        function buttonResize(e)
+        {
+            var container = e.parentElement.parentElement;
+            container.style.height = "";
+            container.style.width = "";
 
-        function windowMove(myWindow)
+            fitContainersOnScreen();
+        }
+        function buttonClose(e)
+        {
+            var container = e.parentElement.parentElement;
+            container.remove();
+        }
+    </script>
+
+    <script>
+        var containers = document.getElementsByClassName("container");
+        for (var i = 0; i < containers.length; i++)
+        {
+            containerMove(containers[i]);
+        }
+
+        function containerMove(container)
         {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            if (document.getElementById(myWindow.id + "-bar"))
+            if (document.getElementById(container.id + "-bar"))
             {
-                document.getElementById(myWindow.id + "-bar").onmousedown = moveStart;
+                document.getElementById(container.id + "-bar").onmousedown = moveStart;
             }
 
             function moveStart(e)
@@ -219,31 +280,14 @@
                 pos3 = e.clientX;
                 pos4 = e.clientY;
 
-                myWindow.style.top = (myWindow.offsetTop - pos2) + "px";
-                myWindow.style.left = (myWindow.offsetLeft - pos1) + "px";
+                container.style.top = (container.offsetTop - pos2) + "px";
+                container.style.left = (container.offsetLeft - pos1) + "px";
             }
 
             function moveStop()
             {
                 document.onmouseup = null;
                 document.onmousemove = null;
-
-                if(parseInt(myWindow.style.top) < 0)
-                {
-                    myWindow.style.top = "0px";
-                }
-                if(parseInt(myWindow.style.left) < 0)
-                {
-                    myWindow.style.left = "0px";
-                }
-                if(parseInt(myWindow.style.top) > (parseInt(window.innerHeight) - 500))
-                {
-                    myWindow.style.top = window.innerHeight-500 + "px";
-                }
-                if(parseInt(myWindow.style.left) > (parseInt(window.innerWidth) - 800))
-                {
-                    myWindow.style.left = window.innerWidth-800 + "px";
-                }
             }
         }
     </script>
@@ -275,7 +319,11 @@
                 mouse.startX = e.clientX;
                 mouse.startY = e.clientY;
 
-                document.getElementById("windowVSC").className = "noselect"; // make it so you can't interact with windows
+                var containers = document.getElementsByClassName("container");
+                for (var i = 0; i < containers.length; i++)
+                {
+                    containers[i].classList.add("noselect"); // make it so you can't interact with containers
+                }
 
                 element = document.createElement('div'); // create selection box
                 element.className = 'selectionBox';
@@ -301,7 +349,11 @@
 
             function selectionStop() // handle letting go of mouse button
             {
-                document.getElementById("windowVSC").className = ""; // make it so you can interact with windows again
+                var containers = document.getElementsByClassName("container");
+                for (var i = 0; i < containers.length; i++)
+                {
+                    containers[i].classList.remove("noselect"); // make it so you can interact with windows again
+                }
 
                 document.onmouseup = null;
                 document.onmousemove = null;
