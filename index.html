@@ -125,6 +125,15 @@
             user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
             pointer-events: none;
         }
+
+        .clock {
+            position: fixed;
+            padding-right: 15px;
+            bottom: 0;
+            right: 0;
+            color: rgba(255,255,255, 0.5);
+            font-size: 100px;
+        }
     </style>
 
 </head>
@@ -169,6 +178,8 @@
             <br><text class="linenumbers noselect">21&nbsp;&nbsp;&nbsp;</text>
         </div>
     </div>
+
+    <div id="clock" class="clock noselect"></div>
 
     <script>
         // Firefox has a bug with onLoad when Ctrl-F5 hard refreshing
@@ -365,6 +376,25 @@
                 }
             }
         }
+    </script>
+
+    <script type="text/javascript">
+        function GetClock()
+        {
+            var date = new Date();
+            var hours = date.getHours(); 
+            var minutes = date.getMinutes();
+            if(minutes <= 9)
+            {
+                minutes= "0" + minutes;
+            }
+
+            var time = "" + hours + ":" + minutes + "";
+            document.getElementById('clock').innerHTML = time;
+        }
+
+        GetClock();
+        setInterval(GetClock,1000);
     </script>
 
 </body>
