@@ -8,12 +8,64 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <style>
-        html,
-        body,
+        body {
+            background-color: rgb(117, 42, 101);
+            background-image: url('images/XerusWallpaper.jpg');
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #canvas {
+            border: 2px solid white;
+            position: absolute;
+            z-index: -1000;
+            margin: 0;
+            padding: 0;
+        }
+        .boxselect {
+            border: 1px solid rgba(0, 200, 255, 0.17);
+            background: rgba(0, 200, 255, 0.17);
+            position: absolute;
+        }
         
+        #draggable {
+            top: calc(50% - 250px);
+            left: calc(50% - 400px);
+            position: absolute;
+            width: 800px;
+            height: 500px;
+            z-index: 9;
+            border: 1px solid #000;
+            background-color: #1E1E1E;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.753);
+        }
+
+        #draggableheader {
+            height: 33px;
+            cursor: move;
+            z-index: 10;
+            background-color: #3C3C3C;
+            color: #fff;
+        }
+
+        .titlebar-icon {
+            padding-top: 6px;
+            padding-left: 6px;
+            position: absolute;
+        }
+        .titlebar-buttons {
+            right: 0px;
+            position: absolute;
+        }
+
         .codetext {
-            margin-top: 23px;
-            margin-left: 80px;
+            margin-top: 30px;
+            margin-left: 70px;
             color: #C6C6C6;
             position: right;
             float: left;
@@ -21,34 +73,29 @@
             white-space: nowrap;
         }
         
-        .topbar {
-            height: 30px;
+        .topbarVS {
+            height: 66px;
             width: 100%;
-            position: fixed;
-            z-index: 3;
+            position: absolute;
+            z-index: -2;
             top: 0;
             left: 0;
-            background-color: #3C3C3C;
+            background-color: #252526;
         }
         
-        .sidebar1 {
+        .sidebarVS {
             height: 100%;
             width: 50px;
-            position: fixed;
-            z-index: 2;
+            position: absolute;
+            z-index: -1;
             top: 0;
             left: 0;
             background-color: #333333;
         }
-        
-        .sidebar2 {
-            height: 100%;
-            width: 200px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #252526;
+
+        .linenumbers {
+            position: relative;
+            color: #858585;
         }
 
         .noselect {
@@ -58,49 +105,198 @@
             -moz-user-select: none; /* Old versions of Firefox */
             -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
-            position: relative;
-            color: #858585;
+            pointer-events: none;
         }
     </style>
 
 </head>
 
-<div class="sidebar1"></div>
-<div class="sidebar2"></div>
-<div class="topbar"></div>
+<body onresize="resizeWindows()">
 
-<body bgcolor=1E1E1E>
+    <div id="canvas"></div>
 
-    <div class="codetext">
-        <text class="noselect">&nbsp;1&nbsp;&nbsp;&nbsp;</text><font color="#569CD6">using</font> <font color="#4EC9B0">System</font>;
-        <br><text class="noselect">&nbsp;2&nbsp;&nbsp;&nbsp;</text>
-        <br><text class="noselect">&nbsp;3&nbsp;&nbsp;&nbsp;</text><font color="#6A9955">// namespace can't start with a number I guess</font>
-        <br><text class="noselect">&nbsp;4&nbsp;&nbsp;&nbsp;</text><font color="#569CD6">namespace</font> <font color="#4EC9B0">x753network</font>
-        <br><text class="noselect">&nbsp;5&nbsp;&nbsp;&nbsp;</text>{
-        <br><text class="noselect">&nbsp;6&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;<font color="#569CD6">public partial class</font> <font color="#4EC9B0">MyWebsite</font>
-        <br><text class="noselect">&nbsp;7&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;{
-        <br><text class="noselect">&nbsp;8&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#569CD6">public static void</font> <font color="#DCDCAA">UsefulLinks</font>()
-        <br><text class="noselect">&nbsp;9&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-        <a href="https://github.com/x753" style="text-decoration: none; color: #C6C6C6;">
-        <br><text class="noselect">10&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my GitHub</font>
-        <br><text class="noselect">11&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://github.com/x753"</font>);
-        <a>
-        <br><text class="noselect">12&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="https://www.patreon.com/x753" style="text-decoration: none; color: #C6C6C6;">
-        <br><text class="noselect">13&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my Patreon</font>
-        <br><text class="noselect">14&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://www.patreon.com/x753"</font>);
-        </a>
-        <br><text class="noselect">15&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="https://discord.gg/fGSneSe" style="text-decoration: none; color: #C6C6C6;">
-        <br><text class="noselect">16&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my Discord Server</font>
-        <br><text class="noselect">17&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://discord.gg/fGSneSe"</font>);
-        </a>
-        <br><text class="noselect">18&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-        <br><text class="noselect">19&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;}
-        <br><text class="noselect">20&nbsp;&nbsp;&nbsp;</text>}
-        <br><text class="noselect">21&nbsp;&nbsp;&nbsp;</text>
+    <div id="draggable">
+        <div id="draggableheader"><img class="titlebar-icon noselect" src="images/VSC_icon.png"><img class="titlebar-buttons noselect" src="images/VSC_buttons.png"></div>
+
+        <div class="topbarVS"></div>
+        <div class="sidebarVS"></div>
+        <div class="codetext">
+            <br>
+            <text class="linenumbers noselect">&nbsp;1&nbsp;&nbsp;&nbsp;</text><font color="#569CD6">using</font> <font color="#4EC9B0">System</font>;
+            <br><text class="linenumbers noselect">&nbsp;2&nbsp;&nbsp;&nbsp;</text>
+            <br><text class="linenumbers noselect">&nbsp;3&nbsp;&nbsp;&nbsp;</text><font color="#6A9955">// namespace can't start with a number :(</font>
+            <br><text class="linenumbers noselect">&nbsp;4&nbsp;&nbsp;&nbsp;</text><font color="#569CD6">namespace</font> <font color="#4EC9B0">x753network</font>
+            <br><text class="linenumbers noselect">&nbsp;5&nbsp;&nbsp;&nbsp;</text>{
+            <br><text class="linenumbers noselect">&nbsp;6&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;<font color="#569CD6">public partial class</font> <font color="#4EC9B0">MyWebsite</font>
+            <br><text class="linenumbers noselect">&nbsp;7&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;{
+            <br><text class="linenumbers noselect">&nbsp;8&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#569CD6">public static void</font> <font color="#DCDCAA">UsefulLinks</font>()
+            <br><text class="linenumbers noselect">&nbsp;9&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+            <a href="https://github.com/x753" style="text-decoration: none; color: #C6C6C6;">
+            <br><text class="linenumbers noselect">10&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my GitHub</font>
+            <br><text class="linenumbers noselect">11&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://github.com/x753"</font>);
+            <a>
+            <br><text class="linenumbers noselect">12&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.patreon.com/x753" style="text-decoration: none; color: #C6C6C6;">
+            <br><text class="linenumbers noselect">13&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my Patreon</font>
+            <br><text class="linenumbers noselect">14&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://www.patreon.com/x753"</font>);
+            </a>
+            <br><text class="linenumbers noselect">15&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://discord.gg/fGSneSe" style="text-decoration: none; color: #C6C6C6;">
+            <br><text class="linenumbers noselect">16&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my Discord Server</font>
+            <br><text class="linenumbers noselect">17&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font color="#CE9178">"https://discord.gg/fGSneSe"</font>);
+            </a>
+            <br><text class="linenumbers noselect">18&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+            <br><text class="linenumbers noselect">19&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;}
+            <br><text class="linenumbers noselect">20&nbsp;&nbsp;&nbsp;</text>}
+            <br><text class="linenumbers noselect">21&nbsp;&nbsp;&nbsp;</text>
+        </div>
+    </div>
+
+    <script>
+        // Firefox has a bug with onLoad when Ctrl-F5 hard refreshing
+        window.addEventListener('DOMContentLoaded', (event) => {
+            resizeWindows();
+        });
+
+        function resizeWindows()
+        {
+            var window_VSC = document.getElementById("draggable");
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+
+            var canvas = document.getElementById("canvas");
+            canvas.style.top = "-5px";
+            canvas.style.left = "-5px";
+            canvas.style.width = (w+5).toString()+"px";
+            canvas.style.height = (h+5).toString()+"px";
+
+            window_VSC.style.left = ((w/2)-400).toString()+"px";
+            window_VSC.style.top = ((h/2)-250).toString()+"px";
+        }
+    </script>
+
+    <script>
+        //Make the DIV element draggagle:
+        dragElement(document.getElementById("draggable"));
+
+        function dragElement(elmnt)
+        {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            if (document.getElementById(elmnt.id + "header"))
+            {
+                /* if present, the header is where you move the DIV from:*/
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            }
+            else
+            {
+                /* otherwise, move the DIV from anywhere inside the DIV:*/
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e)
+            {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e)
+            {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement()
+            {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+    </script>
+
+    <script>
+        initDraw(document.getElementById('canvas'));
+
+        function initDraw(canvas)
+        {
+            function setMousePosition(e)
+            {
+                var ev = e || window.event; //Moz || IE
+                if (ev.pageX) { //Moz
+                    mouse.x = ev.pageX + window.pageXOffset;
+                    mouse.y = ev.pageY + window.pageYOffset;
+                } else if (ev.clientX) { //IE
+                    mouse.x = ev.clientX + document.body.scrollLeft;
+                    mouse.y = ev.clientY + document.body.scrollTop;
+                }
+            };
+
+            var mouse = {
+                x: 0,
+                y: 0,
+                startX: 0,
+                startY: 0
+            };
+            var element = null;
+
+            canvas.onmousemove = function (e) 
+            {
+                setMousePosition(e);
+                if (element !== null) 
+                {
+                    element.style.width = Math.abs(mouse.x - mouse.startX) + 'px';
+                    element.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
+                    element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x + 'px' : mouse.startX + 'px';
+                    element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y + 'px' : mouse.startY + 'px';
+                }
+            }
+            canvas.onmousedown = function (e) 
+            {
+                document.getElementById("draggable").className = "noselect";
+                mouse.startX = mouse.x;
+                mouse.startY = mouse.y;
+                element = document.createElement('div');
+                element.className = 'boxselect';
+                element.id = 'boxselect';
+                element.style.left = mouse.x + 'px';
+                element.style.top = mouse.y + 'px';
+                canvas.appendChild(element);
+            }
+            canvas.onmouseup = function (e) 
+            {
+                document.getElementById("draggable").className = "";
+                if (element !== null)
+                {
+                    element = null;
+                    document.getElementById("boxselect").remove();
+                }
+            }
+            canvas.onmouseleave = function (e)
+            {
+                document.getElementById("draggable").className = "";
+                if (element !== null)
+                {
+                    element = null;
+                    document.getElementById("boxselect").remove();
+                }
+            }
+        }
+    </script>
 
 </body>
 
 </html>
-
