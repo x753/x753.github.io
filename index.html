@@ -143,7 +143,9 @@
     <div id="canvas"></div>
 
     <div id="VSC" class="container">
-        <div id="VSC-bar"><span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span><span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span><img class="titlebar-icon noselect" src="images/VSC_icon.png"></div>
+        <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+        <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+        <div id="VSC-bar"><img class="titlebar-icon noselect" src="images/VSC_icon.png"></div>
 
         <div class="topbarVSC"></div>
         <div class="sidebarVSC"></div>
@@ -243,7 +245,7 @@
     <script>
         function buttonResize(e)
         {
-            var container = e.parentElement.parentElement;
+            var container = e.parentElement;
             container.style.height = "";
             container.style.width = "";
 
@@ -251,7 +253,7 @@
         }
         function buttonClose(e)
         {
-            var container = e.parentElement.parentElement;
+            var container = e.parentElement;
             container.remove();
         }
     </script>
