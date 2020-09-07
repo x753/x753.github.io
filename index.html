@@ -21,7 +21,6 @@
         }
 
         #canvas {
-            border: 2px solid white;
             position: absolute;
             z-index: -1000;
             margin: 0;
@@ -266,6 +265,11 @@
             }
             canvas.onmousedown = function (e) 
             {
+                var box = document.getElementById("boxselect");
+                if(box !== null)
+                {
+                    box.remove();
+                }
                 document.getElementById("draggable").className = "noselect";
                 mouse.startX = mouse.x;
                 mouse.startY = mouse.y;
