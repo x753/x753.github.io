@@ -38,23 +38,40 @@
         }
 
         #VSC {
-            top: calc(50% - 250px);
-            left: calc(50% - 400px);
+            top: calc(50% - 400px);
+            left: calc(50% - 600px);
             width: 800px;
             height: 500px;
-            z-index: 9;
+            z-index: 1;
             border: 1px solid #000;
             background-color: #1E1E1E;
-            min-width: 405px;
-            min-height: 255px;
+            min-width: 770px;
+            min-height: 490px;
             resize: both;
         }
-
         #VSC-bar {
             height: 33px;
             cursor: move;
-            z-index: 10;
             background-color: #3C3C3C;
+            color: #fff;
+        }
+
+        #firefox {
+            top: calc(50% + 150px);
+            left: calc(50% - 50px);
+            width: 600px;
+            height: 193px;
+            z-index: 2;
+            border: 1px solid #000;
+            background-color: white;
+            min-width: 470px;
+            min-height: 193px;
+            resize: both;
+        }
+        #firefox-bar {
+            height: 33px;
+            cursor: move;
+            background-color: #263859;
             color: #fff;
         }
 
@@ -77,7 +94,7 @@
             -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
         }
-        .titlebar-button:hover {background: rgba(255,255,255, 0.1);}
+        .titlebar-button:hover {background-color: rgba(255,255,255, 0.1);}
 
         .codetext {
             margin-top: 30px;
@@ -138,7 +155,7 @@
 
 </head>
 
-<body onresize="resizeContainers()">
+<body id="body" tabindex="-1" onresize="resizeContainers()"> <!-- tabindex is necessary for focus() to work -->
 
     <div id="canvas"></div>
 
@@ -147,38 +164,15 @@
         <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
         <div id="VSC-bar"><img class="titlebar-icon noselect" src="images/VSC_icon.png"></div>
 
-        <div class="topbarVSC"></div>
-        <div class="sidebarVSC"></div>
-        <div class="codetext">
-            <br>
-            <text class="linenumbers noselect">&nbsp;1&nbsp;&nbsp;&nbsp;</text><font color="#569CD6">using</font> <font color="#4EC9B0">System</font>;
-            <br><text class="linenumbers noselect">&nbsp;2&nbsp;&nbsp;&nbsp;</text>
-            <br><text class="linenumbers noselect">&nbsp;3&nbsp;&nbsp;&nbsp;</text><font color="#6A9955">// namespace can't start with a number :(</font>
-            <br><text class="linenumbers noselect">&nbsp;4&nbsp;&nbsp;&nbsp;</text><font color="#569CD6">namespace</font> <font color="#4EC9B0">x753network</font>
-            <br><text class="linenumbers noselect">&nbsp;5&nbsp;&nbsp;&nbsp;</text>{
-            <br><text class="linenumbers noselect">&nbsp;6&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;<font color="#569CD6">public partial class</font> <font color="#4EC9B0">MyWebsite</font>
-            <br><text class="linenumbers noselect">&nbsp;7&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;{
-            <br><text class="linenumbers noselect">&nbsp;8&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#569CD6">public static void</font> <font color="#DCDCAA">UsefulLinks</font>()
-            <br><text class="linenumbers noselect">&nbsp;9&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-            <a href="https://github.com/x753" style="text-decoration: none; color: #C6C6C6;">
-            <br><text class="linenumbers noselect">10&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my GitHub</font>
-            <br><text class="linenumbers noselect">11&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font class="linktext" color="#CE9178">"https://github.com/x753"</font>);
-            <a>
-            <br><text class="linenumbers noselect">12&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://www.patreon.com/x753" style="text-decoration: none; color: #C6C6C6;">
-            <br><text class="linenumbers noselect">13&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my Patreon</font>
-            <br><text class="linenumbers noselect">14&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font class="linktext" color="#CE9178">"https://www.patreon.com/x753"</font>);
-            </a>
-            <br><text class="linenumbers noselect">15&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://discord.gg/fGSneSe" style="text-decoration: none; color: #C6C6C6;">
-            <br><text class="linenumbers noselect">16&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#6A9955">// Link to my Discord Server</font>
-            <br><text class="linenumbers noselect">17&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#9CDCFE">System</font>.<font color="#9CDCFE">Diagnostics</font>.<font color="#9CDCFE">Process</font>.<font color="#DCDCAA">Start</font>(<font class="linktext" color="#CE9178">"https://discord.gg/fGSneSe"</font>);
-            </a>
-            <br><text class="linenumbers noselect">18&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-            <br><text class="linenumbers noselect">19&nbsp;&nbsp;&nbsp;</text>&nbsp;&nbsp;&nbsp;}
-            <br><text class="linenumbers noselect">20&nbsp;&nbsp;&nbsp;</text>}
-            <br><text class="linenumbers noselect">21&nbsp;&nbsp;&nbsp;</text>
-        </div>
+        <iframe class="iframe" src="visual-studio.html" height="100%" width="100%" frameBorder="0"></iframe>
+    </div>
+
+    <div id="firefox" class="container">
+        <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+        <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+        <div id="firefox-bar"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
+
+        <iframe class="iframe" src="startup.html" height="100%" width="100%" frameBorder="0"></iframe>
     </div>
 
     <div id="clock" class="clock noselect"></div>
@@ -188,6 +182,11 @@
         window.addEventListener('DOMContentLoaded', (event) => {
             resizeContainers();
         });
+
+        window.onmousedown = function()
+        {
+            document.getElementById("body").focus();
+        }
 
         window.onmouseup = function()
         {
@@ -208,11 +207,12 @@
             var containers = document.getElementsByClassName("container");
             for (var i = 0; i < containers.length; i++)
             {
-                // Explicitly redefine the properties of the container so we have proper access to them
+                // Explicitly redefine the properties of the containers so we have proper access to them
                 containers[i].style.height = window.getComputedStyle(containers[i]).height;
                 containers[i].style.width = window.getComputedStyle(containers[i]).width;
                 containers[i].style.top = window.getComputedStyle(containers[i]).top;
                 containers[i].style.left = window.getComputedStyle(containers[i]).left;
+                containers[i].style.zIndex = window.getComputedStyle(containers[i]).zIndex;
 
                 if(parseInt(containers[i].style.height) > window.innerHeight)
                 {
@@ -243,18 +243,47 @@
     </script>
 
     <script>
-        function buttonResize(e)
+
+        setInterval(function()
         {
+            if(document.activeElement !== lastActiveElement)
+            { 
+                lastActiveElement = document.activeElement;
+
+                if(document.activeElement.parentElement.style.zIndex == "") { return; } // skip the body, it isn't a container
+
+                focusContainer(document.activeElement.parentElement);
+            }  
+        }, 50);
+
+        function buttonResize(e)
+        {   
             var container = e.parentElement;
             container.style.height = "";
             container.style.width = "";
 
+            focusContainer(container);
             fitContainersOnScreen();
         }
         function buttonClose(e)
         {
             var container = e.parentElement;
             container.remove();
+        }
+
+        var lastActiveElement = null;
+        function focusContainer(container)
+        {
+            var previousZ = container.style.zIndex;
+            var containers = document.getElementsByClassName("container");
+            for (var i = 0; i < containers.length; i++)
+            {
+                if(parseInt(containers[i].style.zIndex) > parseInt(previousZ))
+                {
+                    containers[i].style.zIndex = parseInt(containers[i].style.zIndex)-1;
+                }
+            }
+            container.style.zIndex = containers.length;
         }
     </script>
 
@@ -275,6 +304,14 @@
 
             function moveStart(e)
             {
+                focusContainer(container);
+
+                var containers = document.getElementsByClassName("iframe");
+                for (var i = 0; i < containers.length; i++)
+                {
+                    containers[i].classList.add("noselect"); // make it so you can't interact with containers
+                }
+                
                 e = e || window.event;
                 e.preventDefault();
 
@@ -301,6 +338,12 @@
 
             function moveStop()
             {
+                var containers = document.getElementsByClassName("iframe");
+                for (var i = 0; i < containers.length; i++)
+                {
+                    containers[i].classList.remove("noselect"); // make it so you can interact with containers again
+                }
+
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
@@ -388,7 +431,11 @@
             var minutes = date.getMinutes();
             if(minutes <= 9)
             {
-                minutes= "0" + minutes;
+                minutes = "0" + minutes;
+            }
+            if(hours <= 9)
+            {
+                hours = "0" + hours;
             }
 
             var time = "" + hours + ":" + minutes + "";
