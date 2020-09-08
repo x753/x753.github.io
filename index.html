@@ -191,11 +191,23 @@
             {
                 focusContainer(underMouse[2]);
             }
+
+            var containers = document.getElementsByClassName("iframe");
+            for (var i = 0; i < containers.length; i++)
+            {
+                containers[i].classList.add("noselect"); // make it so you can't interact with containers
+            }
         }
 
         window.onmouseup = function()
         {
             fitContainersOnScreen();
+
+            var containers = document.getElementsByClassName("iframe");
+            for (var i = 0; i < containers.length; i++)
+            {
+                containers[i].classList.remove("noselect"); // make it so you can interact with containers again
+            }
         }
 
         function resizeContainers()
@@ -307,13 +319,7 @@
             }
 
             function moveStart(e)
-            {
-                var containers = document.getElementsByClassName("iframe");
-                for (var i = 0; i < containers.length; i++)
-                {
-                    containers[i].classList.add("noselect"); // make it so you can't interact with containers
-                }
-                
+            {                
                 e = e || window.event;
                 e.preventDefault();
 
@@ -340,12 +346,6 @@
 
             function moveStop()
             {
-                var containers = document.getElementsByClassName("iframe");
-                for (var i = 0; i < containers.length; i++)
-                {
-                    containers[i].classList.remove("noselect"); // make it so you can interact with containers again
-                }
-
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
