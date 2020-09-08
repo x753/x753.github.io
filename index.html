@@ -186,6 +186,11 @@
         window.onmousedown = function()
         {
             document.getElementById("body").focus();
+            var underMouse = document.querySelectorAll(':hover');
+            if(underMouse[2].className == "container")
+            {
+                focusContainer(underMouse[2]);
+            }
         }
 
         window.onmouseup = function()
@@ -262,7 +267,6 @@
             container.style.height = "";
             container.style.width = "";
 
-            focusContainer(container);
             fitContainersOnScreen();
         }
         function buttonClose(e)
@@ -304,8 +308,6 @@
 
             function moveStart(e)
             {
-                focusContainer(container);
-
                 var containers = document.getElementsByClassName("iframe");
                 for (var i = 0; i < containers.length; i++)
                 {
