@@ -46,10 +46,10 @@
 
         #VSC {
             top: calc(50% - 400px);
-            left: calc(50% - 600px);
+            left: calc(50% - 700px);
             width: 800px;
             height: 500px;
-            z-index: 1;
+            z-index: 2;
             border: 1px solid #000;
             background-color: #1E1E1E;
             min-width: 770px;
@@ -65,10 +65,10 @@
 
         #firefox {
             top: calc(50% + 150px);
-            left: calc(50% - 50px);
+            left: calc(50% - 150px);
             width: 600px;
             height: 193px;
-            z-index: 2;
+            z-index: 3;
             border: 1px solid #000;
             background-color: white;
             min-width: 470px;
@@ -79,6 +79,25 @@
             height: 33px;
             cursor: move;
             background-color: #263859;
+            color: #fff;
+        }
+
+        #paint {
+            top: calc(50% - 285px);
+            left: calc(50% + 140px);
+            width: 500px;
+            height: 407px;
+            z-index: 1;
+            border: 1px solid #000;
+            background-color: white;
+            min-width: 450px;
+            min-height: 407px;
+            resize: both;
+        }
+        #paint-bar {
+            height: 33px;
+            cursor: move;
+            background-color: #316d96;
             color: #fff;
         }
 
@@ -180,6 +199,14 @@
         <div id="firefox-bar"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
 
         <iframe class="iframe" src="startup.html" height="100%" width="100%" frameBorder="0"></iframe>
+    </div>
+
+    <div id="paint" class="container">
+        <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+        <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+        <div id="paint-bar"><img class="titlebar-icon noselect" src="images/paint_icon.png"></div>
+
+        <iframe class="iframe" src="paint.html" height="100%" width="100%" frameBorder="0"></iframe>
     </div>
 
     <div id="clock" class="clock noselect"></div>
