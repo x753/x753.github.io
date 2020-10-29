@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <base target="_blank" /> <!-- this allows links to open in new tabs -->
+
+    <style>
+        html, body {
+            padding: 0; margin: 0; overflow: hidden;
+            font-size: 30px;
+            font-family: "Lato","Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+            color: white; 
+            background-color:#444444;
+            height: 100%;
+        }
+
+        div { height: 100%; }
+
+        img { height: 100%; }
+
+        .grayout { left: 0px; width: 300px; background-color: #444444; position: absolute;}
+        .gradient { left: 300px; width: 200px; background-image: linear-gradient(to right, #444444, rgba(0,0,0,0)); position: absolute;}
+
+        .message { position: relative; display: inline; float: left; z-index: 1;}
+
+        .games { font-size: 0; white-space:unset; position: absolute; right: 0;}
+
+        .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+        }
+
+        .noclick {
+            pointer-events: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="message noselect noclick">
+    <b style="display:inline-block; margin-left:5px;margin-right:5px;">Help keep our servers up,<br>
+    buy a game through <img style="height:30px;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg"></b>
+    </div>
+
+    <div class="games noselect">
+        <a id="game1" href="https://www.humblebundle.com/store/satisfactory?partner=eastsidelag">
+        <img src="https://hb.imgix.net/3408de5131f62c11c1c4936975c195a6753fccea.jpeg?auto=compress,format&fit=crop&h=353&w=616&s=a243a8ffdaed5073b160dcd280f13c91">
+        </a>
+        <a id="game2" href="https://www.humblebundle.com/store/risk-of-rain?partner=eastsidelag">
+        <img src="https://hb.imgix.net/dc1fb8f53a45951bfb2af07ef9130b9568f42d26.jpeg?auto=compress,format&fit=crop&h=353&w=616&s=173052ac4619105ddfa58f86db57a43a">
+        </a>
+        <a id="game3" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag">
+        <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
+        </a>
+        <a id="game4" href="https://www.humblebundle.com/store/ghostrunner?partner=eastsidelag">
+        <img src="https://hb.imgix.net/c2dd4a2289431c391e5ab7ef0dcdea45db1b0e1e.jpeg?auto=compress,format&fit=crop&h=353&w=616&s=81901b1dd56987ce3b992ccd5020c3c2">
+        </a>
+    </div>
+
+    <div class="gradient noselect noclick"></div>
+    <div class="grayout noselect noclick"></div>
+
+    <script>
+        var url = window.location.href;
+        var n = url.indexOf('?');
+        if(n > 1)
+        {
+            var seed = url.substring(n+1);
+            
+            for(i = 1; i <= 4; i++)
+            {
+                document.getElementById("game" + i).href = document.getElementById("game" + i).href.replace("eastsidelag", seed);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
+
