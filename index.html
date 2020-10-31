@@ -44,8 +44,14 @@
             overflow: hidden;
         }
 
+        iframe {
+            height: calc(100% - 33px);
+            width: 100%;
+            border: none;
+        }
+
         #VSC {
-            top: calc(50% - 400px);
+            top: calc(50% - 260px);
             left: calc(50% - 700px);
             width: 800px;
             height: 500px;
@@ -64,8 +70,8 @@
         }
 
         #firefox {
-            top: calc(50% + 150px);
-            left: calc(50% - 150px);
+            top: calc(50% + 170px);
+            left: calc(50% - 200px);
             width: 600px;
             height: 193px;
             z-index: 3;
@@ -82,9 +88,27 @@
             color: #fff;
         }
 
+        #support {
+            top: calc(50% - 430px);
+            left: calc(50% - 550px);
+            width: 1100px;
+            height: 151px;
+            z-index: 3;
+            border: 1px solid #000;
+            background-color: white;
+            min-width: 1100px;
+            min-height: 151px;
+        }
+        #support-bar {
+            height: 33px;
+            cursor: move;
+            background-color: #381111;
+            color: #fff;
+        }
+
         #paint {
-            top: calc(50% - 285px);
-            left: calc(50% + 140px);
+            top: calc(50% - 260px);
+            left: calc(50% + 123px);
             width: 500px;
             height: 407px;
             z-index: 1;
@@ -122,43 +146,6 @@
         }
         .titlebar-button:hover {background-color: rgba(255,255,255, 0.1);}
 
-        .codetext {
-            margin-top: 30px;
-            margin-left: 70px;
-            color: #C6C6C6;
-            float: left;
-            font-family: "Consolas", monospace;
-            white-space: nowrap;
-            font-size: 16px;
-        }
-
-        .linktext:hover {background: rgba(255,255,255, 0.1);}
-        
-        .topbarVSC {
-            height: 66px;
-            width: 100%;
-            position: absolute;
-            z-index: -2;
-            top: 0;
-            left: 0;
-            background-color: #252526;
-        }
-        
-        .sidebarVSC {
-            height: 100%;
-            width: 50px;
-            position: absolute;
-            z-index: -1;
-            top: 0;
-            left: 0;
-            background-color: #313131;
-        }
-
-        .linenumbers {
-            position: relative;
-            color: #858585;
-        }
-
         .noselect {
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
@@ -190,7 +177,7 @@
         <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
         <div id="VSC-bar"><img class="titlebar-icon noselect" src="images/VSC_icon.png"></div>
 
-        <iframe class="iframe" src="visual-studio.html" height="100%" width="100%" frameBorder="0"></iframe>
+        <iframe class="iframe" src="visual-studio.html"></iframe>
     </div>
 
     <div id="firefox" class="container">
@@ -198,7 +185,23 @@
         <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
         <div id="firefox-bar"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
 
-        <iframe class="iframe" src="startup.html" height="100%" width="100%" frameBorder="0"></iframe>
+        <iframe class="iframe" src="startup.html"></iframe>
+    </div>
+
+    <div id="support" class="container">
+        <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+        <div id="support-bar"><img class="titlebar-icon noselect" src="images/support_icon.png"></div>
+        
+        <iframe id="supportiframe" class="iframe" src="support.html"></iframe>
+        <script>
+            var http = new XMLHttpRequest();
+            http.open('HEAD', "https://753.network/support.html", false);
+            http.send();
+            if(http.status == 404)
+            {
+                document.getElementById("support").remove();
+            }
+        </script>
     </div>
 
     <div id="paint" class="container">
@@ -206,7 +209,7 @@
         <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
         <div id="paint-bar"><img class="titlebar-icon noselect" src="images/paint_icon.png"></div>
 
-        <iframe class="iframe" src="paint.html" height="100%" width="100%" frameBorder="0"></iframe>
+        <iframe class="iframe" src="paint.html"></iframe>
     </div>
 
     <div id="clock" class="clock noselect"></div>
