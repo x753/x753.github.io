@@ -33,73 +33,42 @@
             position: absolute;
         }
 
-        .container {
-            position: absolute;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.753);
-            overflow: hidden;
-        }
-
         iframe {
             height: calc(100% - 33px);
             width: 100%;
             border: none;
         }
 
-        #VSC {
-            top: calc(50% - 260px);
-            left: calc(50% - 700px);
-            width: 800px;
-            height: 500px;
-            z-index: 2;
-            border: 1px solid #000;
-            background-color: #1E1E1E;
-            min-width: 770px;
-            min-height: 490px;
-            resize: both;
+        .app {
+            position: absolute;
+            width: 100px;
+            height: 100px;
         }
-        #VSC-bar {
-            height: 33px;
-            cursor: move;
-            background-color: #3C3C3C;
-            color: #fff;
+        .app:hover {
+            position: absolute;
+            border-radius: 5px;
+            background: rgba(0, 200, 255, 0.17);
         }
-
-        #firefox {
-            top: calc(50% + 170px);
-            left: calc(50% - 200px);
-            width: 600px;
-            height: 193px;
-            z-index: 3;
-            border: 1px solid #000;
-            background-color: white;
-            min-width: 470px;
-            min-height: 193px;
-            resize: both;
+        .app img {
+            position: absolute;
+            padding-top: 10px;
+            padding-left: 10px;
+            width: 80px;
+            height: 80px;
         }
-        #firefox-bar {
-            height: 33px;
-            cursor: move;
-            background-color: #263859;
-            color: #fff;
+        .appselect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            background: rgba(0, 200, 255, 0.17);
         }
 
-        #paint {
-            top: calc(50% - 260px);
-            left: calc(50% + 123px);
-            width: 500px;
-            height: 407px;
-            z-index: 1;
+        .container {
+            position: absolute;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.753);
             border: 1px solid #000;
-            background-color: white;
-            min-width: 450px;
-            min-height: 407px;
-            resize: both;
-        }
-        #paint-bar {
-            height: 33px;
-            cursor: move;
-            background-color: #316d96;
-            color: #fff;
+            overflow: hidden;
         }
 
         .titlebar-icon {
@@ -115,7 +84,7 @@
             position: absolute;
             cursor: default;
         }
-        .titlebar-button:hover {background-color: rgba(255,255,255, 0.1);}
+        .titlebar-button:hover { background-color: rgba(255,255,255, 0.1); }
 
         .noselect {
             pointer-events: none;
@@ -137,29 +106,65 @@
 
     <div id="canvas"></div>
 
-    <div id="VSC" class="container">
-        <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
-        <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
-        <div id="VSC-bar"><img class="titlebar-icon noselect" src="images/VSC_icon.png"></div>
-
-        <iframe class="iframe" src="visual-studio.html"></iframe>
+    <div id="apps">
+        <div id="VSC-app" class="app" style="top: 20px; left: 20px;" ondblclick="openApp(this)">
+            <div class="appselect" hidden></div>
+            <img class="noselect" src="images/VSC_app.png">
+        </div>
+        <div id="firefox-app" class="app" style="top: 140px; left: 20px;" ondblclick="openApp(this)">
+            <div class="appselect" hidden></div>
+            <img class="noselect" src="images/firefox_app.png">
+        </div>
+        <div id="paint-app" class="app" style="top: 260px; left: 20px;" ondblclick="openApp(this)">
+            <div class="appselect" hidden></div>
+            <img class="noselect" src="images/paint_app.png">
+        </div>
     </div>
 
-    <div id="firefox" class="container">
-        <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
-        <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
-        <div id="firefox-bar"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
+    <div id="containers">
 
-        <iframe class="iframe" src="startup.html"></iframe>
-    </div>
+        <!-- PRE-EXISTING CONTAINERS -->
 
-    <div id="paint" class="container">
-        <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
-        <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
-        <div id="paint-bar"><img class="titlebar-icon noselect" src="images/paint_icon.png"></div>
+        <div class="container" style="top: calc(50% - 100px); left: calc(50% - 300px); width: 600px; height: 193px; z-index: 3; border: 1px solid #000; background-color: white; min-width: 470px; min-height: 193px; resize: both;">
+            <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+            <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+            <div id="firefox-bar" style="height: 33px; cursor: move; background-color: #263859; color: #fff;"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
 
-        <iframe class="iframe" src="paint.html"></iframe>
-    </div>
+            <iframe class="iframe" src="startup.html"></iframe>
+        </div>
+
+        <!-- TEMPLATE CONTAINERS -->
+
+        <template id="VSC">
+        <div id="VSC-1" class="container" style="top: calc(50% - 260px); left: calc(50% - 400px); width: 800px; height: 500px; z-index: 2; background-color: #1E1E1E; min-width: 770px; min-height: 490px; resize: both;">
+            <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+            <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+            <div id="VSC-bar" style="height: 33px; cursor: move; background-color: #3C3C3C; color: #fff;"><img class="titlebar-icon noselect" src="images/VSC_icon.png"></div>
+
+            <iframe class="iframe" src="visual-studio.html"></iframe>
+        </div>
+        </template>
+
+        <template id="firefox">
+        <div id="firefox-1" class="container" style="top: calc(50% - 100px); left: calc(50% - 300px); width: 600px; height: 193px; z-index: 3; border: 1px solid #000; background-color: white; min-width: 470px; min-height: 193px; resize: both;">
+            <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+            <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+            <div id="firefox-bar" style="height: 33px; cursor: move; background-color: #263859; color: #fff;"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
+
+            <iframe class="iframe" src="startup.html"></iframe>
+        </div>
+        </template>
+
+        <template id="paint">
+        <div class="container" style="top: calc(50% - 210px); left: calc(50% - 250px); width: 500px; height: 407px; z-index: 1; border: 1px solid #000; background-color: white; min-width: 450px; min-height: 407px; resize: both;">
+            <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+            <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+            <div id="paint-bar" style="height: 33px; cursor: move; background-color: #316d96; color: #fff;"><img class="titlebar-icon noselect" src="images/paint_icon.png"></div>
+
+            <iframe class="iframe" src="paint.html"></iframe>
+        </div>
+        </template>
+    <div>
 
     <div id="clock" class="clock noselect"></div>
 
@@ -173,7 +178,7 @@
         {
             document.getElementById("body").focus();
             var underMouse = document.querySelectorAll(':hover');
-            if(underMouse[2].className == "container")
+            if(underMouse.length > 2 && underMouse[2].className == "container")
             {
                 focusContainer(underMouse[2]);
             }
@@ -208,6 +213,7 @@
         function fitContainersOnScreen()
         {
             var containers = document.getElementsByClassName("container");
+            
             for (var i = 0; i < containers.length; i++)
             {
                 // Explicitly redefine the properties of the containers so we have proper access to them
@@ -246,7 +252,7 @@
     </script>
 
     <script>
-
+        var lastActiveElement = null;
         setInterval(function()
         {
             if(document.activeElement !== lastActiveElement)
@@ -270,22 +276,15 @@
         function buttonClose(e)
         {
             var container = e.parentElement;
-            container.remove();
+            container.hidden = true;
+            focusContainer(container);
         }
 
-        var lastActiveElement = null;
+        var zMax = 9;
         function focusContainer(container)
         {
-            var previousZ = container.style.zIndex;
-            var containers = document.getElementsByClassName("container");
-            for (var i = 0; i < containers.length; i++)
-            {
-                if(parseInt(containers[i].style.zIndex) > parseInt(previousZ))
-                {
-                    containers[i].style.zIndex = parseInt(containers[i].style.zIndex)-1;
-                }
-            }
-            container.style.zIndex = containers.length;
+            zMax++;
+            container.style.zIndex = zMax;
         }
     </script>
 
@@ -299,13 +298,12 @@
         function containerMove(container)
         {
             var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            if (document.getElementById(container.id + "-bar"))
-            {
-                document.getElementById(container.id + "-bar").onmousedown = moveStart;
-            }
+            container.children[2].onmousedown = moveStart; // The third child is the window bar
 
             function moveStart(e)
-            {                
+            {
+                focusContainer(container);
+
                 e = e || window.event;
                 e.preventDefault();
 
@@ -337,6 +335,124 @@
             }
         }
     </script>
+
+    <!-- Scripts for Opening and Moving Apps -->
+
+    <script>
+        var apps = document.getElementsByClassName("app");
+        for (var i = 0; i < apps.length; i++)
+        {
+            appMove(apps[i]);
+        }
+
+        var appSelectionCount = 0;
+        
+        function appMove(app)
+        {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            app.onmousedown = moveStart;
+
+            var moved = 0;
+
+            function moveStart(e)
+            {
+                if(e.detail == 2)
+                {
+                    return; // stop doing normal mouse down events if two clicks are detected, otherwise Chromium won't detect double clicks
+                }
+                
+                document.getElementById("apps").append(app);
+
+                // If we select an app that isn't selected yet, remove the selection for all the others
+                if(app.firstElementChild.hidden == true)
+                {
+                    var apps = document.getElementsByClassName("app");
+                    for (var i = 0; i < apps.length; i++)
+                    {
+                        apps[i].firstElementChild.hidden = true;
+                    }
+                    appSelectionCount = 0;
+                }
+
+                app.firstElementChild.hidden = false;
+                appSelectionCount++;
+
+                e = e || window.event;
+                e.preventDefault();
+
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+
+                document.onmouseup = moveStop;
+                document.onmousemove = moveMouse;
+            }
+
+            function moveMouse(e)
+            {
+                e = e || window.event;
+                e.preventDefault();
+
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+
+                var apps = document.getElementsByClassName("app");
+                for (var i = 0; i < apps.length; i++)
+                {
+                    if(apps[i].firstElementChild.hidden !== true)
+                    {
+                        apps[i].style.top = (apps[i].offsetTop - pos2) + "px";
+                        apps[i].style.left = (apps[i].offsetLeft - pos1) + "px";
+                    }
+                }
+
+                moved = 1;
+            }
+
+            function moveStop()
+            {
+                if(moved == 1)
+                {
+                    moved = 0;
+                }
+                else
+                {
+                    var apps = document.getElementsByClassName("app");
+                    for (var i = 0; i < apps.length; i++)
+                    {
+                        apps[i].firstElementChild.hidden = true;
+                    }
+                    appSelectionCount = 0;
+
+                    app.firstElementChild.hidden = false;
+                    appSelectionCount++;
+                }
+
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function openApp(app)
+        {
+            var apps = document.getElementsByClassName("app");
+            for (var i = 0; i < apps.length; i++)
+            {
+                apps[i].firstElementChild.hidden = true;
+            }
+            appSelectionCount = 0;
+            
+            var container = document.getElementById(app.id.split("-")[0]).content.cloneNode(true);
+            var containers = document.getElementById("containers");
+            containers.append(container);
+
+            focusContainer(containers.lastElementChild); // focus the new container
+            containerMove(containers.lastElementChild); // enable container drag events
+        }
+    </script>
+
+    <!-- Scripts for the Desktop Selection Rectangle -->
 
     <script>
         desktopSelect(document.getElementById("canvas"));
@@ -391,14 +507,50 @@
                 element.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
                 element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x + 'px' : mouse.startX + 'px';
                 element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y + 'px' : mouse.startY + 'px';
+
+                // Highlight box selected apps
+                var apps = document.getElementsByClassName("app");
+                for (var i = 0; i < apps.length; i++)
+                {
+                    var rect1 = apps[i].getBoundingClientRect();
+                    var rect2 = element.getBoundingClientRect();
+                    // if the selection rectangle doesn't touch the app hide the appselect
+                    if (rect1.top > rect2.bottom || rect1.right < rect2.left || rect1.bottom < rect2.top || rect1.left > rect2.right)
+                    {
+                        apps[i].firstElementChild.hidden = true;
+                    }
+                    else // otherwise show the appselect
+                    {
+                        apps[i].firstElementChild.hidden = false;
+                    }
+                }
             }
 
             function selectionStop() // handle letting go of mouse button
             {
+                // Highlight box selected apps
+                appSelectionCount = 0;
+                var apps = document.getElementsByClassName("app");
+                for (var i = 0; i < apps.length; i++)
+                {
+                    var rect1 = apps[i].getBoundingClientRect();
+                    var rect2 = element.getBoundingClientRect();
+                    // if the selection rectangle doesn't touch the app hide the appselect
+                    if (rect1.top > rect2.bottom || rect1.right < rect2.left || rect1.bottom < rect2.top || rect1.left > rect2.right)
+                    {
+                        apps[i].firstElementChild.hidden = true;
+                    }
+                    else // otherwise show the appselect
+                    {
+                        apps[i].firstElementChild.hidden = false;
+                        appSelectionCount++;
+                    }
+                }
+
                 var containers = document.getElementsByClassName("container");
                 for (var i = 0; i < containers.length; i++)
                 {
-                    containers[i].classList.remove("noselect"); // make it so you can interact with windows again
+                    containers[i].classList.remove("noselect"); // make it so you can interact with containers again
                 }
 
                 document.onmouseup = null;
