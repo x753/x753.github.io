@@ -97,25 +97,26 @@
             right: 0;
             color: rgba(255,255,255, 0.5);
             font-size: 100px;
+            z-index: -999;
         }
     </style>
 
 </head>
 
-<body id="body" tabindex="-1" onresize="resizeContainers()"> <!-- tabindex is necessary for focus() to work -->
+<body id="body" tabindex="-1" onkeypress="enterSelection()" onresize="resizeContainers(); fitAppsOnScreen();"> <!-- tabindex is necessary for focus() to work -->
 
     <div id="canvas"></div>
 
     <div id="apps">
-        <div id="VSC-app" class="app" style="top: 20px; left: 20px;" ondblclick="openApp(this)">
+        <div id="VSC-app" class="app" style="width: 100px; height: 100px; top: 20px; left: 20px;" ondblclick="openApp(this)">
             <div class="appselect" hidden></div>
             <img class="noselect" src="images/VSC_app.png">
         </div>
-        <div id="firefox-app" class="app" style="top: 140px; left: 20px;" ondblclick="openApp(this)">
+        <div id="firefox-app" class="app" style="width: 100px; height: 100px; top: 140px; left: 20px;" ondblclick="openApp(this)">
             <div class="appselect" hidden></div>
             <img class="noselect" src="images/firefox_app.png">
         </div>
-        <div id="paint-app" class="app" style="top: 260px; left: 20px;" ondblclick="openApp(this)">
+        <div id="paint-app" class="app" style="width: 100px; height: 100px; top: 260px; left: 20px;" ondblclick="openApp(this)">
             <div class="appselect" hidden></div>
             <img class="noselect" src="images/paint_app.png">
         </div>
@@ -125,7 +126,7 @@
 
         <!-- PRE-EXISTING CONTAINERS -->
 
-        <div class="container" style="top: calc(50% - 100px); left: calc(50% - 300px); width: 600px; height: 193px; z-index: 3; border: 1px solid #000; background-color: white; min-width: 470px; min-height: 193px; resize: both;">
+        <div id="firefox-container" class="container" style="top: calc(50% - 150px); left: calc(50% - 300px); width: 600px; height: 193px; z-index: 3; border: 1px solid #000; background-color: white; min-width: 470px; min-height: 193px; resize: both;">
             <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
             <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
             <div id="firefox-bar" style="height: 33px; cursor: move; background-color: #263859; color: #fff;"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
@@ -136,7 +137,7 @@
         <!-- TEMPLATE CONTAINERS -->
 
         <template id="VSC">
-        <div id="VSC-1" class="container" style="top: calc(50% - 260px); left: calc(50% - 400px); width: 800px; height: 500px; z-index: 2; background-color: #1E1E1E; min-width: 770px; min-height: 490px; resize: both;">
+        <div id="VSC-container" class="container" style="top: calc(50% - 260px); left: calc(50% - 400px); width: 800px; height: 500px; z-index: 2; background-color: #1E1E1E; min-width: 770px; min-height: 490px; resize: both;">
             <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
             <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
             <div id="VSC-bar" style="height: 33px; cursor: move; background-color: #3C3C3C; color: #fff;"><img class="titlebar-icon noselect" src="images/VSC_icon.png"></div>
@@ -146,7 +147,7 @@
         </template>
 
         <template id="firefox">
-        <div id="firefox-1" class="container" style="top: calc(50% - 100px); left: calc(50% - 300px); width: 600px; height: 193px; z-index: 3; border: 1px solid #000; background-color: white; min-width: 470px; min-height: 193px; resize: both;">
+        <div id="firefox-container" class="container" style="top: calc(50% - 150px); left: calc(50% - 300px); width: 600px; height: 193px; z-index: 3; border: 1px solid #000; background-color: white; min-width: 470px; min-height: 193px; resize: both;">
             <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
             <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
             <div id="firefox-bar" style="height: 33px; cursor: move; background-color: #263859; color: #fff;"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
@@ -156,7 +157,7 @@
         </template>
 
         <template id="paint">
-        <div class="container" style="top: calc(50% - 210px); left: calc(50% - 250px); width: 500px; height: 407px; z-index: 1; border: 1px solid #000; background-color: white; min-width: 450px; min-height: 407px; resize: both;">
+        <div id="paint-container" class="container" style="top: calc(50% - 210px); left: calc(50% - 250px); width: 500px; height: 407px; z-index: 1; border: 1px solid #000; background-color: white; min-width: 450px; min-height: 407px; resize: both;">
             <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
             <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
             <div id="paint-bar" style="height: 33px; cursor: move; background-color: #316d96; color: #fff;"><img class="titlebar-icon noselect" src="images/paint_icon.png"></div>
@@ -164,7 +165,9 @@
             <iframe class="iframe" src="paint.html"></iframe>
         </div>
         </template>
-    <div>
+
+        <!-- DYNAMICALLY GENERATED CONTAINERS -->
+    </div>
 
     <div id="clock" class="clock noselect"></div>
 
@@ -276,8 +279,7 @@
         function buttonClose(e)
         {
             var container = e.parentElement;
-            container.hidden = true;
-            focusContainer(container);
+            container.remove();
         }
 
         var zMax = 9;
@@ -414,6 +416,7 @@
             {
                 if(moved == 1)
                 {
+                    fitAppsOnScreen();
                     moved = 0;
                 }
                 else
@@ -434,6 +437,39 @@
             }
         }
 
+        function fitAppsOnScreen()
+        {
+            var apps = document.getElementsByClassName("app");
+
+            for (var i = 0; i < apps.length; i++)
+            {
+                if(parseInt(apps[i].style.height) > window.innerHeight)
+                {
+                    apps[i].style.height = window.innerHeight + "px";
+                }
+                if(parseInt(apps[i].style.width) > window.innerWidth)
+                {
+                    apps[i].style.width = window.innerWidth + "px";
+                }
+                if(parseInt(apps[i].style.top) < 0)
+                {
+                    apps[i].style.top = "0px";
+                }
+                if(parseInt(apps[i].style.left) < 0)
+                {
+                    apps[i].style.left = "0px";
+                }
+                if(parseInt(apps[i].style.top) > (window.innerHeight - parseInt(apps[i].style.height)))
+                {
+                    apps[i].style.top = window.innerHeight-parseInt(apps[i].style.height) + "px";
+                }
+                if(parseInt(apps[i].style.left) > (window.innerWidth - parseInt(apps[i].style.width)))
+                {
+                    apps[i].style.left = window.innerWidth-parseInt(apps[i].style.width) + "px";
+                }
+            }
+        }
+
         function openApp(app)
         {
             var apps = document.getElementsByClassName("app");
@@ -443,12 +479,27 @@
             }
             appSelectionCount = 0;
             
-            var container = document.getElementById(app.id.split("-")[0]).content.cloneNode(true);
+            var appName = app.id.split("-")[0];
+            var containerNode = document.getElementById(appName).content.cloneNode(true);
             var containers = document.getElementById("containers");
-            containers.append(container);
+
+            containers.append(containerNode);
 
             focusContainer(containers.lastElementChild); // focus the new container
             containerMove(containers.lastElementChild); // enable container drag events
+
+            // find the last container of that type so you can place the new container near it
+            for (var i = containers.children.length-2; i >= 0; i--)
+            {
+                if(containers.children[i].id == appName+"-container")
+                {
+                    containers.lastElementChild.style.left = (parseInt(containers.children[i].style.left) + 10) + "px";
+                    containers.lastElementChild.style.top = (parseInt(containers.children[i].style.top) + 10) + "px";
+                    break;
+                }
+            }
+
+            fitContainersOnScreen();
         }
     </script>
 
@@ -559,6 +610,27 @@
                 {
                     document.getElementById("selectionBox").remove();
                 }
+            }
+        }
+
+        function enterSelection() // handle hitting enter while apps are selected
+        {
+            var apps = document.getElementsByClassName("app");
+            var selectedApps = [];
+            for (var i = 0; i < apps.length; i++)
+            {
+                if(apps[i].firstElementChild.hidden !== true)
+                {
+                    selectedApps[i] = 1;
+                }
+                else
+                {
+                    selectedApps[i] = 0;
+                }
+            }
+            for (var i = 0; i < apps.length; i++)
+            {
+                if(selectedApps[i] == 1) { openApp(apps[i]); }
             }
         }
     </script>
