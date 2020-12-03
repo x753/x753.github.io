@@ -18,12 +18,7 @@
             padding: 0;
             overflow: hidden;
 
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Old versions of Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+            user-select: none;
         }
 
         #canvas {
@@ -88,24 +83,6 @@
             color: #fff;
         }
 
-        #support {
-            top: calc(50% - 430px);
-            left: calc(50% - 550px);
-            width: 1100px;
-            height: 151px;
-            z-index: 3;
-            border: 1px solid #000;
-            background-color: white;
-            min-width: 1100px;
-            min-height: 151px;
-        }
-        #support-bar {
-            height: 33px;
-            cursor: move;
-            background-color: #381111;
-            color: #fff;
-        }
-
         #paint {
             top: calc(50% - 260px);
             left: calc(50% + 123px);
@@ -137,22 +114,10 @@
             text-align: center;
             position: absolute;
             cursor: default;
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Old versions of Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
         }
         .titlebar-button:hover {background-color: rgba(255,255,255, 0.1);}
 
         .noselect {
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Old versions of Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
             pointer-events: none;
         }
 
@@ -186,22 +151,6 @@
         <div id="firefox-bar"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
 
         <iframe class="iframe" src="startup.html"></iframe>
-    </div>
-
-    <div id="support" class="container">
-        <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
-        <div id="support-bar"><img class="titlebar-icon noselect" src="images/support_icon.png"></div>
-        
-        <iframe id="supportiframe" class="iframe" src="support.html"></iframe>
-        <script>
-            var http = new XMLHttpRequest();
-            http.open('HEAD', "https://753.network/support.html", false);
-            http.send();
-            if(http.status == 404)
-            {
-                document.getElementById("support").remove();
-            }
-        </script>
     </div>
 
     <div id="paint" class="container">
