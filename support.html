@@ -7,32 +7,79 @@
     <base target="_blank" /> <!-- this allows links to open in new tabs -->
 
     <style>
-        html, body {
-            padding: 0; margin: 0; overflow: hidden;
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
             font-size: 30px;
-            font-family: "Lato","Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-            color: white; 
-            background-color:#000000;
+            font-family: "Lato", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            color: white;
+            background-color: #000000;
             height: 100%;
-        }
 
-        div { height: 100%; }
-
-        img { height: 100%; }
-
-        .gradient { left: 0%; width: 70%; background-image: linear-gradient(to right, rgba(0,0,0,0.95), rgba(0,0,0,0)); position: absolute;}
-
-        .message { position: relative; display: inline; float: left; z-index: 1;}
-
-        .games { font-size: 0; white-space: nowrap; display: inline-block; position: absolute; right: 0; direction:rtl;}
-
-        .noselect {
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
             -khtml-user-select: none; /* Konqueror HTML */
             -moz-user-select: none; /* Old versions of Firefox */
             -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+            user-select: none;
+        }
+
+        :root {
+            --c1: #2e2e2eee;
+            --c0: #00000000;
+        }
+
+        div {
+            height: 100%;
+        }
+
+        img {
+            height: 100%;
+        }
+
+        .effect {
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .center {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .message {
+            top: 0;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+        }
+
+        .row {
+            top: 0;
+            font-size: 0; /* No spaces between items */
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        .ltr {
+            left: 0;
+            direction: ltr;
+        }
+        .rtl {
+            right: 0;
+            direction: rtl;
+        }
+
+        .link {
+           color: white; 
         }
 
         .noclick {
@@ -43,39 +90,71 @@
 </head>
 
 <body>
-    <div class="message noselect noclick">
-    <b style="display:inline-block; margin-left:5px;margin-right:5px;">Help keep our servers up,<br>
-    buy a game through <img style="height:30px;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg"></b>
-    </div>
 
-    <div class="games noselect">
-        <a id="game3" href="https://www.humblebundle.com/books/hacking-101-no-starch-press-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-        <img src="https://hb.imgix.net/e4c00cd7b9428224db866a020b848e99857cc3dc.png?auto=compress,format&h=630&w=1200&s=8553907d5e423711173b01df36585488">
-        </a>
-        <a id="game1" href="https://www.humblebundle.com/store/call-of-duty-black-ops-cold-war?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-        <img src="https://hb.imgix.net/8e7fff8c170acca41f635791ff4cb64e0a08e65c.jpg?auto=compress,format&fit=crop&h=353&w=616&s=c4285e5e7aceca85b5fc73bc443e0eab">
-        </a>
-        <a id="game2" href="https://www.humblebundle.com/software/maps-extravaganza-encore-software?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-        <img src="https://hb.imgix.net/ee064248d5cdd6344966ff06e2f6959c9463e3f2.png?auto=compress,format&h=630&w=1200&s=7fb57c1a88c325f8b140bf6d2f9a7f6e">
-        </a>
-        <a id="game4" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-        <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
-        </a>
-        <a id="game5" href="https://www.humblebundle.com/store/ghostrunner?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-        <img src="https://hb.imgix.net/c2dd4a2289431c391e5ab7ef0dcdea45db1b0e1e.jpeg?auto=compress,format&fit=crop&h=353&w=616&s=81901b1dd56987ce3b992ccd5020c3c2">
-        </a>
-    </div>
+    <!-- STANDARD FIVE ITEM BANNER -->
 
-    <div class="gradient noselect noclick"></div>
+    <template id="standard">
+        <div class="message noclick">
+        <b style="display:inline-block; margin-left:5px;margin-right:5px;">Help keep our servers up,<br>
+        buy a game through <img style="height:30px;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg"></b>
+        </div>
+
+        <div class="row rtl ">
+            <a class="link" href="https://www.humblebundle.com/books/hacking-101-no-starch-press-books?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/e4c00cd7b9428224db866a020b848e99857cc3dc.png?auto=compress,format&h=630&w=1200&s=8553907d5e423711173b01df36585488">
+            </a>
+            <a class="link" href="https://www.humblebundle.com/store/call-of-duty-black-ops-cold-war?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/8e7fff8c170acca41f635791ff4cb64e0a08e65c.jpg?auto=compress,format&fit=crop&h=353&w=616&s=c4285e5e7aceca85b5fc73bc443e0eab">
+            </a>
+            <a class="link" href="https://www.humblebundle.com/games/explore-expand?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/5dedcd4f9cfb907376c2e3aeb62baaca12cecedb.jpg?auto=compress,format&dpr=1&fit=clip&h=177&w=308&s=22043145520cc8ccb892ced1cce63be3">
+            </a>
+            <a class="link" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
+            </a>
+            <a class="link" href="https://www.humblebundle.com/store/per-aspera?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/8fa155b7e24c2f633cf7ab1fcfd7351a47dde177.jpeg?auto=compress,format&fit=crop&h=353&w=616&s=9b44c1ba59c79250050cd8df4251ba27">
+            </a>
+        </div>
+
+        <div class="effect noclick" style="background-image: linear-gradient(to right, #111111FF, #00000000)"></div>    
+    </template>
+
+    <!-- HUMBLE CHOICE BANNER -->
+
+    <template id="choice">
+        <a class="link" href="https://www.humblebundle.com/subscription?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+
+        <div class="center">
+            <div class="message noclick" style="top: 15%">
+                <img style="height:50%;" src="images/humble_choice.png">
+                <b>14+ games for $15</b>
+            </div>
+        </div>
+
+        <div class="row ltr">
+            <img src="https://hb.imgix.net/850648b95dc85c0fe46c0058d55e2630fc1a4097.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=ed6bf7239bf80956d12ee441a11dc2ad">
+            <img src="https://hb.imgix.net/4f63b37e414ee389a9d8dea51eab86b5f2799491.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=52cde71e9c03cdab643f7d1570befc56">
+        </div>
+        <div class="row rtl">
+            <img src="https://hb.imgix.net/8da5e6ed1946797034d4aea080bec892e4f48f53.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=741af36fbee40cb802b753a89bf18b50">
+            <img src="https://hb.imgix.net/078afdf9d6a720cffb2494db9c62670990f0e716.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=9797c922d0ab9280689d46a493040fe0">
+        </div>
+
+        <div class="effect noclick" style="background-image: linear-gradient(to right, #00000000, #111111FF, #00000000)"></div>
+
+        </a>
+    </template>
 
     <script>
-        function registerClick(url)
-        {
+        function registerClick(url) {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "https://discordapp.com/api/webhooks/782299576488558623/bCaPqNoi-Asxr2pDkJRM_eklqisq8IARvLQRlZLC56VnPZknWS3D1MYLHAe2pCD0Ul7t");
             var data = new FormData();
@@ -85,15 +164,21 @@
     </script>
 
     <script>
+        const templates = ["standard", "choice"];
+        const templateName = templates[Math.floor(Math.random() * templates.length)];
+
+        var node = document.getElementById(templateName).content.cloneNode(true);
+
+        document.body.append(node);
+
         var url = window.location.href;
         var n = url.indexOf('?');
-        if(n > 1)
-        {
-            var seed = url.substring(n+1);
-            
-            for(i = 1; i <= 5; i++)
-            {
-                document.getElementById("game" + i).href = document.getElementById("game" + i).href.replace("eastsidelag", seed);
+        if (n > 1) {
+            var seed = url.substring(n + 1);
+
+            var links = document.getElementsByClassName("link");
+            for (i = 0; i < links.length; i++) {
+                links[i].href = links[i].href.replace("eastsidelag", seed);
             }
         }
     </script>
@@ -101,4 +186,3 @@
 </body>
 
 </html>
-
