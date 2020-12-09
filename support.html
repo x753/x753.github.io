@@ -125,6 +125,40 @@
         <div class="effect noclick" style="background-image: linear-gradient(to right, #111111FF, #00000000)"></div>    
     </template>
 
+    <!-- CYBERPUNK BANNER -->
+
+    <template id="cyberpunk">
+        <div class="message noclick">
+        <b style="display:inline-block; margin-left:5px;margin-right:5px;">Help keep our servers up,<br>
+        buy Cyberpunk through <img style="height:30px;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg"></b>
+        </div>
+
+        <div class="row rtl ">
+            <a class="link" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
+            </a>
+            <a class="link" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
+            </a>
+            <a class="link" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
+            </a>
+            <a class="link" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
+            </a>
+            <a class="link" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
+            </a>
+        </div>
+
+        <div class="effect noclick" style="background-image: linear-gradient(to right, #111111FF, #00000000)"></div>    
+    </template>
+
     <!-- HUMBLE CHOICE BANNER -->
 
     <template id="choice">
@@ -164,7 +198,7 @@
     </script>
 
     <script>
-        const templates = ["standard", "choice"];
+        const templates = ["standard", "choice", "cyberpunk"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
