@@ -91,38 +91,13 @@
 
 <body>
 
-    <!-- STANDARD FIVE ITEM BANNER -->
+    <!-- SINGLE IMAGE BANNER -->
 
-    <template id="standard">
-        <div class="message noclick">
-        <b style="display:inline-block; margin-left:5px;margin-right:5px;">Help keep our servers up,<br>
-        buy a game through <img style="height:30px;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg"></b>
-        </div>
-
-        <div class="row rtl ">
-            <a class="link" href="https://www.humblebundle.com/books/hacking-101-no-starch-press-books?partner=eastsidelag"
-            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-            <img src="https://hb.imgix.net/e4c00cd7b9428224db866a020b848e99857cc3dc.png?auto=compress,format&h=630&w=1200&s=8553907d5e423711173b01df36585488">
-            </a>
-            <a class="link" href="https://www.humblebundle.com/store/call-of-duty-black-ops-cold-war?partner=eastsidelag"
-            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-            <img src="https://hb.imgix.net/8e7fff8c170acca41f635791ff4cb64e0a08e65c.jpg?auto=compress,format&fit=crop&h=353&w=616&s=c4285e5e7aceca85b5fc73bc443e0eab">
-            </a>
-            <a class="link" href="https://www.humblebundle.com/games/explore-expand?partner=eastsidelag"
-            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-            <img src="https://hb.imgix.net/5dedcd4f9cfb907376c2e3aeb62baaca12cecedb.jpg?auto=compress,format&dpr=1&fit=clip&h=177&w=308&s=22043145520cc8ccb892ced1cce63be3">
-            </a>
-            <a class="link" href="https://www.humblebundle.com/store/cyberpunk-2077?partner=eastsidelag"
-            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-            <img src="https://hb.imgix.net/eff21a2d1510373ac10d1512bd4fa470a5ec4ada.jpg?auto=compress,format&fit=crop&h=353&w=616&s=be5b568aa7a3c6a79b97c381ed623541">
-            </a>
-            <a class="link" href="https://www.humblebundle.com/store/per-aspera?partner=eastsidelag"
-            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-            <img src="https://hb.imgix.net/8fa155b7e24c2f633cf7ab1fcfd7351a47dde177.jpeg?auto=compress,format&fit=crop&h=353&w=616&s=9b44c1ba59c79250050cd8df4251ba27">
-            </a>
-        </div>
-
-        <div class="effect noclick" style="background-image: linear-gradient(to right, #111111FF, #00000000)"></div>    
+    <template id="single">
+        <a class="link" href="https://hb.imgix.net/392acf0a38dc6f39ec8d7f7121b5cad334c83295.png?auto=compress,format&h=630&w=1200&s=19dddfb424d23523f6a331c9f26ac09d"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+        <img style="height: 640px; width: 100%; position: absolute; bottom: 0;" src="https://hb.imgix.net/392acf0a38dc6f39ec8d7f7121b5cad334c83295.png?auto=compress,format&h=630&w=1200&s=19dddfb424d23523f6a331c9f26ac09d">
+        </a> 
     </template>
 
     <!-- CYBERPUNK BANNER -->
@@ -198,7 +173,7 @@
     </script>
 
     <script>
-        const templates = ["standard", "choice", "cyberpunk"];
+        const templates = ["single", "choice", "cyberpunk"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
