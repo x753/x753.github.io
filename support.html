@@ -100,19 +100,19 @@
         </a> 
     </template>
 
-    <!-- EXPLORE SINGLE IMAGE BANNER -->
+    <!-- QUEBEC SINGLE IMAGE BANNER -->
 
-    <template id="explore">
-        <a class="link" href="https://www.humblebundle.com/games/explore-expand?partner=eastsidelag"
+    <template id="quebec">
+        <a class="link" href="https://www.humblebundle.com/games/quebec-indies?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
-        <img style="border-style: solid; border-color: black; border-width: 0 2px 0; height: 140%; width: 30%; position: absolute; top: 0; z-index: 2;" src="https://hb.imgix.net/f86cbc7391d443199008b09b0eb5e1a3f5365574.png?auto=compress,format&h=630&w=1200&s=dd9db0b7e52b73067220c79db0828449">
+        <img style="border-style: solid; border-color: black; border-width: 0 2px 0; height: 140%; width: 40%; position: absolute; top: -5px; z-index: 2;" src="https://hb.imgix.net/d5bb04e11cebc13757a7af5334add2d48ce8b806.png?auto=compress,format&h=630&w=1200&s=557b1111267e3bf51e9d3f3dbfc63566">
 
         <div style="height: 0%; position: absolute; z-index: 2; bottom: 0; right: 0; margin-right: 5px; margin-bottom: 75px;">
         <p style="font-size: 28px;" id="countdown"></p>
         </div>
         <script>
-            var d = new Date("Dec 15, 2020 9:00:00");
+            var d = new Date("Dec 28, 2020 9:00:00");
             var countDownDate = d.getTime() + d.getTimezoneOffset() * 60000;
 
             var x = setInterval(function() {
@@ -134,8 +134,9 @@
                 + minutes + "m " + seconds + "s left";
             }, 1000);
         </script>
-
-        <img style="margin-left: 15%; margin-bottom: -30px; height: 560px; width: 100%; position: absolute; bottom: 0;" src="https://hb.imgix.net/f86cbc7391d443199008b09b0eb5e1a3f5365574.png?auto=compress,format&h=630&w=1200&s=dd9db0b7e52b73067220c79db0828449">
+        
+        <img style="margin-left: 30%; height: 200%; width: 200%; position: absolute;" src="https://hb.imgix.net/ba0e2be8a7038a0e552013e3e15c9b6290d005eb.jpg?auto=compress,format&fit=crop&h=353&w=616&s=aee3fb6b03b6c71252875939fd3ba84c">
+        <img style="margin-left: 42%; margin-top: 18px; height: 90px; width: 30%; position: absolute;" src="https://hb.imgix.net/5db0c1fdc8b53e4cab2b00b502092c79bbc81d49.png?auto=compress,format&h=170&w=1200&s=e549e8ff4859d1d942e6466365112936">
         </a> 
     </template>
 
@@ -212,7 +213,7 @@
     </script>
 
     <script>
-        const templates = ["explore", "gamedev", "choice", "cyberpunk"];
+        const templates = ["quebec", "gamedev", "choice", "cyberpunk"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
