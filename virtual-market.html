@@ -40,29 +40,6 @@
             pointer-events: none;
         }
 
-        .alert {
-            height: 50px;
-            width: 100%;
-            bottom: 0;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            font-size: 50px;
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
-
-            animation: fadeout 10s forwards;
-        }
-        @keyframes fadeout {
-            0%   {bottom: 0px;}
-            80%  {bottom: 0px;}
-            100% {bottom: -100px;}
-        }
-
         /* WORLD IMAGES */
 
         .world
@@ -201,12 +178,6 @@
         <div class="highlight">UDON CUBE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">UC-0E</div>
     </div>
 
-    <template id="alert">
-    <div class="alert">
-        <p><strong>MIDDLE-CLICK</strong> TO OPEN A LINK TO A WORLD'S CATALOG</p>
-    </div>
-    </template>
-
     <script>
         // Firefox has a bug with onLoad when Ctrl-F5 hard refreshing
         window.addEventListener('DOMContentLoaded', (event) => {
@@ -222,6 +193,7 @@
                 {
                     if (e.button == 1)
                     {
+                        e.preventDefault();
                         e.stopPropagation();
                         visitItem(e.target.title);
                     }
@@ -231,14 +203,6 @@
                 {
                     worlds[i].style.filter="saturate(0) brightness(0.15)";
                 }
-            }
-
-            if(localStorage.getItem("middleclick") !== "true")
-            {
-                localStorage.setItem("middleclick", "true");
-                
-                var node = document.getElementById("alert").content.cloneNode(true);
-                document.body.append(node);
             }
         }
 
