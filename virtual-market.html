@@ -8,18 +8,24 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <style>
-        html, body { height: 100%; padding: 0; margin: 0; }
-        div { width: 16.6666666667%; height: 16.6666666667%; float: left; }
+        html, body { height: 100%; padding: 0; margin: 0; background-color: black; overflow: hidden; }
+
+        div {
+            width: 16.6666666667%;
+            height: 16.6666666667%;
+            float: left;
+        }
+
         .highlight {
             display: inline-block;
-            height: 2vw;
+            height: 1.9vw;
             width: 100%;
             color: white;
             font-family: "Lucida Console", Monaco, monospace;
             font-size: 1.2vw;
             text-align: center;
             background-color: rgba(0, 0, 0, 0.8);
-            line-height: 2vw;
+            line-height: 1.9vw;
 
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
@@ -32,13 +38,13 @@
         .version
         {
             display: inline-block;
-            height: 1.5vw;
+            height: 1.4vw;
             width: 100%;
             color: white;
             font-family: "Lucida Console", Monaco, monospace;
             font-size: 0.8vw;
             text-align: center;
-            line-height: 1.5vw;
+            line-height: 1.4vw;
 
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
@@ -48,165 +54,142 @@
             user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
         }
 
-        #div01 { background-image: url("images/vket-pararealtokyo.png"); }
-        #div02 { background-image: url("images/vket-defaultcube.png"); }
-        #div03 { background-image: url("images/vket-defaultcube.png"); }
-        #div04 { background-image: url("images/vket-defaultcube.png"); }
-        #div05 { background-image: url("images/vket-defaultcube.png"); }
-        #div06 { background-image: url("images/vket-defaultcube.png"); }
+        /* WORLD IMAGES */
 
-        #div07 { background-image: url("images/vket-defaultcube.png"); }
-        #div08 { background-image: url("images/vket-defaultcube.png"); }
-        #div09 { background-image: url("images/vket-avatarshowcase.png"); }
-        #div10 { background-image: url("images/vket-avatarshowcase.png"); }
-        #div11 { background-image: url("images/vket-avatarshowcase.png"); }
-        #div12 { background-image: url("images/vket-avatarshowcase.png"); }
+        .world
+        {
+            background-size: cover;
+        }
 
-        #div13 { background-image: url("images/vket-avatarshowcase.png"); }
-        #div14 { background-image: url("images/vket-alayavijnana.png"); }
-        #div15 { background-image: url("images/vket-alayavijnana.png"); }
-        #div16 { background-image: url("images/vket-alayavijnana.png"); }
-        #div17 { background-image: url("images/vket-alayavijnana.png"); }
-        #div18 { background-image: url("images/vket-alayavijnana.png"); }
+        .hubworld { background-image: url("https://www.v-market.work/v5/images/top_en.png"); }
+        .defaultcube { background-image: url("https://www.v-market.work/v5/images/world/medium/default_cube.png"); }
+        .virtualshowcase { background-image: url("https://www.v-market.work/v5/images/world/medium/virtual_showcase.png"); }
+        .isekaimarche { background-image: url("https://www.v-market.work/v5/images/world/medium/isekai_marche.png"); }
+        .metekolebka { background-image: url("https://www.v-market.work/v5/images/world/medium/metekolebka.png"); }
+        .orbital { background-image: url("https://www.v-market.work/v5/images/world/medium/orbital.png"); }
+        .curiocity { background-image: url("https://www.v-market.work/v5/images/world/medium/curiocity.png"); }
+        .udoncube { background-image: url("images/vket5-udoncube.jpg"); }
 
-        #div19 { background-image: url("images/vket-cybercitymirabilis.png"); }
-        #div20 { background-image: url("images/vket-cybercitymirabilis.png"); }
-        #div21 { background-image: url("images/vket-cybercitymirabilis.png"); }
-        #div22 { background-image: url("images/vket-cybercitymirabilis.png"); }
-        #div23 { background-image: url("images/vket-cybercitymirabilis.png"); }
-        #div24 { background-image: url("images/vket-nurseryrhyme.png"); }
-
-        #div25 { background-image: url("images/vket-nurseryrhyme.png"); }
-        #div26 { background-image: url("images/vket-nurseryrhyme.png"); }
-        #div27 { background-image: url("images/vket-nurseryrhyme.png"); }
-        #div28 { background-image: url("images/vket-nurseryrhyme.png"); }
-        #div29 { background-image: url("images/vket-worldendutopia.png"); }
-        #div30 { background-image: url("images/vket-worldendutopia.png"); }
-
-        #div31 { background-image: url("images/vket-worldendutopia.png"); }
-        #div32 { background-image: url("images/vket-worldendutopia.png"); }
-        #div33 { background-image: url("images/vket-worldendutopia.png"); }
-        #div34 { background-image: url("images/vket-worldendutopia.png"); }
-        #div35 { background-image: url("images/vket-worldendutopia.png"); }
-        #div36 { background-image: url("images/vket-worldendutopia.png"); }
     </style>
 
 </head>
 
 <body>
 
-    <div id="div01" onclick='clickItem(this)'>
-        <div class="highlight">PARAREAL TOKYO</div><div class="version" style="background-color: rgba(100, 100, 100, 0.8);">HUB WORLD</div>
+    <div id="vket5-01" class="world hubworld" onclick='clickItem(this)'>
+        <div class="highlight">WORLD BEYOND</div><div class="version" style="background-color: rgba(100, 100, 100, 0.8);">HUB WORLD</div>
     </div>
-    <div id="div02" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">DC-01</div>
+    <div id="vket5-02" class="world virtualshowcase" onclick='clickItem(this)'>
+        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">SAPPHIRE STAGE</div>
     </div>
-    <div id="div03" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">DC-02</div>
+    <div id="vket5-03" class="world virtualshowcase" onclick='clickItem(this)'>
+        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">RUBY STAGE</div>
     </div>
-    <div id="div04" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">DC-03</div>
+    <div id="vket5-04" class="world virtualshowcase" onclick='clickItem(this)'>
+        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(156, 146, 0, 0.8);">CITRINE STAGE</div>
     </div>
-    <div id="div05" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">DC-04</div>
+    <div id="vket5-05" class="world virtualshowcase" onclick='clickItem(this)'>
+        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">TOURMALINE STAGE</div>
     </div>
-    <div id="div06" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">DC-05</div>
+    <div id="vket5-06" class="world virtualshowcase" onclick='clickItem(this)'>
+        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">AMETHYST STAGE</div>
     </div>
 
-    <div id="div07" onclick='clickItem(this)'>
+    <div id="vket5-07" class="world isekaimarche" onclick='clickItem(this)'>
+        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">DAY 1</div>
+    </div>
+    <div id="vket5-08" class="world isekaimarche" onclick='clickItem(this)'>
+        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">DAY 2</div>
+    </div>
+    <div id="vket5-09" class="world isekaimarche" onclick='clickItem(this)'>
+        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(156, 146, 0, 0.8);">DAY 3</div>
+    </div>
+    <div id="vket5-10" class="world isekaimarche" onclick='clickItem(this)'>
+        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">DAY 4</div>
+    </div>
+    <div id="vket5-11" class="world isekaimarche" onclick='clickItem(this)'>
+        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">DAY 5</div>
+    </div>
+    <div id="vket5-12" class="world isekaimarche" onclick='clickItem(this)'>
+        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">DAY 6</div>
+    </div>
+
+    <div id="vket5-13" class="world isekaimarche" onclick='clickItem(this)'>
+        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">DAY 7</div>
+    </div>
+    <div id="vket5-14" class="world metekolebka" onclick='clickItem(this)'>
+        <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">FORESTELTOV</div>
+    </div>
+    <div id="vket5-15" class="world metekolebka" onclick='clickItem(this)'>
+        <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">BLASTELTOV</div>
+    </div>
+    <div id="vket5-16" class="world metekolebka" onclick='clickItem(this)'>
+        <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(156, 146, 0, 0.8);">SPLASTELTOV</div>
+    </div>
+    <div id="vket5-17" class="world metekolebka" onclick='clickItem(this)'>
+        <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">TEMPESTELTOV</div>
+    </div>
+
+    <div id="vket5-19" class="world orbital" onclick='clickItem(this)'>
+        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">01</div>
+    </div>
+    <div id="vket5-20" class="world orbital" onclick='clickItem(this)'>
+        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">02</div>
+    </div>
+    <div id="vket5-21" class="world orbital" onclick='clickItem(this)'>
+        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(156, 146, 0, 0.8);">03</div>
+    </div>
+    <div id="vket5-22" class="world orbital" onclick='clickItem(this)'>
+        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">04</div>
+    </div>
+    <div id="vket5-23" class="world orbital" onclick='clickItem(this)'>
+        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">05</div>
+    </div>
+    <div id="vket5-24" class="world orbital" onclick='clickItem(this)'>
+        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">06</div>
+    </div>
+
+    <div id="vket5-25" class="world curiocity" onclick='clickItem(this)'>
+        <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">INTEREST</div>
+    </div>
+    <div id="vket5-26" class="world curiocity" onclick='clickItem(this)'>
+        <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">SURPRISE</div>
+    </div>
+    <div id="vket5-27" class="world curiocity" onclick='clickItem(this)'>
+        <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(156, 146, 0, 0.8);">TRANQUIL</div>
+    </div>
+    <div id="vket5-30" class="world defaultcube" onclick='clickItem(this)'>
+        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">DC-01</div>
+    </div>
+
+    <div id="vket5-31" class="world defaultcube" onclick='clickItem(this)'>
+        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">DC-02</div>
+    </div>
+    <div id="vket5-32" class="world defaultcube" onclick='clickItem(this)'>
+        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(156, 146, 0, 0.8);">DC-03</div>
+    </div>
+    <div id="vket5-33" class="world defaultcube" onclick='clickItem(this)'>
+        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">DC-04</div>
+    </div>
+    <div id="vket5-34" class="world defaultcube" onclick='clickItem(this)'>
+        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">DC-05</div>
+    </div>
+    <div id="vket5-35" class="world defaultcube" onclick='clickItem(this)'>
         <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">DC-06</div>
     </div>
-    <div id="div08" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(156, 146, 0, 0.8);">DC-07</div>
-    </div>
-    <div id="div09" onclick='clickItem(this)'>
-        <div class="highlight">AVATAR SHOWCASE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">ROUGE</div>
-    </div>
-    <div id="div10" onclick='clickItem(this)'>
-        <div class="highlight">AVATAR SHOWCASE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">BLAU</div>
-    </div>
-    <div id="div11" onclick='clickItem(this)'>
-        <div class="highlight">AVATAR SHOWCASE</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">GROEN</div>
-    </div>
-    <div id="div12" onclick='clickItem(this)'>
-        <div class="highlight">AVATAR SHOWCASE</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">VIOLET</div>
+    <div id="vket5-36" class="world defaultcube" onclick='clickItem(this)'>
+        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">DC-07</div>
     </div>
 
-    <div id="div13" onclick='clickItem(this)'>
-        <div class="highlight">AVATAR SHOWCASE</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">AQUA</div>
+    <div id="vket5-37" class="world defaultcube" onclick='clickItem(this)'>
+        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(215, 0, 215, 0.8);">DC-08</div>
     </div>
-    <div id="div14" onclick='clickItem(this)'>
-        <div class="highlight">ALAYA VIJNANA</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">TOU</div>
+    
+    <div id="vket5-41" class="world udoncube" onclick='clickItem(this)'>
+        <div class="highlight">UDON CUBE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">UC-0E</div>
     </div>
-    <div id="div15" onclick='clickItem(this)'>
-        <div class="highlight">ALAYA VIJNANA</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">KAKU</div>
-    </div>
-    <div id="div16" onclick='clickItem(this)'>
-        <div class="highlight">ALAYA VIJNANA</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">RI</div>
-    </div>
-    <div id="div17" onclick='clickItem(this)'>
-        <div class="highlight">ALAYA VIJNANA</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">REN</div>
-    </div>
-    <div id="div18" onclick='clickItem(this)'>
-        <div class="highlight">ALAYA VIJNANA</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">SHU</div>
-    </div>
-
-    <div id="div19" onclick='clickItem(this)'>
-        <div class="highlight">CYBER CITY MIRABILIS</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">RAIZ</div>
-    </div>
-    <div id="div20" onclick='clickItem(this)'>
-        <div class="highlight">CYBER CITY MIRABILIS</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">TALLO</div>
-    </div>
-    <div id="div21" onclick='clickItem(this)'>
-        <div class="highlight">CYBER CITY MIRABILIS</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">HOJAL</div>
-    </div>
-    <div id="div22" onclick='clickItem(this)'>
-        <div class="highlight">CYBER CITY MIRABILIS</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">FLOR</div>
-    </div>
-    <div id="div23" onclick='clickItem(this)'>
-        <div class="highlight">CYBER CITY MIRABILIS</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">FRUTA</div>
-    </div>
-    <div id="div24" onclick='clickItem(this)'>
-        <div class="highlight">NURSERY RHYME</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">CLUB</div>
-    </div>
-
-    <div id="div25" onclick='clickItem(this)'>
-        <div class="highlight">NURSERY RHYME</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">DIAMOND</div>
-    </div>
-    <div id="div26" onclick='clickItem(this)'>
-        <div class="highlight">NURSERY RHYME</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">HEART</div>
-    </div>
-    <div id="div27" onclick='clickItem(this)'>
-        <div class="highlight">NURSERY RHYME</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">SPADE</div>
-    </div>
-    <div id="div28" onclick='clickItem(this)'>
-        <div class="highlight">NURSERY RHYME</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">TORUS</div>
-    </div>
-    <div id="div29" onclick='clickItem(this)'>
-        <div class="highlight">WORLD END UTOPIA</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">DELTA</div>
-    </div>
-    <div id="div30" onclick='clickItem(this)'>
-        <div class="highlight">WORLD END UTOPIA</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">FOXTROT</div>
-    </div>
-
-    <div id="div31" onclick='clickItem(this)'>
-        <div class="highlight">WORLD END UTOPIA</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">JULIETT</div>
-    </div>
-    <div id="div32" onclick='clickItem(this)'>
-        <div class="highlight">WORLD END UTOPIA</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">NOVEMBER</div>
-    </div>
-    <div id="div33" onclick='clickItem(this)'>
-        <div class="highlight">WORLD END UTOPIA</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">OSCAR</div>
-    </div>
-    <div id="div34" onclick='clickItem(this)'>
-        <div class="highlight">WORLD END UTOPIA</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">QUEBEC</div>
-    </div>
-    <div id="div35" onclick='clickItem(this)'>
-        <div class="highlight">WORLD END UTOPIA</div><div class="version" style="background-color: rgba(156, 146, 0, 0.8);">ROMEO</div>
-    </div>
-    <div id="div36" onclick='clickItem(this)'>
-        <div class="highlight">WORLD END UTOPIA</div><div class="version" style="background-color: rgba(73, 161, 0, 0.8);">SIERRA</div>
+    <div id="vket5-42" class="world udoncube" onclick='clickItem(this)'>
+        <div class="highlight">UDON CUBE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">UC-0J</div>
     </div>
 
     <script>
@@ -217,17 +200,12 @@
 
         function loadPage()
         {
-            for(i = 1; i <= 36; i++)
+            var worlds = document.getElementsByClassName("world");
+            for (var i = 0; i < worlds.length; i++)
             {
-                id = "div";
-                if(i < 10)
-                    id = id + "0" + i;
-                else
-                    id = id + i;
-                
-                if(localStorage.getItem(id) == "saturate(0) brightness(0.15)")
+                if(localStorage.getItem(worlds[i].id) == "visited")
                 {
-                    document.getElementById(id).style.filter="saturate(0) brightness(0.15)";
+                    worlds[i].style.filter="saturate(0) brightness(0.15)";
                 }
             }
         }
@@ -235,7 +213,7 @@
         {
             if(obj.style.filter == "")
             {
-                localStorage.setItem(obj.id, "saturate(0) brightness(0.15)");
+                localStorage.setItem(obj.id, "visited");
                 obj.style.filter="saturate(0) brightness(0.15)";
             }
             else
