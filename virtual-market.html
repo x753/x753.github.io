@@ -11,12 +11,8 @@
         html, body { height: 100%; padding: 0; margin: 0; background-color: black; overflow: hidden; user-select: none; font-family: "Lucida Console", Monaco, monospace; }
 
         div {
-            width: 16.6666666667%;
-            height: 16.6666666667%;
+            height: 100%;
             float: left;
-
-            display: flex;
-            flex-direction: column;
         }
 
         .highlight {
@@ -25,7 +21,7 @@
             color: white;
             font-size: 1.2vw;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(35, 35, 35, 0.85);
             line-height: 1.9vw;
             pointer-events: none;
         }
@@ -43,12 +39,37 @@
             pointer-events: none;
         }
 
+        .flexrow
+        {
+            margin: 1px;
+
+            height: 100%;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+        .flexcolumn
+        {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+        }
+
         /* WORLD IMAGES */
 
         .world
         {
-            outline: solid;
-            outline-width: 2px;
+            flex: 1;
+            
+            display: flex;
+            flex-direction: column;
+
+            margin: 1px;
             background-size: cover;
         }
 
@@ -67,120 +88,139 @@
 
 <body>
 
-    <div id="vket5-01" class="world hubworld" title="https://www.v-market.work/v5/catalog" onclick='clickItem(this)'>
-        <div class="highlight">WORLD BEYOND</div><div class="version" style="background-color: rgba(75, 75, 75, 0.8);">HUB WORLD</div>
+    <div class="flexcolumn">
+
+    <div class="flexrow">
+        <div id="vket5-01" class="world hubworld" title="https://www.v-market.work/v5/catalog" onclick='clickItem(this)'>
+            <div class="highlight">WORLD BEYOND</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">HUB WORLD</div>
+        </div>
+
+        <div id="vket5-02" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/1" onclick='clickItem(this)'>
+            <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">SAPPHIRE STAGE</div>
+        </div>
+        <div id="vket5-03" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/2" onclick='clickItem(this)'>
+            <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">RUBY STAGE</div>
+        </div>
+        <div id="vket5-04" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/3" onclick='clickItem(this)'>
+            <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">CITRINE STAGE</div>
+        </div>
+        <div id="vket5-05" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/4" onclick='clickItem(this)'>
+            <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">TOURMALINE STAGE</div>
+        </div>
+        <div id="vket5-06" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/5" onclick='clickItem(this)'>
+            <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">AMETHYST STAGE</div>
+        </div>
     </div>
 
-    <div id="vket5-02" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/1" onclick='clickItem(this)'>
-        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">SAPPHIRE STAGE</div>
-    </div>
-    <div id="vket5-03" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/2" onclick='clickItem(this)'>
-        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">RUBY STAGE</div>
-    </div>
-    <div id="vket5-04" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/3" onclick='clickItem(this)'>
-        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">CITRINE STAGE</div>
-    </div>
-    <div id="vket5-05" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/4" onclick='clickItem(this)'>
-        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">TOURMALINE STAGE</div>
-    </div>
-    <div id="vket5-06" class="world virtualshowcase" title="https://www.v-market.work/v5/catalog/world/23/5" onclick='clickItem(this)'>
-        <div class="highlight">VIRTUAL SHOWCASE</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">AMETHYST STAGE</div>
-    </div>
-
-    <div id="vket5-07" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/1" onclick='clickItem(this)'>
-        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">DAY 1</div>
-    </div>
-    <div id="vket5-08" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/2" onclick='clickItem(this)'>
-        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">DAY 2</div>
-    </div>
-    <div id="vket5-09" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/3" onclick='clickItem(this)'>
-        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">DAY 3</div>
-    </div>
-    <div id="vket5-10" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/4" onclick='clickItem(this)'>
-        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">DAY 4</div>
-    </div>
-    <div id="vket5-11" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/5" onclick='clickItem(this)'>
-        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">DAY 5</div>
-    </div>
-    <div id="vket5-12" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/6" onclick='clickItem(this)'>
-        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">DAY 6</div>
+    <div class="flexrow">
+        <div id="vket5-07" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/1" onclick='clickItem(this)'>
+            <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">DAY 1</div>
+        </div>
+        <div id="vket5-08" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/2" onclick='clickItem(this)'>
+            <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">DAY 2</div>
+        </div>
+        <div id="vket5-09" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/3" onclick='clickItem(this)'>
+            <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">DAY 3</div>
+        </div>
+        <div id="vket5-10" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/4" onclick='clickItem(this)'>
+            <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">DAY 4</div>
+        </div>
+        <div id="vket5-11" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/5" onclick='clickItem(this)'>
+            <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">DAY 5</div>
+        </div>
+        <div id="vket5-12" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/6" onclick='clickItem(this)'>
+            <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">DAY 6</div>
+        </div>
     </div>
 
-    <div id="vket5-13" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/7" onclick='clickItem(this)'>
-        <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">DAY 7</div>
-    </div>
-    <div id="vket5-14" class="world metekolebka" title="https://www.v-market.work/v5/catalog/world/25/1" onclick='clickItem(this)'>
-        <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">FORESTELTOV</div>
-    </div>
-    <div id="vket5-15" class="world metekolebka" title="https://www.v-market.work/v5/catalog/world/25/2" onclick='clickItem(this)'>
-        <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">BLASTELTOV</div>
-    </div>
-    <div id="vket5-16" class="world metekolebka" title="https://www.v-market.work/v5/catalog/world/25/3" onclick='clickItem(this)'>
-        <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">SPLASTELTOV</div>
-    </div>
-    <div id="vket5-17" class="world metekolebka" title="https://www.v-market.work/v5/catalog/world/25/4" onclick='clickItem(this)'>
-        <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">TEMPESTELTOV</div>
+    <div class="flexrow">
+        <div id="vket5-13" class="world isekaimarche" title="https://www.v-market.work/v5/catalog/world/24/7" onclick='clickItem(this)'>
+            <div class="highlight">ISEKAI MARCHÉ</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">DAY 7</div>
+        </div>
+        <div id="vket5-14" class="world metekolebka" title="https://www.v-market.work/v5/catalog/world/25/1" onclick='clickItem(this)'>
+            <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">FORESTELTOV</div>
+        </div>
+        <div id="vket5-15" class="world metekolebka" title="https://www.v-market.work/v5/catalog/world/25/2" onclick='clickItem(this)'>
+            <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">BLASTELTOV</div>
+        </div>
+        <div id="vket5-16" class="world metekolebka" title="https://www.v-market.work/v5/catalog/world/25/3" onclick='clickItem(this)'>
+            <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">SPLASTELTOV</div>
+        </div>
+        <div id="vket5-17" class="world metekolebka" title="https://www.v-market.work/v5/catalog/world/25/4" onclick='clickItem(this)'>
+            <div class="highlight">METEKOLEBKA</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">TEMPESTELTOV</div>
+        </div>
+
+        <div id="vket5-19" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/1" onclick='clickItem(this)'>
+            <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">01</div>
+        </div>
     </div>
 
-    <div id="vket5-19" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/1" onclick='clickItem(this)'>
-        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">01</div>
-    </div>
-    <div id="vket5-20" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/2" onclick='clickItem(this)'>
-        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">02</div>
-    </div>
-    <div id="vket5-21" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/3" onclick='clickItem(this)'>
-        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">03</div>
-    </div>
-    <div id="vket5-22" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/4" onclick='clickItem(this)'>
-        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">04</div>
-    </div>
-    <div id="vket5-23" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/5" onclick='clickItem(this)'>
-        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">05</div>
-    </div>
-    <div id="vket5-24" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/6" onclick='clickItem(this)'>
-        <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">06</div>
+    <div class="flexrow">
+        <div id="vket5-20" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/2" onclick='clickItem(this)'>
+            <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">02</div>
+        </div>
+        <div id="vket5-21" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/3" onclick='clickItem(this)'>
+            <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">03</div>
+        </div>
+        <div id="vket5-22" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/4" onclick='clickItem(this)'>
+            <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">04</div>
+        </div>
+        <div id="vket5-23" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/5" onclick='clickItem(this)'>
+            <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">05</div>
+        </div>
+        <div id="vket5-24" class="world orbital" title="https://www.v-market.work/v5/catalog/world/26/6" onclick='clickItem(this)'>
+            <div class="highlight">ORBITAL</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">06</div>
+        </div>
+
+        <div id="vket5-25" class="world curiocity" title="https://www.v-market.work/v5/catalog/world/27/1" onclick='clickItem(this)'>
+            <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">INTEREST</div>
+        </div>
     </div>
 
-    <div id="vket5-25" class="world curiocity" title="https://www.v-market.work/v5/catalog/world/27/1" onclick='clickItem(this)'>
-        <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">INTEREST</div>
-    </div>
-    <div id="vket5-26" class="world curiocity" title="https://www.v-market.work/v5/catalog/world/27/2" onclick='clickItem(this)'>
-        <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">SURPRISE</div>
-    </div>
-    <div id="vket5-27" class="world curiocity" title="https://www.v-market.work/v5/catalog/world/27/3" onclick='clickItem(this)'>
-        <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">TRANQUIL</div>
+    <div class="flexrow">
+        <div id="vket5-26" class="world curiocity" title="https://www.v-market.work/v5/catalog/world/27/2" onclick='clickItem(this)'>
+            <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">SURPRISE</div>
+        </div>
+        <div id="vket5-27" class="world curiocity" title="https://www.v-market.work/v5/catalog/world/27/3" onclick='clickItem(this)'>
+            <div class="highlight">CURIOCITY</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">TRANQUIL</div>
+        </div>
+
+        <div id="vket5-30" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/1" onclick='clickItem(this)'>
+            <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">DC-01</div>
+        </div>
+        <div id="vket5-31" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/2" onclick='clickItem(this)'>
+            <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">DC-02</div>
+        </div>
+        <div id="vket5-32" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/3" onclick='clickItem(this)'>
+            <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">DC-03</div>
+        </div>
+        <div id="vket5-33" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/4" onclick='clickItem(this)'>
+            <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">DC-04</div>
+        </div>
     </div>
 
-    <div id="vket5-30" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/1" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">DC-01</div>
+    <div class="flexrow">
+        <div id="vket5-34" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/5" onclick='clickItem(this)'>
+            <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">DC-05</div>
+        </div>
+        <div id="vket5-35" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/6" onclick='clickItem(this)'>
+            <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">DC-06</div>
+        </div>
+        <div id="vket5-36" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/7" onclick='clickItem(this)'>
+            <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">DC-07</div>
+        </div>
+        <div id="vket5-37" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/8" onclick='clickItem(this)'>
+            <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(200, 0, 200, 0.8);">DC-08</div>
+        </div>
+        
+        <div id="vket5-42" class="world udoncube" title="https://www.v-market.work/v5/catalog/world/29/1" onclick='clickItem(this)'>
+            <div class="highlight">UDON CUBE</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">UC-0J</div>
+        </div>
+        <div id="vket5-41" class="world udoncube" title="https://www.v-market.work/v5/catalog/world/30/1" onclick='clickItem(this)'>
+            <div class="highlight">UDON CUBE</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">UC-0E</div>
+        </div>
     </div>
-    <div id="vket5-31" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/2" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">DC-02</div>
-    </div>
-    <div id="vket5-32" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/3" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(124, 114, 0, 0.8);">DC-03</div>
-    </div>
-    <div id="vket5-33" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/4" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(0, 90, 0, 0.8);">DC-04</div>
-    </div>
-    <div id="vket5-34" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/5" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(83, 0, 138, 0.8);">DC-05</div>
-    </div>
-    <div id="vket5-35" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/6" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(165, 80, 0, 0.8);">DC-06</div>
-    </div>
-    <div id="vket5-36" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/7" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(0, 134, 143, 0.8);">DC-07</div>
-    </div>
-    <div id="vket5-37" class="world defaultcube" title="https://www.v-market.work/v5/catalog/world/28/8" onclick='clickItem(this)'>
-        <div class="highlight">DEFAULT CUBE</div><div class="version" style="background-color: rgba(215, 0, 215, 0.8);">DC-08</div>
-    </div>
-    
-    <div id="vket5-42" class="world udoncube" title="https://www.v-market.work/v5/catalog/world/29/1" onclick='clickItem(this)'>
-        <div class="highlight">UDON CUBE</div><div class="version" style="background-color: rgba(15, 38, 138, 0.8);">UC-0J</div>
-    </div>
-    <div id="vket5-41" class="world udoncube" title="https://www.v-market.work/v5/catalog/world/30/1" onclick='clickItem(this)'>
-        <div class="highlight">UDON CUBE</div><div class="version" style="background-color: rgba(90, 0, 0, 0.8);">UC-0E</div>
+
     </div>
 
     <script>
@@ -206,7 +246,7 @@
 
                 if(localStorage.getItem(worlds[i].id) == "visited")
                 {
-                    worlds[i].style.filter="saturate(0) brightness(0.15)";
+                    worlds[i].style.filter = "saturate(0) brightness(0.12)";
                 }
             }
         }
@@ -221,12 +261,12 @@
             if(obj.style.filter == "")
             {
                 localStorage.setItem(obj.id, "visited");
-                obj.style.filter="saturate(0) brightness(0.15)";
+                obj.style.filter = "saturate(0) brightness(0.12)";
             }
             else
             {
                 localStorage.setItem(obj.id, "");
-                obj.style.filter="";
+                obj.style.filter = "";
             }
         }
 
