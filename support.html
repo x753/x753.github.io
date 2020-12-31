@@ -91,12 +91,43 @@
 
 <body>
 
-    <!-- GAME DEV SINGLE IMAGE BANNER -->
+    <!-- CRYPTOGRAPHY IMAGE BANNER -->
 
-    <template id="gamedev">
-        <a class="link" href="https://www.humblebundle.com/software/game-dev-map-level-creator-software?partner=eastsidelag"
+    <template id="crypto">
+        <a class="link" href="https://www.humblebundle.com/books/cybersecurity-cryptography-wiley-books?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-        <img style="height: 640px; width: 100%; position: absolute; bottom: 0;" src="https://hb.imgix.net/392acf0a38dc6f39ec8d7f7121b5cad334c83295.png?auto=compress,format&h=630&w=1200&s=19dddfb424d23523f6a331c9f26ac09d">
+
+        <img style="border-style: solid; border-color: black; border-width: 0 2px 0; height: 140%; width: 40%; position: absolute; top: -5px; z-index: 2;" src="https://hb.imgix.net/f11bb0f961a090c9f1a2c844df56f41dfb494715.png?auto=compress,format&h=630&w=1200&s=5014699791124a655b76730e5e33b443">
+
+        <div style="height: 0%; position: absolute; z-index: 2; bottom: 0; right: 0; margin-right: 5px; margin-bottom: 75px;">
+        <p style="font-size: 28px;" id="countdown"></p>
+        </div>
+        <script>
+            var d = new Date("Jan 11, 2021 9:00:00");
+            var countDownDate = d.getTime() + d.getTimezoneOffset() * 60000;
+
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                
+                if (distance < 0)
+                {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "";
+                }
+                    
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s left";
+            }, 1000);
+        </script>
+
+        <img style="margin-left: 30%; height: 200%; width: 200%; position: absolute;" src="https://hb.imgix.net/b371bb39773496b775e530dbade61ce744493a10.png?auto=compress,format&fit=crop&h=353&w=616&s=88b1f8bf0f60747633a6ad7986c1d26b">
+        <img style="margin-left: 42%; margin-top: 18px; height: 90px; width: 30%; position: absolute;" src="https://hb.imgix.net/3d64cb8e5d3673a6a58060b8d47ac573dabcc60b.png?auto=compress,format&h=170&w=1200&s=2b4c034f581e5b7a5552c12323d74302">
         </a> 
     </template>
 
@@ -139,7 +170,7 @@
     </script>
 
     <script>
-        const templates = ["gamedev", "choice"];
+        const templates = ["crypto", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
