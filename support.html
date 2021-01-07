@@ -91,6 +91,46 @@
 
 <body>
 
+    <!-- ATTACK ON TITAN IMAGE BANNER -->
+
+    <template id="titan">
+        <a class="link" href="https://www.humblebundle.com/books/attack-on-titan-final-season-books?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <img style="border-style: solid; border-color: black; border-width: 0 2px 0; height: 152%; width: 40%; position: absolute; top: -5px; z-index: 2;" src="https://hb.imgix.net/f2eebf49bf7962922e0bb8e912f51cd1a591660a.jpg?auto=compress,format&h=630&w=1200&s=2452a8a1ecfc1ec68a8e62e25c1079de">
+
+        <div style="height: 0%; position: absolute; z-index: 2; bottom: 0; right: 0; margin-right: 5px; margin-bottom: 75px;">
+        <p style="font-size: 28px;" id="countdown"></p>
+        </div>
+        <script>
+            var d = new Date("Jan 27, 2021 9:00:00");
+            var countDownDate = d.getTime() + d.getTimezoneOffset() * 60000;
+
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                
+                if (distance < 0)
+                {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "";
+                }
+                    
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s left";
+            }, 1000);
+        </script>
+
+        <img style="margin-left: 30%; height: 180%; position: absolute;" src="https://hb.imgix.net/710e491cd95726e07c4997b4d7a3bc6634187668.jpg?auto=compress,format&fit=crop&h=353&w=616&s=399efebf1aad353479bded669f0d6456">
+        <img style="margin-left: 68%; margin-top: 18px; height: 70px; width: 30%; position: absolute;" src="https://hb.imgix.net/4361ab1ef4b127d56dd2a61c4a56da51c1f2bd7a.png?auto=compress,format&h=170&w=1200&s=f327238baef9d6436b1245a5fcaf7e1f">
+        </a> 
+    </template>
+
     <!-- CRYPTOGRAPHY IMAGE BANNER -->
 
     <template id="crypto">
@@ -146,12 +186,12 @@
         </div>
 
         <div class="row ltr">
-            <img src="https://hb.imgix.net/d9ef9f4afdbf562ed68472dd2aed7fb713eecdab.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=484e47ad87a14f153ef4864e23f1278a">
             <img src="https://hb.imgix.net/3c1fd465a4a1f71e14f7e1c7a0066d3773564a64.jpg?auto=compress,format&fit=clip&h=383&w=667&s=16e981d27f1845754f5c9bc954429ecd">
+            <img src="https://hb.imgix.net/d9ef9f4afdbf562ed68472dd2aed7fb713eecdab.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=484e47ad87a14f153ef4864e23f1278a">
         </div>
         <div class="row rtl">
-            <img src="https://hb.imgix.net/0031741f1fec4a4cfa7605f88efae6b9a1960ff6.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=e3b3bab43e200c458d0e631b789bade0">
             <img src="https://hb.imgix.net/d8b688042b7060f776da127051407c5c44801c14.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=99af0534dac05ceac51af613c0b3923a">
+            <img src="https://hb.imgix.net/0031741f1fec4a4cfa7605f88efae6b9a1960ff6.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=e3b3bab43e200c458d0e631b789bade0">
         </div>
 
         <div class="effect noclick" style="background-image: linear-gradient(to right, #00000000, #111111FF, #00000000)"></div>
@@ -170,7 +210,7 @@
     </script>
 
     <script>
-        const templates = ["crypto", "choice"];
+        const templates = ["titan", "crypto", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
