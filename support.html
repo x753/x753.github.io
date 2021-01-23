@@ -131,6 +131,38 @@
         </a> 
     </template>
 
+    <!-- BOOK IMAGE BANNER -->
+
+    <template id="book">
+        <a class="link" href="https://www.humblebundle.com/books/programming-fundamentals-mercury-books?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <div class="row ltr">
+            <img src="https://hb.imgix.net/fec6ff1637270fe3d55b84b422297a75cdceec39.png?auto=compress,format&w=180&s=c640c20bfeaff68abd209771d103f8a1">
+            <img src="https://hb.imgix.net/66e03fd8deac7b3ceaa56a16ff8fb97e740eded7.png?auto=compress,format&w=180&s=632096d00f8e87db010390f6c89fed97">
+            <img src="https://hb.imgix.net/1c0baefb94f76f5a841faf56da026c9fbebfe250.png?auto=compress,format&w=180&s=f7f121ba55390d74aac44559c6737ec4">
+            <img src="https://hb.imgix.net/68f50237b83d6cbc658a9b8d3bb92d6a8a0c710d.png?auto=compress,format&w=180&s=403a8bb6511a573f093a4c0d3c174db2">
+            <img src="https://hb.imgix.net/9ae8c4afe51a7e7be79b5509e8c8588dc4f1fddf.png?auto=compress,format&w=180&s=463c10c6cb013630b838ef0198fc85e3">
+            <img src="https://hb.imgix.net/7c6e6c626842a37023ea2ea3ac60eb4fa4a3a5c4.png?auto=compress,format&w=180&s=ce7ac0b90b921d3a95af7c7fb7028d2a">
+            <img src="https://hb.imgix.net/21fc2031be0be0ade6ff88793b86e466816a36ff.png?auto=compress,format&w=180&s=5032ba28e46b9cfec6bf751b0ee8d002">
+            <img src="https://hb.imgix.net/1186b4838ddc17367b3633ee776dfa5b11677655.png?auto=compress,format&w=180&s=7106030c6fe201bc190c7493c0a9b70b">
+            <img src="https://hb.imgix.net/5a6800a44ccbee88390bf56982fc4bf58f750c36.png?auto=compress,format&w=180&s=93b9f3f0b65de260fa16833b596fc75d">
+            <img src="https://hb.imgix.net/d691ddf8260d6148cef8c6dba0b791d75fd42c69.png?auto=compress,format&w=180&s=82daa058662abea8cc7540e1e88590ff">
+            <img src="https://hb.imgix.net/228e141752b61f869d519806335f372fd983aebc.png?auto=compress,format&w=180&s=b492f8bfb31e5e55b21aba2d31303b07">
+            <img src="https://hb.imgix.net/52e9696df8854dd7cdc070dbc300c2ce7167cc03.png?auto=compress,format&w=180&s=423317512c18fd4a8f98482a373d5021">
+            <img src="https://hb.imgix.net/37825e1b831d9448abd5274e041175cba6ed4f0e.png?auto=compress,format&w=180&s=b11551757edab63e74493ed7ae5dbec6">
+        </div>
+
+        <img style="z-index: 5; margin: 18px; height: 90px; width: 50%; position: absolute;" src="https://hb.imgix.net/8a29ad792f30cd09b94e3f995c6d04045f650f89.png?auto=compress,format&h=170&w=1200&s=306eaa0131928f3c53b98ed8d1d8ef0d">
+
+        <div class="effect noclick" style="background-image: linear-gradient(to right, #111111FF, #00000000)"></div>
+
+        <img style="filter: blur(4px) brightness(0); z-index: 4; margin: 5px; position: absolute; bottom: 0; right: 0; height: 70px" src="https://i1.wp.com/blog.humblebundle.com/wp-content/uploads/2019/10/cropped-HB-logo-sm.png?w=450&ssl=1">
+        <img style="z-index: 5; margin: 7px; position: absolute; bottom: 0; right: 0; height: 70px" src="https://i1.wp.com/blog.humblebundle.com/wp-content/uploads/2019/10/cropped-HB-logo-sm.png?w=450&ssl=1">
+    
+        </a> 
+    </template>
+
     <!-- SOFTWARE IMAGE BANNER -->
 
     <template id="software">
@@ -209,7 +241,7 @@
     </script>
 
     <script>
-        const templates = ["titan", "software", "choice"];
+        const templates = ["book", "titan", "software", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
