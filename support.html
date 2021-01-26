@@ -91,43 +91,14 @@
 
 <body>
 
-    <!-- ATTACK ON TITAN IMAGE BANNER -->
+    <!-- DESIGN IMAGE BANNER -->
 
-    <template id="titan">
-        <a class="link" href="https://www.humblebundle.com/books/attack-on-titan-final-season-books?partner=eastsidelag"
+    <template id="design">
+        <a class="link" href="https://www.humblebundle.com/software/design-expression-powerhouse-software?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
-        <img style="border-style: solid; border-color: black; border-width: 0 2px 0; height: 152%; width: 40%; position: absolute; top: -5px; z-index: 2;" src="https://hb.imgix.net/f2eebf49bf7962922e0bb8e912f51cd1a591660a.jpg?auto=compress,format&h=630&w=1200&s=2452a8a1ecfc1ec68a8e62e25c1079de">
+        <img style="z-index: 5; bottom: 0; height: 380%; width: 100%; position: absolute;" src="https://hb.imgix.net/8571314ea5f691c9d41bf0cb06e06eaf77b0936f.png?auto=compress,format&h=630&w=1200&s=27a6c54e460503879612da617d98a8ad">
 
-        <div style="height: 0%; position: absolute; z-index: 2; bottom: 0; right: 0; margin-right: 5px; margin-bottom: 75px;">
-        <p style="font-size: 28px;" id="countdown"></p>
-        </div>
-        <script>
-            var d = new Date("Jan 27, 2021 9:00:00");
-            var countDownDate = d.getTime() + d.getTimezoneOffset() * 60000;
-
-            var x = setInterval(function() {
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-                
-                if (distance < 0)
-                {
-                    clearInterval(x);
-                    document.getElementById("demo").innerHTML = "";
-                }
-                    
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    
-                document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s left";
-            }, 1000);
-        </script>
-
-        <img style="margin-left: 30%; height: 180%; position: absolute;" src="https://hb.imgix.net/710e491cd95726e07c4997b4d7a3bc6634187668.jpg?auto=compress,format&fit=crop&h=353&w=616&s=399efebf1aad353479bded669f0d6456">
-        <img style="margin-left: 68%; margin-top: 18px; height: 70px; width: 30%; position: absolute;" src="https://hb.imgix.net/4361ab1ef4b127d56dd2a61c4a56da51c1f2bd7a.png?auto=compress,format&h=170&w=1200&s=f327238baef9d6436b1245a5fcaf7e1f">
         </a> 
     </template>
 
@@ -241,7 +212,7 @@
     </script>
 
     <script>
-        const templates = ["book", "titan", "software", "choice"];
+        const templates = ["book", "design", "software", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
