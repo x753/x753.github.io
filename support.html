@@ -102,6 +102,17 @@
         </a> 
     </template>
 
+    <!-- UNITY IMAGE BANNER -->
+
+    <template id="unity">
+        <a class="link" href="https://www.humblebundle.com/software/learn-unity-game-development-2021-software?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/84069267586902a192c1f4d09bb02c536e67251c.png?auto=compress,format&h=630&w=1200&s=08fe6bb0206027626ba3378a2d7fab5e">
+
+        </a> 
+    </template>
+
     <!-- BOOK IMAGE BANNER -->
 
     <template id="book">
@@ -212,7 +223,7 @@
     </script>
 
     <script>
-        const templates = ["book", "design", "software", "choice"];
+        const templates = ["unity", "book", "design", "software", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
