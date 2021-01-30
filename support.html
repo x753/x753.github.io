@@ -113,7 +113,18 @@
         </a> 
     </template>
 
-    <!-- BOOK IMAGE BANNER -->
+    <!-- MATH IMAGE BANNER -->
+
+    <template id="math">
+        <a class="link" href="https://www.humblebundle.com/books/math-for-programmers-manning-publications-books?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/ccef3ae63f06c02ba823d7d7f1d873ec89925606.png?auto=compress,format&h=630&w=1200&s=339f3d257d8a39d56d15bcd78ff41720">
+
+        </a> 
+    </template>
+
+    <!-- BOOK ITEMS BANNER -->
 
     <template id="book">
         <a class="link" href="https://www.humblebundle.com/books/programming-fundamentals-mercury-books?partner=eastsidelag"
@@ -223,7 +234,7 @@
     </script>
 
     <script>
-        const templates = ["unity", "book", "design", "software", "choice"];
+        const templates = ["math", "unity", "book", "design", "software", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
