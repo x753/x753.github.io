@@ -102,6 +102,17 @@
         </a> 
     </template>
 
+    <!-- DUNGEON IMAGE BANNER -->
+
+    <template id="dungeon">
+        <a class="link" href="https://www.humblebundle.com/books/5e-rpg-frog-god-games-books?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute; filter: hue-rotate(115deg) brightness(1.1);" src="https://hb.imgix.net/cc0bc6c42aa6d1e403264c32fbe32da23ca6340d.png?auto=compress,format&h=630&w=1200&s=ed5e2dd0991691082a380adcf23c346e">
+
+        </a> 
+    </template>
+
     <!-- UNITY IMAGE BANNER -->
 
     <template id="unity">
@@ -234,7 +245,7 @@
     </script>
 
     <script>
-        const templates = ["math", "unity", "book", "design", "software", "choice"];
+        const templates = ["dungeon", "math", "unity", "book", "design", "software", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
