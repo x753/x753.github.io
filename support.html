@@ -167,45 +167,6 @@
         </a> 
     </template>
 
-    <!-- SOFTWARE IMAGE BANNER -->
-
-    <template id="software">
-        <a class="link" href="https://www.humblebundle.com/software/music-producer-2-software?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div style="height: 0%; position: absolute; z-index: 2; bottom: 0; right: 0; margin-right: 5px; margin-bottom: 75px;">
-        <p style="font-size: 28px;" id="countdown"></p>
-        </div>
-        <script>
-            var d = new Date("Jan 11, 2021 9:00:00");
-            var countDownDate = d.getTime() + d.getTimezoneOffset() * 60000;
-
-            var x = setInterval(function() {
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-                
-                if (distance < 0)
-                {
-                    clearInterval(x);
-                    document.getElementById("demo").innerHTML = "";
-                }
-                    
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    
-                document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s left";
-            }, 1000);
-        </script>
-
-        <img style="margin-left: 0%; height: 1000%; width: 100%; position: absolute;" src="https://hb.imgix.net/94db515ed448faffc32501c1de3b82ca5f05a7d1.png?auto=compress,format&fit=crop&h=353&w=616&s=b7639567928686d065e72a190792a338">
-        <img style="margin-left: 3%; margin-top: 18px; height: 90px; width: 50%; position: absolute;" src="https://hb.imgix.net/8f7b85788b3fd67661478557af3de576bd77a75b.png?auto=compress,format&h=170&w=1200&s=04de476bea5605003fd714dbfea787ee">
-        <img style="margin-left: 50%; margin-top: 18px; height: 90px; width: 50%; position: absolute;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg">
-        </a> 
-    </template>
-
     <!-- HUMBLE CHOICE BANNER -->
 
     <template id="choice">
@@ -245,7 +206,7 @@
     </script>
 
     <script>
-        const templates = ["dungeon", "math", "unity", "book", "design", "software", "choice"];
+        const templates = ["dungeon", "math", "unity", "book", "design", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
