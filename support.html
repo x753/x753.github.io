@@ -91,51 +91,29 @@
 
 <body>
 
-    <!-- DESIGN IMAGE BANNER -->
+    <!-- BUSINESS IMAGE BANNER -->
 
-    <template id="design">
-        <a class="link" href="https://www.humblebundle.com/software/design-expression-powerhouse-software?partner=eastsidelag"
+    <template id="business">
+        <a class="link" href="https://www.humblebundle.com/books/become-an-entrepreneur-wiley-books?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
-        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/8571314ea5f691c9d41bf0cb06e06eaf77b0936f.png?auto=compress,format&h=630&w=1200&s=27a6c54e460503879612da617d98a8ad">
+        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/e484d2b979a979c14c65f3fa61a518bbe7d335aa.png?auto=compress,format&h=630&w=1200&s=e24d39db7d24d37a45e6bb1a7bf35ed0">
 
         </a> 
     </template>
 
-    <!-- DUNGEON IMAGE BANNER -->
+    <!-- SPACE ITEMS BANNER -->
 
-    <template id="dungeon">
-        <a class="link" href="https://www.humblebundle.com/books/5e-rpg-frog-god-games-books?partner=eastsidelag"
+    <template id="space">
+        <a class="link" href="https://www.humblebundle.com/books/astronomy-black-holes-universe-morgan-claypool-books?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
-        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute; filter: hue-rotate(115deg) brightness(1.1);" src="https://hb.imgix.net/cc0bc6c42aa6d1e403264c32fbe32da23ca6340d.png?auto=compress,format&h=630&w=1200&s=ed5e2dd0991691082a380adcf23c346e">
+        <img style="z-index: 5; bottom: -99px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/2d57c658e48036e5f5076e1858e118f1865cc009.png?auto=compress,format&h=630&w=1200&s=eb8da6498ad1e41a1577015c54ca6c40">
 
         </a> 
     </template>
 
-    <!-- UNITY IMAGE BANNER -->
-
-    <template id="unity">
-        <a class="link" href="https://www.humblebundle.com/software/learn-unity-game-development-2021-software?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/84069267586902a192c1f4d09bb02c536e67251c.png?auto=compress,format&h=630&w=1200&s=08fe6bb0206027626ba3378a2d7fab5e">
-
-        </a> 
-    </template>
-
-    <!-- MATH IMAGE BANNER -->
-
-    <template id="math">
-        <a class="link" href="https://www.humblebundle.com/books/math-for-programmers-manning-publications-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/ccef3ae63f06c02ba823d7d7f1d873ec89925606.png?auto=compress,format&h=630&w=1200&s=339f3d257d8a39d56d15bcd78ff41720">
-
-        </a> 
-    </template>
-
-    <!-- BOOK ITEMS BANNER -->
+    <!-- MUSIC ITEMS BANNER -->
 
     <template id="music">
         <a class="link" href="https://www.humblebundle.com/software/big-royaltyfree-music-2-software?partner=eastsidelag"
@@ -185,7 +163,7 @@
     </script>
 
     <script>
-        const templates = ["dungeon", "math", "unity", "music", "design", "choice"];
+        const templates = ["business", "space", "music", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
