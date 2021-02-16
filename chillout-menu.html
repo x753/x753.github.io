@@ -81,6 +81,9 @@
             background: var(--colorBackground);
             padding: 20px;
 
+            background-image: url("backgroundURL");
+            background-size: cover;
+
             min-width: 1280px;
             min-height: 620px;
         }
@@ -167,6 +170,28 @@
             background-color: var(--colorButtons);
         }
 
+        .inputField {
+            font-size:16px;
+            height: 45px;
+            width: 460px;
+            padding: 10px 12px;
+            margin: 6px;
+            margin-left: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .selectField {
+            font-size:16px;
+            height: 45px;
+            width: 100px;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
         .circle {
             border: 3px solid #000000;
             cursor: pointer;
@@ -221,7 +246,7 @@
                     </div>
                     <div class="submenu" style="align-items: start; justify-content: start; width: 750px; height: 615px;">
                         <ol style="margin-left: 15px; margin-top: 15px;">
-                            <li>Choose your colors</li>
+                            <li>Choose your colors / background image</li>
                             <li>Click Download to get the ui.css file</li>
                             <li>Replace your ui.css file, which can be found in: <br><p style="line-height: 0; font-size: 18px;"><mark style="color: white; padding: 3px; background-color: #ffffff16;">ChilloutVR\ChilloutVR_Data\StreamingAssets\Cohtml\UIResources\CVRTest<mark></p></li>
                         </ol> 
@@ -229,11 +254,27 @@
                 </div>
             </div>
             <div id="toolbar">
-                <div class="toolbar-btn"><p>Background</p> <label class="circle" style="background-color: var(--colorBackground);"> <input class="colorpicker" type="color" id="colorBackground" onchange="changeColor(this)" value="#373021"></label></div>
+                <div class="toolbar-btn leftmost"><p>Background</p> <label class="circle" style="background-color: var(--colorBackground);"> <input class="colorpicker" type="color" id="colorBackground" onchange="changeColor(this)" value="#373021"></label></div>
                 <div class="toolbar-btn"><p>Highlight 1</p> <label class="circle" style="background-color: var(--colorHighlight1);"> <input class="colorpicker" type="color" id="colorHighlight1" onchange="changeColor(this)" value="#59885d"></label></div>
                 <div class="toolbar-btn"><p>Highlight 2</p> <label class="circle" style="background-color: var(--colorHighlight2);"> <input class="colorpicker" type="color" id="colorHighlight2" onchange="changeColor(this)" value="#17452f"></label></div>
                 <div class="toolbar-btn"><p>Toolbar</p> <label class="circle" style="background-color: var(--colorToolbar);"> <input class="colorpicker" type="color" id="colorToolbar" onchange="changeColor(this)" value="#1b5037"></label></div>
                 <div class="toolbar-btn"><p>Buttons</p> <label class="circle" style="background-color: var(--colorButtons);"> <input class="colorpicker" type="color" id="colorButtons" onchange="changeColor(this)" value="#1b5037"></label></div>
+                <div class="flexcolumn" style="height: 100%; align-self: center;">
+                    <div>
+                        <input class="inputField" id="backgroundURL" type="text" value="" onchange="changeBackgroundURL(this)" placeholder="Background Image URL">
+                        <select class="selectField" id="backgroundStyle" onchange="changeBackgroundSize(this)">
+                            <option value="cover">Stretch</option>
+                            <option value="auto">Repeat</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input class="inputField" id="toolbarURL" type="text" value="" onchange="changeToolbarURL(this)" placeholder="Toolbar Image URL">
+                        <select class="selectField" id="toolbarStyle" onchange="changeToolbarBackgroundSize(this)">
+                            <option value="cover">Stretch</option>
+                            <option value="auto">Repeat</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -241,6 +282,33 @@
     <div class="bg"></div>
 
     <script>
+        // initialize the style properties
+        document.documentElement.style.setProperty('--colorBackground', "#373021");
+        document.documentElement.style.setProperty('--colorHighlight1', "#59885d");
+        document.documentElement.style.setProperty('--colorHighlight2', "#17452f");
+        document.documentElement.style.setProperty('--colorToolbar', "#1b503780");
+        document.documentElement.style.setProperty('--colorButtons', "#1b5037");
+
+        function changeBackgroundURL(urlField)
+        {
+            document.getElementById("menu").style.backgroundImage = "url(" + urlField.value + ")";
+        }
+
+        function changeToolbarURL(urlField)
+        {
+            document.getElementById("toolbar").style.backgroundImage = "url(" + urlField.value + ")";
+        }
+
+        function changeBackgroundSize(backgroundSizeField)
+        {
+            document.getElementById("menu").style.backgroundSize = backgroundSizeField.value;
+        }
+
+        function changeToolbarBackgroundSize(backgroundSizeField)
+        {
+            document.getElementById("toolbar").style.backgroundSize = backgroundSizeField.value;
+        }
+
         function changeColor(color)
         {
             color.parentElement.style.backgroundColor = color.value;
@@ -257,11 +325,19 @@
 
         function downloadFile()
         {
+            console.log(document.documentElement.style.getPropertyValue('--colorHighlight1'));
+
             var textFile = document.getElementById('uicss').textContent.replaceAll('#373021', document.documentElement.style.getPropertyValue('--colorBackground'));
             textFile = textFile.replaceAll('#59885d', document.documentElement.style.getPropertyValue('--colorHighlight1'));
             textFile = textFile.replaceAll('#17452f', document.documentElement.style.getPropertyValue('--colorHighlight2'));
             textFile = textFile.replaceAll('rgba(27, 80, 55, 0.5)', document.documentElement.style.getPropertyValue('--colorToolbar'));
             textFile = textFile.replaceAll('rgba(27, 80, 55, 1)', document.documentElement.style.getPropertyValue('--colorButtons'));
+
+            textFile = textFile.replace('backgroundURL', document.getElementById('backgroundURL').value);
+            textFile = textFile.replace('backgroundStyle', document.getElementById('backgroundStyle').value);
+
+            textFile = textFile.replace('toolbarURL', document.getElementById('toolbarURL').value);
+            textFile = textFile.replace('toolbarStyle', document.getElementById('toolbarStyle').value);
 
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textFile));
@@ -322,6 +398,9 @@ h1 {
 }
 
 .content {
+    background-image: url("backgroundURL");
+    background-size: backgroundStyle;
+
     position: absolute;
     width: 100%;
     top: 0;
@@ -1631,6 +1710,9 @@ h1 {
 
 /*Toolbar*/
 .toolbar {
+    background-image: url("toolbarURL");
+    background-size: toolbarStyle;
+
     position: absolute;
     width: 100%;
     height: 14.814814814%;
@@ -1644,6 +1726,7 @@ h1 {
     border: 3px solid #59885d;
 
     background-color: rgba(27, 80, 55, 0.5);
+
 
     display: flex;
 }
