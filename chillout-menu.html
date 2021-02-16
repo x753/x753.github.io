@@ -13,6 +13,7 @@
             --colorBackground: #373021;
             --colorHighlight1: #59885d;
             --colorHighlight2: #17452f;
+            --colorToolbarOpaque: #1b5037;
             --colorToolbar: #1b503780;
             --colorButtons: #1b5037;
         }
@@ -257,7 +258,7 @@
                 <div class="toolbar-btn leftmost"><p>Background</p> <label class="circle" style="background-color: var(--colorBackground);"> <input class="colorpicker" type="color" id="colorBackground" onchange="changeColor(this)" value="#373021"></label></div>
                 <div class="toolbar-btn"><p>Highlight 1</p> <label class="circle" style="background-color: var(--colorHighlight1);"> <input class="colorpicker" type="color" id="colorHighlight1" onchange="changeColor(this)" value="#59885d"></label></div>
                 <div class="toolbar-btn"><p>Highlight 2</p> <label class="circle" style="background-color: var(--colorHighlight2);"> <input class="colorpicker" type="color" id="colorHighlight2" onchange="changeColor(this)" value="#17452f"></label></div>
-                <div class="toolbar-btn"><p>Toolbar</p> <label class="circle" style="background-color: var(--colorToolbar);"> <input class="colorpicker" type="color" id="colorToolbar" onchange="changeColor(this)" value="#1b5037"></label></div>
+                <div class="toolbar-btn"><p>Toolbar</p> <label class="circle" style="background-color: var(--colorToolbarOpaque);"> <input class="colorpicker" type="color" id="colorToolbar" onchange="changeColor(this)" value="#1b5037"></label></div>
                 <div class="toolbar-btn"><p>Buttons</p> <label class="circle" style="background-color: var(--colorButtons);"> <input class="colorpicker" type="color" id="colorButtons" onchange="changeColor(this)" value="#1b5037"></label></div>
                 <div class="flexcolumn" style="height: 100%; align-self: center;">
                     <div>
@@ -287,6 +288,7 @@
         document.documentElement.style.setProperty('--colorHighlight1', "#59885d");
         document.documentElement.style.setProperty('--colorHighlight2', "#17452f");
         document.documentElement.style.setProperty('--colorToolbar', "#1b503780");
+        document.documentElement.style.setProperty('--colorToolbarOpaque', "#1b5037");
         document.documentElement.style.setProperty('--colorButtons', "#1b5037");
 
         function changeBackgroundURL(urlField)
@@ -316,6 +318,7 @@
             if(color.id == "colorToolbar")
             {
                 document.documentElement.style.setProperty('--colorToolbar', color.value + "80");
+                document.documentElement.style.setProperty('--colorToolbarOpaque', color.value);
             }
             else
             {
