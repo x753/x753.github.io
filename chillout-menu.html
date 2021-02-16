@@ -79,14 +79,12 @@
         #menu {
             border-radius: 10px;
             border: 3px solid var(--colorHighlight2);
-            background: var(--colorBackground);
             padding: 20px;
 
-            background-image: url("backgroundURL");
-            background-size: cover;
-
-            min-width: 1280px;
-            min-height: 620px;
+            background: top / 1568px 882px no-repeat var(--colorBackground);
+            
+            width: 1522px;
+            height: 662px;
         }
 
         .submenu {
@@ -135,12 +133,11 @@
         #toolbar {
             border-radius: 10px;
             border: 3px solid var(--colorHighlight1);
-            background-color: var(--colorToolbar);
+            background: bottom / 1568px 882px no-repeat var(--colorToolbar);
 
-            margin-top: 50px;
+            margin-top: 38px;
 
-            min-width: 1280px;
-            min-height: 140px;
+            height: 130px;
 
             display: flex;
             flex-direction: row;
@@ -149,8 +146,8 @@
         .toolbar-btn {
             border-right: 3px solid var(--colorHighlight1);
 
-            height: 140px;
-            width: 140px;
+            height: 130px;
+            width: 130px;
 
             line-height: 5px;
             text-align: center;
@@ -174,20 +171,10 @@
         .inputField {
             font-size:16px;
             height: 45px;
-            width: 460px;
+            width: 865px;
             padding: 10px 12px;
-            margin: 6px;
+            margin-top: 16px;
             margin-left: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .selectField {
-            font-size:16px;
-            height: 45px;
-            width: 100px;
-            padding: 10px 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
@@ -197,8 +184,8 @@
             border: 3px solid #000000;
             cursor: pointer;
 
-            min-height: 70px;
-            min-width: 70px;
+            height: 60px;
+            width: 60px;
             
             border-radius: 50%;
             display: inline-block;
@@ -245,7 +232,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="submenu" style="align-items: start; justify-content: start; width: 750px; height: 615px;">
+                    <div class="submenu" style="align-items: start; justify-content: start; width: 750px; height: 656px;">
                         <ol style="margin-left: 15px; margin-top: 15px;">
                             <li>Choose your colors / background image</li>
                             <li>Click Download to get the ui.css file</li>
@@ -260,22 +247,7 @@
                 <div class="toolbar-btn"><p>Highlight 2</p> <label class="circle" style="background-color: var(--colorHighlight2);"> <input class="colorpicker" type="color" id="colorHighlight2" onchange="changeColor(this)" value="#17452f"></label></div>
                 <div class="toolbar-btn"><p>Toolbar</p> <label class="circle" style="background-color: var(--colorToolbarOpaque);"> <input class="colorpicker" type="color" id="colorToolbar" onchange="changeColor(this)" value="#1b5037"></label></div>
                 <div class="toolbar-btn"><p>Buttons</p> <label class="circle" style="background-color: var(--colorButtons);"> <input class="colorpicker" type="color" id="colorButtons" onchange="changeColor(this)" value="#1b5037"></label></div>
-                <div class="flexcolumn" style="height: 100%; align-self: center;">
-                    <div>
-                        <input class="inputField" id="backgroundURL" type="text" value="" onchange="changeBackgroundURL(this)" placeholder="Background Image URL">
-                        <select class="selectField" id="backgroundStyle" onchange="changeBackgroundSize(this)">
-                            <option value="cover">Stretch</option>
-                            <option value="auto">Repeat</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input class="inputField" id="toolbarURL" type="text" value="" onchange="changeToolbarURL(this)" placeholder="Toolbar Image URL">
-                        <select class="selectField" id="toolbarStyle" onchange="changeToolbarBackgroundSize(this)">
-                            <option value="cover">Stretch</option>
-                            <option value="auto">Repeat</option>
-                        </select>
-                    </div>
-                </div>
+                <input class="inputField" id="backgroundURL" type="text" value="" onchange="changeBackgroundURL(this)" placeholder="Background Image URL (1920 x 1080 recommended)">
             </div>
         </div>
     </div>
@@ -294,21 +266,7 @@
         function changeBackgroundURL(urlField)
         {
             document.getElementById("menu").style.backgroundImage = "url(" + urlField.value + ")";
-        }
-
-        function changeToolbarURL(urlField)
-        {
             document.getElementById("toolbar").style.backgroundImage = "url(" + urlField.value + ")";
-        }
-
-        function changeBackgroundSize(backgroundSizeField)
-        {
-            document.getElementById("menu").style.backgroundSize = backgroundSizeField.value;
-        }
-
-        function changeToolbarBackgroundSize(backgroundSizeField)
-        {
-            document.getElementById("toolbar").style.backgroundSize = backgroundSizeField.value;
         }
 
         function changeColor(color)
@@ -328,19 +286,13 @@
 
         function downloadFile()
         {
-            console.log(document.documentElement.style.getPropertyValue('--colorHighlight1'));
-
             var textFile = document.getElementById('uicss').textContent.replaceAll('#373021', document.documentElement.style.getPropertyValue('--colorBackground'));
             textFile = textFile.replaceAll('#59885d', document.documentElement.style.getPropertyValue('--colorHighlight1'));
             textFile = textFile.replaceAll('#17452f', document.documentElement.style.getPropertyValue('--colorHighlight2'));
             textFile = textFile.replaceAll('rgba(27, 80, 55, 0.5)', document.documentElement.style.getPropertyValue('--colorToolbar'));
             textFile = textFile.replaceAll('rgba(27, 80, 55, 1)', document.documentElement.style.getPropertyValue('--colorButtons'));
 
-            textFile = textFile.replace('backgroundURL', document.getElementById('backgroundURL').value);
-            textFile = textFile.replace('backgroundStyle', document.getElementById('backgroundStyle').value);
-
-            textFile = textFile.replace('toolbarURL', document.getElementById('toolbarURL').value);
-            textFile = textFile.replace('toolbarStyle', document.getElementById('toolbarStyle').value);
+            textFile = textFile.replaceAll('backgroundURL', document.getElementById('backgroundURL').value);
 
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textFile));
@@ -401,8 +353,7 @@ h1 {
 }
 
 .content {
-    background-image: url("backgroundURL");
-    background-size: backgroundStyle;
+    background: top / 2560px 1440px no-repeat url("backgroundURL");
 
     position: absolute;
     width: 100%;
@@ -1713,8 +1664,7 @@ h1 {
 
 /*Toolbar*/
 .toolbar {
-    background-image: url("toolbarURL");
-    background-size: toolbarStyle;
+    background: bottom / 2560px 1440px no-repeat url("backgroundURL");
 
     position: absolute;
     width: 100%;
