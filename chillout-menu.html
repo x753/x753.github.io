@@ -2595,7 +2595,97 @@ h1 {
 }
 .avatar-toolbar .toolbar-btn.disabled {
     background: rgb(60, 60, 60);
-}    
+}
+/* <!-- ADDED BY 753 KEYBOARD MOD --> */
+
+#keyboard753 {
+    position: absolute;
+    width: 90%;
+    height: 70%;
+    top: 5%;
+    left: -100%;
+
+    border-radius: 0.25em;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    border: 3px solid #59885d;
+
+    background-color: #373021;
+
+    text-align: center;
+}
+#keyboard753.in {
+    left: 5%;
+    transition: left 0.2s linear;
+}
+#keyboard753.out {
+    left: 100%;
+    transition: left 0.2s linear;
+}
+#keyboard-input753 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    
+    text-align: center;
+    font-size: 2em;
+    line-height: 1.5em;
+}
+
+.keyboard-key753,
+.keyboard-mod753,
+.keyboard-func753 {
+    flex: 1;
+    padding-top: 1.3em;
+    font-size: 1.5em;
+}
+.keyboard-key753:hover,
+.keyboard-mod753:hover,
+.keyboard-func753:hover,
+.keyboard-key753.active,
+.keyboard-mod753.active,
+.keyboard-func753.active {
+    background-color: rgba(27, 80, 55, 1);
+}
+.keyboard-key753 + .keyboard-key753,
+.keyboard-key753 + .keyboard-mod753,
+.keyboard-key753 + .keyboard-func753,
+.keyboard-mod753 + .keyboard-key753,
+.keyboard-mod753 + .keyboard-mod753,
+.keyboard-mod753 + .keyboard-func753,
+.keyboard-func753 + .keyboard-key753,
+.keyboard-func753 + .keyboard-mod753,
+.keyboard-func753 + .keyboard-func753 {
+    border-left: 3px solid #59885d;
+}
+.keyboard-key753.wide,
+.keyboard-mod753.wide,
+.keyboard-func753.wide {
+    flex: 1.5;
+}
+.keyboard-key753.wider,
+.keyboard-mod753.wider,
+.keyboard-func753.wider {
+    flex: 2;
+}
+.keyboard-key753.widest,
+.keyboard-mod753.widest,
+.keyboard-func753.widest {
+    flex: 2.5;
+}
+.keyboard-key753.space {
+    flex: 6;
+}
+
+/* this is how you load fonts in */
+@font-face {
+  font-family: "Monospace";
+  src: url("https://753.network/resources/RobotoMono-Medium.ttf");
+}
     </code>
 
 </body>
