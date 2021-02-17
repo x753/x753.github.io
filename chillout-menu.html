@@ -13,7 +13,6 @@
             --colorBackground: #373021;
             --colorHighlight1: #59885d;
             --colorHighlight2: #17452f;
-            --colorToolbarOpaque: #1b5037;
             --colorToolbar: #1b503780;
             --colorButtons: #1b5037;
         }
@@ -154,6 +153,8 @@
             color: #FFF;
             font-size: 20px;
 
+            cursor: pointer;
+
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -171,7 +172,7 @@
         .inputField {
             font-size:16px;
             height: 45px;
-            width: 865px;
+            width: 718px;
             padding: 10px 12px;
             margin-top: 16px;
             margin-left: 16px;
@@ -202,6 +203,63 @@
             height: 128px;
             width: 128px;
             margin: 5px;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            border-radius: 0px 4px 4px 0px;
+            width: 400px;
+            height: 30px;
+            outline: none;
+            filter: brightness(0.65);
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+
+            cursor: pointer;
+
+            box-shadow: 0px 0px 1px 1px black;
+        }
+        .slider:hover {
+            filter: brightness(0.85);
+        }
+
+        .slider::-webkit-slider-thumb {
+            visibility: hidden;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 0px;
+            height: 0px;
+        }
+        .slider::-moz-range-thumb {
+            visibility: hidden;
+            width: 0px;
+            height: 0px;
+        }
+
+        .sliderText {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+
+            text-align: center;
+            font-size: 18px;
+            height: 30px;
+            width: 50px;
+            outline: none;
+            border: 1px black;
+            border-radius: 4px 0px 0px 4px;
+            box-sizing: border-box;
+
+            box-shadow: 0px 0px 1px 1px black;
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+        }
+
+        .selectedElement {
+            background-color: var(--colorButtons);
         }
 
     </style>
@@ -238,16 +296,32 @@
                             <li>Click Download to get the ui.css file</li>
                             <li>Replace your ui.css file, which can be found in: <br><p style="line-height: 0; font-size: 18px;"><mark style="color: white; padding: 3px; background-color: #ffffff16;">ChilloutVR\ChilloutVR_Data\StreamingAssets\Cohtml\UIResources\CVRTest<mark></p></li>
                         </ol> 
+                        <input style="margin-top: 350px;" class="inputField" id="backgroundURL" type="text" value="" onchange="changeBackgroundURL(this)" placeholder="Background Image URL (1920 x 1080 recommended)">
                     </div>
                 </div>
             </div>
             <div id="toolbar">
-                <div class="toolbar-btn leftmost"><p>Background</p> <label class="circle" style="background-color: var(--colorBackground);"> <input class="colorpicker" type="color" id="colorBackground" onchange="changeColor(this)" value="#373021"></label></div>
-                <div class="toolbar-btn"><p>Highlight 1</p> <label class="circle" style="background-color: var(--colorHighlight1);"> <input class="colorpicker" type="color" id="colorHighlight1" onchange="changeColor(this)" value="#59885d"></label></div>
-                <div class="toolbar-btn"><p>Highlight 2</p> <label class="circle" style="background-color: var(--colorHighlight2);"> <input class="colorpicker" type="color" id="colorHighlight2" onchange="changeColor(this)" value="#17452f"></label></div>
-                <div class="toolbar-btn"><p>Toolbar</p> <label class="circle" style="background-color: var(--colorToolbarOpaque);"> <input class="colorpicker" type="color" id="colorToolbar" onchange="changeColor(this)" value="#1b5037"></label></div>
-                <div class="toolbar-btn"><p>Buttons</p> <label class="circle" style="background-color: var(--colorButtons);"> <input class="colorpicker" type="color" id="colorButtons" onchange="changeColor(this)" value="#1b5037"></label></div>
-                <input class="inputField" id="backgroundURL" type="text" value="" onchange="changeBackgroundURL(this)" placeholder="Background Image URL (1920 x 1080 recommended)">
+                <div id="elementBackground" onclick="selectElement(this)" class="toolbar-btn leftmost"><p>Background</p> <label class="circle" style="background: linear-gradient(var(--colorBackground), var(--colorBackground)), url('images/transparency-grid.svg');"> </label> </div>
+                <div id="elementHighlight1" onclick="selectElement(this)" class="toolbar-btn"><p>Highlight 1</p> <label class="circle" style="background: linear-gradient(var(--colorHighlight1), var(--colorHighlight1)), url('images/transparency-grid.svg');"></label></div>
+                <div id="elementHighlight2" onclick="selectElement(this)" class="toolbar-btn"><p>Highlight 2</p> <label class="circle" style="background: linear-gradient(var(--colorHighlight2), var(--colorHighlight2)), url('images/transparency-grid.svg');"> </label></div>
+                <div id="elementToolbar" onclick="selectElement(this)" class="toolbar-btn"><p>Toolbar</p> <label class="circle" style="background: linear-gradient(var(--colorToolbar), var(--colorToolbar)), url('images/transparency-grid.svg');"> </label></div>
+                <div id="elementButtons" onclick="selectElement(this)" class="toolbar-btn"><p>Buttons</p> <label class="circle" style="background: linear-gradient(var(--colorButtons), var(--colorButtons)), url('images/transparency-grid.svg');"> </label></div>
+
+                <div class="flexcolumn">
+                    <div style="display: flex; justify-content: center; align-items: center; margin: 3px; margin-left: 10px;">
+                        <input type="number" class="sliderText" oninput="colorSlider(this.nextSibling, this, this.value, 1)" value="0"><input type="range" min="0" max="255" value="55" class="slider" oninput="colorSlider(this, this.previousSibling, this.value, 1)" tabindex="-1">
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center; margin: 3px; margin-left: 10px;">
+                        <input type="number" class="sliderText" oninput="colorSlider(this.nextSibling, this, this.value, 2)" value="0"><input type="range" min="0" max="255" value="48" class="slider" oninput="colorSlider(this, this.previousSibling, this.value, 2)" tabindex="-1">
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center; margin: 3px; margin-left: 10px;">
+                        <input type="number" class="sliderText" oninput="colorSlider(this.nextSibling, this, this.value, 3)" value="0"><input type="range" min="0" max="255" value="33" class="slider" oninput="colorSlider(this, this.previousSibling, this.value, 3)" tabindex="-1">
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: center; align-items: center; margin: 3px; margin-left: 7px;">
+                    <input type="text" class="sliderText" oninput="colorSlider(this.nextSibling, this, this.value, 4)" value="0"><input type="range" min="0" max="1" step="0.01" value="100" class="slider" style="width: 360px;" oninput="colorSlider(this, this.previousSibling, this.value, 4)" tabindex="-1">
+                </div>
             </div>
         </div>
     </div>
@@ -256,12 +330,17 @@
 
     <script>
         // initialize the style properties
-        document.documentElement.style.setProperty('--colorBackground', "#373021");
-        document.documentElement.style.setProperty('--colorHighlight1', "#59885d");
-        document.documentElement.style.setProperty('--colorHighlight2', "#17452f");
-        document.documentElement.style.setProperty('--colorToolbar', "#1b503780");
-        document.documentElement.style.setProperty('--colorToolbarOpaque', "#1b5037");
-        document.documentElement.style.setProperty('--colorButtons', "#1b5037");
+        document.documentElement.style.setProperty('--colorBackground', "rgba(55, 48, 33, 1)");
+        document.documentElement.style.setProperty('--colorHighlight1', "rgba(89, 136, 93, 1)");
+        document.documentElement.style.setProperty('--colorHighlight2', "rgba(23, 69, 47, 1)");
+        document.documentElement.style.setProperty('--colorToolbar', "rgba(27, 80, 55, 0.5)");
+        document.documentElement.style.setProperty('--colorButtons', "rgba(27, 80, 55, 1)");
+
+        var sliders = document.getElementsByClassName('slider');
+        colorSlider(sliders[0], sliders[0].previousSibling, sliders[0].value, 1);
+        colorSlider(sliders[1], sliders[1].previousSibling, sliders[1].value, 2);
+        colorSlider(sliders[2], sliders[2].previousSibling, sliders[2].value, 3);
+        colorSlider(sliders[3], sliders[3].previousSibling, sliders[3].value, 4);
 
         function changeBackgroundURL(urlField)
         {
@@ -269,19 +348,64 @@
             document.getElementById("toolbar").style.backgroundImage = "url(" + urlField.value + ")";
         }
 
-        function changeColor(color)
-        {
-            color.parentElement.style.backgroundColor = color.value;
+        var currentColor = "colorBackground";
+        var currentElement = document.getElementById("elementBackground")
+        currentElement.classList.add("selectedElement");
 
-            if(color.id == "colorToolbar")
+        function selectElement(element)
+        {
+            currentElement.classList.remove("selectedElement");
+            currentElement = element;
+            currentElement.classList.add("selectedElement");
+
+            currentColor = currentElement.id.replace('element', 'color');
+
+            var color = document.documentElement.style.getPropertyValue('--' + currentColor);
+            var values = color.substring(5, color.length-1).replaceAll(' ', '').split(',');
+
+            var sliders = document.getElementsByClassName('slider');
+
+            colorSlider(sliders[0], sliders[0].previousSibling, values[0], 1);
+            colorSlider(sliders[1], sliders[1].previousSibling, values[1], 2);
+            colorSlider(sliders[2], sliders[2].previousSibling, values[2], 3);
+            colorSlider(sliders[3], sliders[3].previousSibling, values[3], 4);
+        }
+
+        function colorSlider(slider, input, value, color)
+        {
+            if(value == "")
             {
-                document.documentElement.style.setProperty('--colorToolbar', color.value + "80");
-                document.documentElement.style.setProperty('--colorToolbarOpaque', color.value);
+                value = 0;
             }
-            else
+            
+            if(color == 1)
             {
-                document.documentElement.style.setProperty('--' + color.id, color.value);
+                slider.setAttribute('style', 'background: linear-gradient(to right, #f00 0%, #f00 ' + value/2.55 + '%, #322 ' + value/2.55 + '%, #322 100%);')
             }
+            else if(color == 2)
+            {
+                slider.setAttribute('style', 'background: linear-gradient(to right, #0f0 0%, #0f0 ' + value/2.55 + '%, #232 ' + value/2.55 + '%, #232 100%);')
+            }
+            else if(color == 3)
+            {
+                slider.setAttribute('style', 'background: linear-gradient(to right, #15f 0%, #15f ' + value/2.55 + '%, #023 ' + value/2.55 + '%, #023 100%);')
+            }
+            else if(color == 4)
+            {
+                slider.setAttribute("style", "background: linear-gradient(to right, #ddd8 0%, #ddd8 " + value*100 + '%, #111c ' + value*100 + "%, #111c 100%), url('images/transparency-grid.svg'); width: 360px;")
+            }
+
+            input.value = value;
+            slider.value = value;
+            updateColors();
+        }
+
+        function updateColors()
+        {
+            var sliders = document.getElementsByClassName('slider');
+            var color = "rgba(" + sliders[0].value + ", " + sliders[1].value + ", " + sliders[2].value + ", " + sliders[3].value + ")";
+            
+            document.documentElement.style.setProperty('--' + currentColor, color);
         }
 
         function downloadFile()
