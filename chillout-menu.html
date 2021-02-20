@@ -262,6 +262,33 @@
             background-color: var(--colorButtons);
         }
 
+        .hexInput {
+            margin-left: 3px;
+            margin-top: 4px;
+            margin-bottom: 5px;
+            text-align: center;
+            font-size: 28px;
+            height: 70px;
+            width: 340px;
+            outline: none;
+            border: 1px black;
+            border-radius: 4px 0px 0px 4px;
+            box-sizing: border-box;
+
+            box-shadow: 0px 0px 1px 1px black;
+        }
+
+        .colorDisplay {
+            margin: 2px;
+            height: 70px;
+            width: 70px;
+            background: linear-gradient(var(--colorBackground), var(--colorBackground)), url('images/transparency-grid.svg');
+            box-shadow: 0px 0px 1px 1px black;
+            border: 1px black;
+            border-radius: 0px 4px 4px 0px;
+            box-sizing: border-box;
+        }
+
     </style>
 
 </head>
@@ -319,8 +346,13 @@
                     </div>
                 </div>
 
-                <div style="display: flex; justify-content: center; align-items: center; margin: 3px; margin-left: 7px;">
-                    <input type="text" class="sliderText" oninput="colorSlider(this.nextSibling, this, this.value, 4)" value="0"><input type="range" min="0" max="1" step="0.01" value="100" class="slider" style="width: 360px;" oninput="colorSlider(this, this.previousSibling, this.value, 4)" tabindex="-1">
+                <div class="flexcolumn">
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <input type="text" id="hexInput" class="hexInput" oninput="changeColorByHex(this.value)" value="rgba(55, 48, 33, 1)"><div id="colorDisplay" class="colorDisplay"></div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center; margin: 3px; margin-left: 7px;">
+                        <input type="text" class="sliderText" oninput="colorSlider(this.nextSibling, this, this.value, 4)" value="0"><input type="range" min="0" max="1" step="0.01" value="100" class="slider" style="width: 360px;" oninput="colorSlider(this, this.previousSibling, this.value, 4)" tabindex="-1">
+                    </div>
                 </div>
             </div>
         </div>
@@ -342,21 +374,60 @@
         colorSlider(sliders[2], sliders[2].previousSibling, sliders[2].value, 3);
         colorSlider(sliders[3], sliders[3].previousSibling, sliders[3].value, 4);
 
+        var currentColor = "colorBackground";
+        var currentElement = document.getElementById("elementBackground")
+        currentElement.classList.add("selectedElement");
+
+        for (var i = 0; i < currentElement.childNodes.length; i++)
+        {
+            if (currentElement.childNodes[i].className == "circle")
+            {
+                currentElement.childNodes[i].style.border = "solid 5px black";
+                break;
+            }        
+        }
+
+        document.getElementById("hexInput").value = document.documentElement.style.getPropertyValue('--' + currentColor);
+        document.getElementById("colorDisplay").style.background = "linear-gradient(" + document.documentElement.style.getPropertyValue('--' + currentColor) + ", " + document.documentElement.style.getPropertyValue('--' + currentColor) + "), url('images/transparency-grid.svg')";
+
         function changeBackgroundURL(urlField)
         {
             document.getElementById("menu").style.backgroundImage = "url(" + urlField.value + ")";
             document.getElementById("toolbar").style.backgroundImage = "url(" + urlField.value + ")";
         }
 
-        var currentColor = "colorBackground";
-        var currentElement = document.getElementById("elementBackground")
-        currentElement.classList.add("selectedElement");
+        var changingByHex = false;
+        function changeColorByHex(hex) // or RGBA
+        {
+            document.documentElement.style.setProperty('--' + currentColor, hex);
+            changingByHex = true;
+            selectElement(currentElement);
+            changingByHex = false;
+        }
 
         function selectElement(element)
         {
+            for (var i = 0; i < currentElement.childNodes.length; i++)
+            {
+                if (currentElement.childNodes[i].className == "circle")
+                {
+                    currentElement.childNodes[i].style.border = "solid 3px black";
+                    break;
+                }        
+            }
+
             currentElement.classList.remove("selectedElement");
             currentElement = element;
             currentElement.classList.add("selectedElement");
+
+            for (var i = 0; i < currentElement.childNodes.length; i++)
+            {
+                if (currentElement.childNodes[i].className == "circle")
+                {
+                    currentElement.childNodes[i].style.border = "solid 5px black";
+                    break;
+                }        
+            }
 
             currentColor = currentElement.id.replace('element', 'color');
 
@@ -373,11 +444,11 @@
 
         function colorSlider(slider, input, value, color)
         {
-            if(value == "")
+            if(value == "" || !value || isNaN(value))
             {
                 value = 0;
             }
-            
+
             if(color == 1)
             {
                 slider.setAttribute('style', 'background: linear-gradient(to right, #f00 0%, #f00 ' + value/2.55 + '%, #322 ' + value/2.55 + '%, #322 100%);')
@@ -397,7 +468,15 @@
 
             input.value = value;
             slider.value = value;
+
             updateColors();
+
+            document.getElementById("colorDisplay").style.background = "linear-gradient(" + document.documentElement.style.getPropertyValue('--' + currentColor) + ", " + document.documentElement.style.getPropertyValue('--' + currentColor) + "), url('images/transparency-grid.svg')";
+
+            if(!changingByHex)
+            {
+                document.getElementById("hexInput").value = document.documentElement.style.getPropertyValue('--' + currentColor);
+            }
         }
 
         function updateColors()
