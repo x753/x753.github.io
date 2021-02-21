@@ -526,6 +526,8 @@
 
             textFile = textFile.replaceAll('backgroundURL', document.getElementById('backgroundURL').value);
 
+            textFile = textFile.replaceAll('INSERTMENUURLHERE', getShareLink());
+
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textFile));
             element.setAttribute('download', "ui.css");
@@ -538,7 +540,7 @@
             document.body.removeChild(element);
         }
 
-        function shareURL()
+        function getShareLink()
         {
             var shareLink = "https://753.network/chillout-menu" + '?' +
             document.documentElement.style.getPropertyValue('--colorBackground') + '&' +
@@ -548,7 +550,14 @@
             document.documentElement.style.getPropertyValue('--colorButtons') + '&' +
             document.getElementById('backgroundURL').value;
 
-            document.getElementById('shareURL').value = shareLink.replaceAll(' ', '');
+            shareLink = shareLink.replaceAll(' ', '');
+
+            return shareLink;
+        }
+
+        function shareURL()
+        {
+            document.getElementById('shareURL').value = getShareLink();
 
             var copyText = document.getElementById('shareURL');
             copyText.select();
@@ -2975,6 +2984,10 @@ h1 {
   font-family: "Monospace";
   src: url("https://753.network/resources/RobotoMono-Medium.ttf");
 }
+
+/* https://www.patreon.com/x753 */
+
+/* INSERTMENUURLHERE */
     </code>
 
 </body>
