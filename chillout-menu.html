@@ -262,7 +262,7 @@
             background-color: var(--colorButtons);
         }
 
-        .hexInput {
+        .rgbaInput {
             margin-left: 3px;
             margin-top: 4px;
             margin-bottom: 5px;
@@ -307,7 +307,7 @@
                                 <a href="https://twitter.com/753network"><div class="menu-btn" style="width: 120px; height: 120px;"> <div style="padding-bottom: 18px;" class="btn-text">Twitter</div> <img style="width: 60px" src="images/twitter-icon.svg"></div></a>
                             </div>
                             <div class="flexrow">
-                                <a href="https://www.patreon.com/x753"><div class="menu-btn" style="width: 120px; height: 120px;"> <div style="padding-bottom: 18px;" class="btn-text">Patreon</div> <img style="width: 60px" src="images/patreon-icon.svg"></div></a>
+                                <a onclick="shareURL()"><div class="menu-btn" style="width: 120px; height: 120px;"> <div style="padding-bottom: 18px;" class="btn-text">Share</div> <img style="width: 60px" src="images/link-icon.svg"></div></a>
                                 <a onclick="downloadFile()"><div class="menu-btn" style="width: 120px; height: 120px;"> <div style="padding-bottom: 18px;" class="btn-text">Download</div> <img style="width: 60px" src="images/download-icon.svg"></div></a>
                                 <a href="https://www.patreon.com/x753"><div class="menu-btn" style="width: 120px; height: 120px;"> <div style="padding-bottom: 18px;" class="btn-text">Patreon</div> <img style="width: 60px" src="images/patreon-icon.svg"></div></a>
                             </div>
@@ -349,7 +349,7 @@
 
                 <div class="flexcolumn">
                     <div style="display: flex; justify-content: center; align-items: center;">
-                        <input type="text" id="hexInput" class="hexInput" oninput="changeColorByHex(this.value)" value="rgba(55, 48, 33, 1)"><div id="colorDisplay" class="colorDisplay"></div>
+                        <input type="text" id="rgbaInput" class="rgbaInput" oninput="changeColorByRGBA(this.value)" value="rgba(55, 48, 33, 1)"><div id="colorDisplay" class="colorDisplay"></div>
                     </div>
                     <div style="display: flex; justify-content: center; align-items: center; margin: 3px; margin-left: 7px;">
                         <input type="text" class="sliderText" oninput="colorSlider(this.nextSibling, this, this.value, 4)" value="0"><input type="range" min="0" max="1" step="0.01" value="100" class="slider" style="width: 360px;" oninput="colorSlider(this, this.previousSibling, this.value, 4)" tabindex="-1">
@@ -369,12 +369,6 @@
         document.documentElement.style.setProperty('--colorToolbar', "rgba(27, 80, 55, 0.5)");
         document.documentElement.style.setProperty('--colorButtons', "rgba(27, 80, 55, 1)");
 
-        var sliders = document.getElementsByClassName('slider');
-        colorSlider(sliders[0], sliders[0].previousSibling, sliders[0].value, 1);
-        colorSlider(sliders[1], sliders[1].previousSibling, sliders[1].value, 2);
-        colorSlider(sliders[2], sliders[2].previousSibling, sliders[2].value, 3);
-        colorSlider(sliders[3], sliders[3].previousSibling, sliders[3].value, 4);
-
         var currentColor = "colorBackground";
         var currentElement = document.getElementById("elementBackground")
         currentElement.classList.add("selectedElement");
@@ -385,10 +379,44 @@
             {
                 currentElement.childNodes[i].style.border = "solid 5px black";
                 break;
-            }        
+            }
         }
 
-        document.getElementById("hexInput").value = document.documentElement.style.getPropertyValue('--' + currentColor);
+        var url = window.location.href;
+        var n = url.indexOf('?');
+        if (n > 1)
+        {
+            var seed = url.substring(n + 1);
+
+            var seeds = seed.split('&');
+
+            document.documentElement.style.setProperty('--colorBackground', seeds[0]);
+            document.documentElement.style.setProperty('--colorHighlight1', seeds[1]);
+            document.documentElement.style.setProperty('--colorHighlight2', seeds[2]);
+            document.documentElement.style.setProperty('--colorToolbar', seeds[3]);
+            document.documentElement.style.setProperty('--colorButtons', seeds[4]);
+            selectElement(currentElement);
+
+            if(seeds.length > 5)
+            {
+                var backgroundUrl = seeds[5];
+                for(var i = 6; i < seeds.length; i++)
+                {
+                    backgroundUrl = backgroundUrl + '&' + seeds[i];
+                }
+                document.getElementById("backgroundURL").value = backgroundUrl;
+                document.getElementById("menu").style.backgroundImage = "url(" + backgroundUrl + ")";
+                document.getElementById("toolbar").style.backgroundImage = "url(" + backgroundUrl + ")";
+            }
+        }
+
+        var sliders = document.getElementsByClassName('slider');
+        colorSlider(sliders[0], sliders[0].previousSibling, sliders[0].value, 1);
+        colorSlider(sliders[1], sliders[1].previousSibling, sliders[1].value, 2);
+        colorSlider(sliders[2], sliders[2].previousSibling, sliders[2].value, 3);
+        colorSlider(sliders[3], sliders[3].previousSibling, sliders[3].value, 4);
+
+        document.getElementById("rgbaInput").value = document.documentElement.style.getPropertyValue('--' + currentColor);
         document.getElementById("colorDisplay").style.background = "linear-gradient(" + document.documentElement.style.getPropertyValue('--' + currentColor) + ", " + document.documentElement.style.getPropertyValue('--' + currentColor) + "), url('images/transparency-grid.svg')";
 
         function changeBackgroundURL(urlField)
@@ -397,13 +425,13 @@
             document.getElementById("toolbar").style.backgroundImage = "url(" + urlField.value + ")";
         }
 
-        var changingByHex = false;
-        function changeColorByHex(hex) // or RGBA
+        var changingByRGBA = false;
+        function changeColorByRGBA(rgba) // or RGBA
         {
-            document.documentElement.style.setProperty('--' + currentColor, hex);
-            changingByHex = true;
+            document.documentElement.style.setProperty('--' + currentColor, rgba);
+            changingByRGBA = true;
             selectElement(currentElement);
-            changingByHex = false;
+            changingByRGBA = false;
         }
 
         function selectElement(element)
@@ -474,9 +502,9 @@
 
             document.getElementById("colorDisplay").style.background = "linear-gradient(" + document.documentElement.style.getPropertyValue('--' + currentColor) + ", " + document.documentElement.style.getPropertyValue('--' + currentColor) + "), url('images/transparency-grid.svg')";
 
-            if(!changingByHex)
+            if(!changingByRGBA)
             {
-                document.getElementById("hexInput").value = document.documentElement.style.getPropertyValue('--' + currentColor);
+                document.getElementById("rgbaInput").value = document.documentElement.style.getPropertyValue('--' + currentColor);
             }
         }
 
@@ -509,7 +537,28 @@
 
             document.body.removeChild(element);
         }
+
+        function shareURL()
+        {
+            var shareLink = "https://753.network/chillout-menu" + '?' +
+            document.documentElement.style.getPropertyValue('--colorBackground') + '&' +
+            document.documentElement.style.getPropertyValue('--colorHighlight1') + '&' +
+            document.documentElement.style.getPropertyValue('--colorHighlight2') + '&' +
+            document.documentElement.style.getPropertyValue('--colorToolbar') + '&' +
+            document.documentElement.style.getPropertyValue('--colorButtons') + '&' +
+            document.getElementById('backgroundURL').value;
+
+            document.getElementById('shareURL').value = shareLink.replaceAll(' ', '');
+
+            var copyText = document.getElementById('shareURL');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Copied Theme Link to Clipboard");
+        }
     </script>
+
+    <input type="text" id="shareURL">
 
     <code id="uicss" hidden>
     /*
