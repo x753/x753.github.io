@@ -102,6 +102,17 @@
         </a> 
     </template>
 
+    <!-- DEV IMAGE BANNER -->
+
+    <template id="dev">
+        <a class="link" href="https://www.humblebundle.com/software/fresh-start-game-dev-assets-software?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <img style="z-index: 5; bottom: -45px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/10338b7112877f842f5fc7a6a8b218db4e48d372.png?auto=compress,format&h=630&w=1200&s=25c64c55bc2091bb93a6699a174f0756">
+
+        </a> 
+    </template>
+
     <!-- SPACE ITEMS BANNER -->
 
     <template id="space">
@@ -163,7 +174,7 @@
     </script>
 
     <script>
-        const templates = ["business", "space", "music", "choice"];
+        const templates = ["dev", "business", "space", "music", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
