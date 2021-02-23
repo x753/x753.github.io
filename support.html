@@ -85,6 +85,12 @@
         .noclick {
             pointer-events: none;
         }
+
+        @keyframes scrollAnim {
+            0%   { bottom: -70px;}
+            50%   { bottom: -430px;}
+            100% { bottom: -70px;}
+        }
     </style>
 
 </head>
@@ -98,6 +104,17 @@
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
         <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/e484d2b979a979c14c65f3fa61a518bbe7d335aa.png?auto=compress,format&h=630&w=1200&s=e24d39db7d24d37a45e6bb1a7bf35ed0">
+
+        </a> 
+    </template>
+
+    <!-- BUSINESS IMAGE BANNER -->
+
+    <template id="love">
+        <a class="link" href="https://www.humblebundle.com/games/tales-love-adventure?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute; animation: scrollAnim 15s infinite;" src="https://hb.imgix.net/6496e12c82f8698101417975921e184bf51e090f.png?auto=compress,format&h=630&w=1200&s=163692d5df205e5affdaac63221dcc37">
 
         </a> 
     </template>
@@ -174,7 +191,7 @@
     </script>
 
     <script>
-        const templates = ["dev", "business", "space", "music", "choice"];
+        const templates = ["dev", "business", "space", "music", "love", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
