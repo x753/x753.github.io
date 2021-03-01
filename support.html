@@ -97,24 +97,24 @@
 
 <body>
 
-    <!-- BUSINESS IMAGE BANNER -->
-
-    <template id="business">
-        <a class="link" href="https://www.humblebundle.com/books/become-an-entrepreneur-wiley-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/e484d2b979a979c14c65f3fa61a518bbe7d335aa.png?auto=compress,format&h=630&w=1200&s=e24d39db7d24d37a45e6bb1a7bf35ed0">
-
-        </a> 
-    </template>
-
-    <!-- BUSINESS IMAGE BANNER -->
+    <!-- LOVE IMAGE BANNER -->
 
     <template id="love">
         <a class="link" href="https://www.humblebundle.com/games/tales-love-adventure?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
         <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute; animation: scrollAnim 15s infinite;" src="https://hb.imgix.net/6496e12c82f8698101417975921e184bf51e090f.png?auto=compress,format&h=630&w=1200&s=163692d5df205e5affdaac63221dcc37">
+
+        </a> 
+    </template>
+
+    <!-- FRONT IMAGE BANNER -->
+
+    <template id="front">
+        <a class="link" href="https://www.humblebundle.com/software/learn-frontend-web-development-software?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <img style="z-index: 5; bottom: -89px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/274e927fae3ede89e3b2eca0753eb3de2a0d456b.png?auto=compress,format&h=630&w=1200&s=c6fa06e59c5a8202d5993a1f7cfb73d6">
 
         </a> 
     </template>
@@ -137,17 +137,6 @@
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
         <img style="z-index: 5; bottom: -99px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/2d57c658e48036e5f5076e1858e118f1865cc009.png?auto=compress,format&h=630&w=1200&s=eb8da6498ad1e41a1577015c54ca6c40">
-
-        </a> 
-    </template>
-
-    <!-- MUSIC ITEMS BANNER -->
-
-    <template id="music">
-        <a class="link" href="https://www.humblebundle.com/software/big-royaltyfree-music-2-software?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <img style="z-index: 5; bottom: -148px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/b21086bfa62613e1f144d09da79d93df6dae9ce9.png?auto=compress,format&h=630&w=1200&s=af42501faf5743d19b47473064f7e2df">
 
         </a> 
     </template>
@@ -191,7 +180,7 @@
     </script>
 
     <script>
-        const templates = ["dev", "business", "space", "music", "love", "choice"];
+        const templates = ["dev", "space", "front", "love", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
