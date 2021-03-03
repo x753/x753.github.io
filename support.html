@@ -97,6 +97,25 @@
 
 <body>
 
+    <!-- AVAST IMAGE BANNER -->
+
+    <template id="avast">
+        <a class="link" href="https://www.humblebundle.com/software/cybersecurity-with-avast-premium-security-software?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+        
+        <img style="z-index: 6; right: 0; height: 77%; margin: 10px; position: absolute;" src="https://humblebundle-a.akamaihd.net/static/hashed/5ec081962ffab0fe6479f7e2a915b1dec9d4a66e.svg">
+
+        <img style="z-index: 6; left: 45%; margin: 10px; position: absolute;" src="https://hb.imgix.net/5057fa968a0b73b166ed3158b99c9d5da58091f5.png?auto=compress,format&w=366&s=0d0087d9a45a42a272c63a7e9b2b87e7">
+        <img style="z-index: 6; left: 55%; margin: 10px; position: absolute;" src="https://hb.imgix.net/01eaf06e5816a6db0be9cd62fbb5d706f7e99577.png?auto=compress,format&w=366&s=73cd15b27f31e8c74d0b1de69d66cd4b">
+        <img style="z-index: 6; left: 65%; margin: 10px; position: absolute;" src="https://hb.imgix.net/4073a85cbf542e72213e1ba4287d3f9073eb7296.png?auto=compress,format&w=366&s=535cd3cb60c6368f8ed46d46b652fe10">
+        <img style="z-index: 6; left: 75%; margin: 10px; position: absolute;" src="https://hb.imgix.net/9aadb9f4da29395aeb7b3d96622604f59ab9ab37.png?auto=compress,format&w=366&s=2bdbbedd2810cb546c4f64bf833e0acb">
+
+        <img style="z-index: 6; height: 85%; margin: 10px; position: absolute;" src="https://hb.imgix.net/e4d5bb99c361d207e5b7a50b31791d68701fa287.png?auto=compress,format&h=170&w=1200&s=92da1d9e3c4df1b60727f1078116228b">
+        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute; filter: brightness(20%);" src="https://hb.imgix.net/b915c04e4e2ee29aaf2b50ec0abbd889bc2de0b6.png?auto=compress,format&fit=crop&h=353&w=616&s=f8910c4956a3e2ffbe509ebedf47ea83">
+
+        </a> 
+    </template>
+
     <!-- LOVE IMAGE BANNER -->
 
     <template id="love">
@@ -180,7 +199,7 @@
     </script>
 
     <script>
-        const templates = ["dev", "space", "front", "love", "choice"];
+        const templates = ["avast", "dev", "space", "front", "love", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
