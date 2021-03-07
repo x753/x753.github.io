@@ -149,17 +149,6 @@
         </a> 
     </template>
 
-    <!-- SPACE ITEMS BANNER -->
-
-    <template id="space">
-        <a class="link" href="https://www.humblebundle.com/books/astronomy-black-holes-universe-morgan-claypool-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <img style="z-index: 5; bottom: -99px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/2d57c658e48036e5f5076e1858e118f1865cc009.png?auto=compress,format&h=630&w=1200&s=eb8da6498ad1e41a1577015c54ca6c40">
-
-        </a> 
-    </template>
-
     <!-- HUMBLE CHOICE BANNER -->
 
     <template id="choice">
@@ -199,7 +188,7 @@
     </script>
 
     <script>
-        const templates = ["avast", "dev", "space", "front", "love", "choice"];
+        const templates = ["avast", "dev", "front", "love", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
