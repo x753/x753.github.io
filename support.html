@@ -127,6 +127,17 @@
         </a> 
     </template>
 
+    <!-- STELLARIS IMAGE BANNER -->
+
+    <template id="stellaris">
+        <a class="link" href="https://www.humblebundle.com/games/stellaris-discovery-bundle?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <img style="z-index: 5; bottom: -130px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/d9c1a67c6aa526d5d0b852d11054d59503709103.png?auto=compress,format&h=630&w=1200&s=2c7066fd6b6ee4539afa521407848ca4">
+
+        </a> 
+    </template>
+
     <!-- SUPERMASSIVE IMAGE BANNER -->
 
     <template id="supermassive">
@@ -188,7 +199,7 @@
     </script>
 
     <script>
-        const templates = ["avast", "supermassive", "front", "love", "choice"];
+        const templates = ["stellaris", "avast", "supermassive", "front", "love", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
