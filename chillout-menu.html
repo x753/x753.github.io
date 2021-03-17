@@ -410,6 +410,8 @@
             }
         }
 
+        window.history.pushState("object or string", "Title", "/chillout-menu");
+
         var sliders = document.getElementsByClassName('slider');
         colorSlider(sliders[0], sliders[0].previousSibling, sliders[0].value, 1);
         colorSlider(sliders[1], sliders[1].previousSibling, sliders[1].value, 2);
