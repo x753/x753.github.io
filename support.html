@@ -116,17 +116,6 @@
         </a> 
     </template>
 
-    <!-- LOVE IMAGE BANNER -->
-
-    <template id="love">
-        <a class="link" href="https://www.humblebundle.com/games/tales-love-adventure?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <img style="z-index: 5; bottom: 0; height: 450%; width: 100%; position: absolute; animation: scrollAnim 15s infinite;" src="https://hb.imgix.net/6496e12c82f8698101417975921e184bf51e090f.png?auto=compress,format&h=630&w=1200&s=163692d5df205e5affdaac63221dcc37">
-
-        </a> 
-    </template>
-
     <!-- STELLARIS IMAGE BANNER -->
 
     <template id="stellaris">
@@ -144,18 +133,22 @@
         <a class="link" href="https://www.humblebundle.com/books/supermassive-scifi-fantasy-horror-tachyon-books?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
-        <img style="z-index: 5; bottom: -80px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/4577fcc43c870940f29e3e32ece2c33679136252.png?auto=compress,format&h=630&w=1200&s=dacc031c1ccc9a9925c0aea4776a204b">
+        <img style="z-index: 5; bottom: -70px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/4577fcc43c870940f29e3e32ece2c33679136252.png?auto=compress,format&h=630&w=1200&s=dacc031c1ccc9a9925c0aea4776a204b">
 
         </a> 
     </template>
 
-    <!-- FRONT IMAGE BANNER -->
+    <!-- LEARNCODE IMAGE BANNER -->
 
-    <template id="front">
-        <a class="link" href="https://www.humblebundle.com/software/learn-frontend-web-development-software?partner=eastsidelag"
+    <template id="learncode">
+        <a class="link" href="https://www.humblebundle.com/books/learn-you-more-code-no-starch-press-books?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
-        <img style="z-index: 5; bottom: -89px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/274e927fae3ede89e3b2eca0753eb3de2a0d456b.png?auto=compress,format&h=630&w=1200&s=c6fa06e59c5a8202d5993a1f7cfb73d6">
+        <div class="message noclick" style="top: 75%; left: 15%; font-size: 18px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
+
+        <img style="bottom: -85px; height: 420%; width: 100%; position: absolute;" src="https://hb.imgix.net/a981510ff6c49ee8753034654c890bf4967e422c.png?auto=compress,format&h=630&w=1200&s=9dcc20fa4aaaaabaa2387f170759f1e9">
 
         </a> 
     </template>
@@ -199,7 +192,7 @@
     </script>
 
     <script>
-        const templates = ["stellaris", "avast", "supermassive", "front", "love", "choice"];
+        const templates = ["stellaris", "avast", "supermassive", "learncode", "choice"];
         const templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var node = document.getElementById(templateName).content.cloneNode(true);
