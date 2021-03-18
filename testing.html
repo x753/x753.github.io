@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Testing</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <base target="_parent" /> <!-- this allows links to open outside of iFrames -->
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: rgb(240, 240, 240);
+        }
+
+        input {
+            font-size:16px;
+            height: 50px;
+            width: calc(100% - 40px);
+            padding: 12px 20px;
+            margin: 20px 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        iframe {
+            margin: 10px;
+            bottom: -10px;
+        }
+
+        .flexrow
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .flexcolumn
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .button {
+            height: 50px;
+            width: 100px;
+            border: none;
+            border-radius: 4px;
+
+            cursor: pointer;
+            
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            font-size: 16px;
+            
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .button:hover { opacity: 0.7; }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="flexrow">
+        <div class="flexcolumn">
+            <div style="height: 138px; overflow: hidden;">
+                <iframe id="tophumblepromo" src="support.html?753debug-0" width="1110px" height="140px" frameborder="0"></iframe>
+            </div>
+            <div style="height: 138px; overflow: hidden;">
+                <iframe id="tophumblepromo" src="support.html?753debug-1" width="1110px" height="140px" frameborder="0"></iframe>
+            </div>
+            <div style="height: 138px; overflow: hidden;">
+                <iframe id="tophumblepromo" src="support.html?753debug-2" width="1110px" height="140px" frameborder="0"></iframe>
+            </div>
+            <div style="height: 138px; overflow: hidden;">
+                <iframe id="tophumblepromo" src="support.html?753debug-3" width="1110px" height="140px" frameborder="0"></iframe>
+            </div>
+            <div style="height: 138px; overflow: hidden;">
+                <iframe id="tophumblepromo" src="support.html?753debug-4" width="1110px" height="140px" frameborder="0"></iframe>
+            </div>
+            <div style="height: 138px; overflow: hidden;">
+                <iframe id="tophumblepromo" src="support.html?753debug-5" width="1110px" height="140px" frameborder="0"></iframe>
+            </div>
+            <div style="height: 138px; overflow: hidden;">
+                <iframe id="tophumblepromo" src="support.html?753debug-6" width="1110px" height="140px" frameborder="0"></iframe>
+            </div>
+            <div style="height: 138px; overflow: hidden;">
+                <iframe id="tophumblepromo" src="support.html?753debug-7" width="1110px" height="140px" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <form name="f" id="searchbar" method="get" action="https://duckduckgo.com/" autocomplete="off"> <!-- Wrapping this in a form lets you hit enter to submit -->
+        <input name="q" type="text" value="" placeholder="Search the internet...">
+    </form>
+
+    <div class="buttons">
+        <a tabindex="-1" href="https://github.com/x753/"><button class="button" style="background-color: #28a745;">GitHub</button></a>
+        <a tabindex="-1" href="https://www.patreon.com/x753"><button class="button" style="background-color: #F96854;">Patreon</button></a>
+        <a tabindex="-1" href="https://discord.gg/fGSneSe"><button class="button" style="background-color: #7289DA;">Discord</button></a>
+        <a tabindex="-1" href="https://twitter.com/753network"><button class="button" style="background-color: #55ADEE;">Twitter</button></a>
+    </div>
+
+</body>
+
+</html>
