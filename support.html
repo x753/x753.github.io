@@ -142,17 +142,35 @@
         </a> 
     </template>
 
+    <!-- CURVE IMAGE BANNER -->
+
+    <template id="curve">
+        <a class="link" href="https://www.humblebundle.com/games/curve-digital-supplydrop?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <div class="message noclick" style="top: 69%; left: 1%; font-size: 16px;">
+            <b>Get up to 11 games in this bundle from Curve Digital!</b>
+        </div>
+        <div class="message noclick" style="top: 69%; left: 63%; font-size: 16px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
+
+        <img style="z-index: 1; bottom: -103px; height: 360%; width: 100%; position: absolute;" src="https://hb.imgix.net/8b7a13d5507bf2c55640f1cd876419a283b08f1c.png?auto=compress,format&h=630&w=1200&s=ab3d14c4f0ac7a73831dfa06cb95a504">
+
+        </a> 
+    </template>
+
     <!-- LEARNCODE IMAGE BANNER -->
 
     <template id="learncode">
         <a class="link" href="https://www.humblebundle.com/books/learn-you-more-code-no-starch-press-books?partner=eastsidelag"
         onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
-        <div class="message noclick" style="top: 72%; left: 15%; font-size: 18px;">
+        <div class="message noclick" style="top: 71%; left: 15%; font-size: 18px;">
             <b>Choose what % of your money goes to Thunderstore!</b>
         </div>
 
-        <img style="bottom: -85px; height: 420%; width: 100%; position: absolute;" src="https://hb.imgix.net/a981510ff6c49ee8753034654c890bf4967e422c.png?auto=compress,format&h=630&w=1200&s=9dcc20fa4aaaaabaa2387f170759f1e9">
+        <img style="bottom: -76px; height: 400%; width: 100%; position: absolute;" src="https://hb.imgix.net/a981510ff6c49ee8753034654c890bf4967e422c.png?auto=compress,format&h=630&w=1200&s=9dcc20fa4aaaaabaa2387f170759f1e9">
 
         </a> 
     </template>
@@ -196,14 +214,20 @@
     </script>
 
     <script>
-        const templates = ["stellaris", "avast", "supermassive", "learncode", "choice"];
-        const templateName = templates[Math.floor(Math.random() * templates.length)];
+        const templates = ["stellaris", "avast", "supermassive", "curve", "learncode", "choice"];
+        var templateName = templates[Math.floor(Math.random() * templates.length)];
+
+        var url = window.location.href;
+        if(url.includes("753debug"))
+        {
+            console.log(url[url.length-1]);
+            templateName = templates[url[url.length-1]];
+        }
 
         var node = document.getElementById(templateName).content.cloneNode(true);
 
         document.body.append(node);
 
-        var url = window.location.href;
         var n = url.indexOf('?');
         if (n > 1) {
             var seed = url.substring(n + 1);
