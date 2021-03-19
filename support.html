@@ -127,6 +127,21 @@
         </a> 
     </template>
 
+    <!-- INTROCODE IMAGE BANNER -->
+
+    <template id="introcode">
+        <a class="link" href="https://www.humblebundle.com/software/intro-to-code-2021-software?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <div class="message noclick" style="top: 68%; left: 17%; font-size: 18px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
+
+        <img style="z-index: 1; bottom: -93px; height: 350%; width: 100%; position: absolute;" src="https://hb.imgix.net/4565e4901176a466c66685326e4514b7e0a8f0f5.png?auto=compress,format&h=630&w=1200&s=9a1e69be51d40c6ae157d33b3ab29d42">
+
+        </a> 
+    </template>
+
     <!-- SUPERMASSIVE IMAGE BANNER -->
 
     <template id="supermassive">
@@ -214,7 +229,7 @@
     </script>
 
     <script>
-        const templates = ["stellaris", "avast", "supermassive", "curve", "learncode", "choice"];
+        const templates = ["stellaris", "avast", "introcode", "supermassive", "curve", "learncode", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
