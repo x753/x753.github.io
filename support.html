@@ -142,21 +142,6 @@
         </a> 
     </template>
 
-    <!-- SUPERMASSIVE IMAGE BANNER -->
-
-    <template id="supermassive">
-        <a class="link" href="https://www.humblebundle.com/books/supermassive-scifi-fantasy-horror-tachyon-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 68%; left: 15%; font-size: 18px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 1; bottom: -70px; height: 450%; width: 100%; position: absolute;" src="https://hb.imgix.net/4577fcc43c870940f29e3e32ece2c33679136252.png?auto=compress,format&h=630&w=1200&s=dacc031c1ccc9a9925c0aea4776a204b">
-
-        </a> 
-    </template>
-
     <!-- CURVE IMAGE BANNER -->
 
     <template id="curve">
@@ -229,7 +214,7 @@
     </script>
 
     <script>
-        const templates = ["stellaris", "avast", "introcode", "supermassive", "curve", "learncode", "choice"];
+        const templates = ["introcode", "curve", "learncode", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
