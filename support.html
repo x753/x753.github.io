@@ -145,24 +145,6 @@
         </a> 
     </template>
 
-    <!-- CURVE IMAGE BANNER -->
-
-    <template id="curve">
-        <a class="link" href="https://www.humblebundle.com/games/curve-digital-supplydrop?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 69%; left: 1%; font-size: 16px;">
-            <b>Get up to 11 games in this bundle from Curve Digital!</b>
-        </div>
-        <div class="message noclick" style="top: 69%; left: 63%; font-size: 16px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 1; bottom: -103px; height: 360%; width: 100%; position: absolute;" src="https://hb.imgix.net/8b7a13d5507bf2c55640f1cd876419a283b08f1c.png?auto=compress,format&h=630&w=1200&s=ab3d14c4f0ac7a73831dfa06cb95a504">
-
-        </a> 
-    </template>
-
     <!-- LEARNCODE IMAGE BANNER -->
 
     <template id="learncode">
@@ -217,7 +199,7 @@
     </script>
 
     <script>
-        const templates = ["introcode", "daedalic", "graphics", "curve", "learncode", "choice"];
+        const templates = ["introcode", "daedalic", "graphics", "learncode", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
