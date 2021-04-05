@@ -112,6 +112,36 @@
         </a> 
     </template>
 
+    <!-- PYTHON IMAGE BANNER -->
+
+    <template id="python">
+        <a class="link" href="https://www.humblebundle.com/books/ultimate-python-bookshelf-packt-books?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <div class="message noclick" style="top: 68%; left: 17%; font-size: 18px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
+
+        <img style="z-index: 1; bottom: -60px; height: 350%; width: 100%; position: absolute;" src="https://hb.imgix.net/013684b95bdcd41c9227b216a9291417445749cd.png?auto=compress,format&h=630&w=1200&s=9d750867c12df9777f8cf10abd283b12">
+
+        </a> 
+    </template>
+
+    <!-- MACHINELEARNING IMAGE BANNER -->
+
+    <template id="machinelearning">
+        <a class="link" href="https://www.humblebundle.com/books/machine-learning-zero-to-hero-manning-publications-books?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <div class="message noclick" style="top: 68%; left: 17%; font-size: 18px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
+
+        <img style="z-index: 1; bottom: -48px; height: 350%; width: 100%; position: absolute;" src="https://hb.imgix.net/ccdc7b91df7603ad062d205c1595321ed81fd12a.png?auto=compress,format&h=630&w=1200&s=1f3df622912cb2376831fd51e78bcfa2">
+
+        </a> 
+    </template>
+
     <!-- RACING IMAGE BANNER -->
 
     <template id="racing">
@@ -138,21 +168,6 @@
         </div>
 
         <img style="z-index: 1; bottom: -35px; height: 360%; width: 100%; position: absolute;" src="https://hb.imgix.net/782d694a9fdfdf144c885af7e268ca5764169893.png?auto=compress,format&h=630&w=1200&s=504056f679306b5de1d4cbd1f2a00c55">
-
-        </a> 
-    </template>
-
-    <!-- LEARNCODE IMAGE BANNER -->
-
-    <template id="learncode">
-        <a class="link" href="https://www.humblebundle.com/books/learn-you-more-code-no-starch-press-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 71%; left: 15%; font-size: 18px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="bottom: -76px; height: 400%; width: 100%; position: absolute;" src="https://hb.imgix.net/a981510ff6c49ee8753034654c890bf4967e422c.png?auto=compress,format&h=630&w=1200&s=9dcc20fa4aaaaabaa2387f170759f1e9">
 
         </a> 
     </template>
@@ -196,7 +211,7 @@
     </script>
 
     <script>
-        const templates = ["introcode", "racing", "graphics", "learncode", "choice"];
+        const templates = ["introcode", "python", "racing", "graphics", "machinelearning", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
