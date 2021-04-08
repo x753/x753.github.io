@@ -97,6 +97,22 @@
 
 <body>
 
+    <!-- MANGA IMAGE BANNER -->
+
+    <template id="manga">
+        <a class="link" href="https://www.humblebundle.com/books/spring-2021-anime-season-books?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <div class="message noclick" style="top: 15%; left: 41%; font-size: 14px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
+
+        <img style="z-index: 1; right: -10px; bottom: 3px; height: 250%; width: 80%; position: absolute;" src="https://hb.imgix.net/d636a57c26c7a5448a1bc3ab8c6b66e3cdb3b5c9.jpg?auto=compress,format&h=630&w=1200&s=c06690a4bdf4317536132bef85d7239a">
+        <img style="z-index: 1; left: -100px; bottom: -95px; height: 190%; width: 50%; position: absolute;" src="https://hb.imgix.net/d636a57c26c7a5448a1bc3ab8c6b66e3cdb3b5c9.jpg?auto=compress,format&h=630&w=1200&s=c06690a4bdf4317536132bef85d7239a">
+
+        </a> 
+    </template>
+
     <!-- VR IMAGE BANNER -->
 
     <template id="vr">
@@ -138,21 +154,6 @@
         </div>
 
         <img style="z-index: 1; bottom: -48px; height: 350%; width: 100%; position: absolute;" src="https://hb.imgix.net/ccdc7b91df7603ad062d205c1595321ed81fd12a.png?auto=compress,format&h=630&w=1200&s=1f3df622912cb2376831fd51e78bcfa2">
-
-        </a> 
-    </template>
-
-    <!-- RACING IMAGE BANNER -->
-
-    <template id="racing">
-        <a class="link" href="https://www.humblebundle.com/games/burn-rubber?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 5%; left: 18%; font-size: 16px;">
-            <b>$12 bundle of racing games and DLC! Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 1; left: -80px; bottom: -97px; height: 360%; width: 110%; position: absolute;" src="https://hb.imgix.net/b8a185ea24237df45e94f56fe56b23e5353a76cb.png?auto=compress,format&h=630&w=1200&s=3a50dbca60f8283fe2b32aadcf52be2b">
 
         </a> 
     </template>
@@ -211,7 +212,7 @@
     </script>
 
     <script>
-        const templates = ["vr", "python", "racing", "graphics", "machinelearning", "choice"];
+        const templates = ["manga", "vr", "python", "graphics", "machinelearning", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
