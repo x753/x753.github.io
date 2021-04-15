@@ -124,7 +124,7 @@
 
         var alphaNumeric = /^[0-9a-z]+$/;
 
-        if (seed.length == 6 && seed.match(alphaNumeric))
+        if ((seed.length == 6 || seed.length == 7) && seed.match(alphaNumeric))
         {
             // nice, we're already a valid seed
         }
