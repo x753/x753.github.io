@@ -222,7 +222,7 @@
 
         seed = document.getElementById("seed").value;
 
-        if(seed.length != 6) // can't increment the seed unless it's a valid seed
+        if(seed.length != 6 && seed.length != 7) // can't increment the seed unless it's a valid seed
         {
             while(true)
             {
