@@ -158,21 +158,6 @@
         </a> 
     </template>
 
-    <!-- GRAPHICS IMAGE BANNER -->
-
-    <template id="graphics">
-        <a class="link" href="https://www.humblebundle.com/software/biggest-graphics-ever-software?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 73%; left: 32%; font-size: 16px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 1; bottom: -35px; height: 360%; width: 100%; position: absolute;" src="https://hb.imgix.net/782d694a9fdfdf144c885af7e268ca5764169893.png?auto=compress,format&h=630&w=1200&s=504056f679306b5de1d4cbd1f2a00c55">
-
-        </a> 
-    </template>
-
     <!-- HUMBLE CHOICE BANNER -->
 
     <template id="choice">
@@ -212,7 +197,7 @@
     </script>
 
     <script>
-        const templates = ["manga", "vr", "python", "graphics", "machinelearning", "choice"];
+        const templates = ["manga", "vr", "python", "machinelearning", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
