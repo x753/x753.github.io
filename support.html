@@ -143,21 +143,6 @@
         </a> 
     </template>
 
-    <!-- MACHINELEARNING IMAGE BANNER -->
-
-    <template id="machinelearning">
-        <a class="link" href="https://www.humblebundle.com/books/machine-learning-zero-to-hero-manning-publications-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 68%; left: 17%; font-size: 18px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 1; bottom: -48px; height: 350%; width: 100%; position: absolute;" src="https://hb.imgix.net/ccdc7b91df7603ad062d205c1595321ed81fd12a.png?auto=compress,format&h=630&w=1200&s=1f3df622912cb2376831fd51e78bcfa2">
-
-        </a> 
-    </template>
-
     <!-- HUMBLE CHOICE BANNER -->
 
     <template id="choice">
@@ -197,7 +182,7 @@
     </script>
 
     <script>
-        const templates = ["manga", "vr", "python", "machinelearning", "choice"];
+        const templates = ["manga", "vr", "python", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
