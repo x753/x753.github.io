@@ -97,6 +97,22 @@
 
 <body>
 
+    <!-- COUCH IMAGE BANNER -->
+
+    <template id="couch">
+        <a class="link" href="https://www.humblebundle.com/games/new-couch-classics?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <div class="message noclick" style="top: 3%; left: 1%; font-size: 18px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
+
+        <img style="z-index: 1; bottom: -95px; height: 350%; width: 110%; position: absolute;" src="https://hb.imgix.net/638405bad5cc7722d6483bb834734dd0b264ae73.png?auto=compress,format&h=630&w=1200&s=68c73cc713d1089324653b5aef0822d4">
+        <img style="z-index: 1; left: 20px; bottom: 20px; height: 90px; width: 90px; position: absolute;" src="https://humblebundle-a.akamaihd.net/static/hashed/c9eb8360a57dec0e5d95d79a68be779ca564d9a2.svg">
+
+        </a> 
+    </template>
+
     <!-- MANGA IMAGE BANNER -->
 
     <template id="manga">
@@ -182,7 +198,7 @@
     </script>
 
     <script>
-        const templates = ["manga", "vr", "python", "choice"];
+        const templates = ["couch", "manga", "vr", "python", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
