@@ -97,6 +97,21 @@
 
 <body>
 
+    <!-- VEGAS IMAGE BANNER -->
+
+    <template id="vegas">
+        <a class="link" href="https://www.humblebundle.com/software/vegas-pro-discover-your-endless-freedom-software?partner=eastsidelag"
+        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+
+        <div class="message noclick" style="top: 7%; left: 10%; font-size: 20px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
+
+        <img style="z-index: 1; left: -50px; bottom: -63px; height: 360%; width: 110%; position: absolute;" src="https://hb.imgix.net/69062a70f2d2c14c2e8ea1e9dace4f49689b5abc.png?auto=compress,format&h=630&w=1200&s=b44d736aa55c4738a0430d7033d7c12d">
+
+        </a> 
+    </template>
+
     <!-- COUCH IMAGE BANNER -->
 
     <template id="couch">
@@ -198,7 +213,7 @@
     </script>
 
     <script>
-        const templates = ["couch", "manga", "vr", "python", "choice"];
+        const templates = ["vegas", "couch", "manga", "vr", "python", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
