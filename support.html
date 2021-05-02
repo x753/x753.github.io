@@ -128,52 +128,6 @@
         </a> 
     </template>
 
-    <!-- MANGA IMAGE BANNER -->
-
-    <template id="manga">
-        <a class="link" href="https://www.humblebundle.com/books/spring-2021-anime-season-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 15%; left: 41%; font-size: 14px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 1; right: -10px; bottom: 3px; height: 250%; width: 80%; position: absolute;" src="https://hb.imgix.net/d636a57c26c7a5448a1bc3ab8c6b66e3cdb3b5c9.jpg?auto=compress,format&h=630&w=1200&s=c06690a4bdf4317536132bef85d7239a">
-        <img style="z-index: 1; left: -100px; bottom: -95px; height: 190%; width: 50%; position: absolute;" src="https://hb.imgix.net/d636a57c26c7a5448a1bc3ab8c6b66e3cdb3b5c9.jpg?auto=compress,format&h=630&w=1200&s=c06690a4bdf4317536132bef85d7239a">
-
-        </a> 
-    </template>
-
-    <!-- VR IMAGE BANNER -->
-
-    <template id="vr">
-        <a class="link" href="https://www.humblebundle.com/games/spring-into-vr-bundle?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 68%; left: 1%; font-size: 18px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 1; bottom: -92px; height: 350%; width: 110%; position: absolute;" src="https://hb.imgix.net/0a21b17fcc91f10bb5a7e3eafdd067406056755f.png?auto=compress,format&h=630&w=1200&s=6e41152958a46c18eec6baeb39960a16">
-
-        </a> 
-    </template>
-
-    <!-- PYTHON IMAGE BANNER -->
-
-    <template id="python">
-        <a class="link" href="https://www.humblebundle.com/books/ultimate-python-bookshelf-packt-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="message noclick" style="top: 68%; left: 17%; font-size: 18px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 1; bottom: -60px; height: 350%; width: 100%; position: absolute;" src="https://hb.imgix.net/013684b95bdcd41c9227b216a9291417445749cd.png?auto=compress,format&h=630&w=1200&s=9d750867c12df9777f8cf10abd283b12">
-
-        </a> 
-    </template>
-
     <!-- HUMBLE CHOICE BANNER -->
 
     <template id="choice">
@@ -213,7 +167,7 @@
     </script>
 
     <script>
-        const templates = ["vegas", "couch", "manga", "vr", "python", "choice"];
+        const templates = ["vegas", "couch", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
