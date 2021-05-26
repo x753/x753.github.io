@@ -101,22 +101,32 @@
 
     <template id="azure">
         <a class="link" href="https://www.humblebundle.com/books/azure-cloud-computing-bundle-springer-books?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
 
         <img style="z-index: 1; left: -50px; bottom: -53px; height: 360%; width: 110%; position: absolute;" src="https://hb.imgix.net/d1753aa6e2e4925f944dd15313c258ed857928a7.png?auto=compress,format&h=630&w=1200&s=c4f1342a27b59642322256c45320db87">
 
         </a> 
     </template>
 
-    <!-- RPGDEV IMAGE BANNER -->
+    <!-- BANDAI IMAGE BANNER -->
 
-    <template id="rpgdev">
-        <a class="link" href="https://www.humblebundle.com/software/royalty-free-rpg-game-dev-assets-software?partner=eastsidelag"
-        onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+    <template id="bandai">
+        <a class="link" href="https://www.humblebundle.com/games/bandai-2021?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'><div>
 
-        <img style="z-index: 1; left: -50px; bottom: -81px; height: 360%; width: 110%; position: absolute;" src="https://hb.imgix.net/18bbb5edc91668fcfb9cbea2012a666d06269a77.jpg?auto=compress,format&h=630&w=1200&s=cb38979968a070cb0063baa6be4ba1b5">
+        <div class="message noclick" style="z-index: 2; top: 75%; left: 66%; font-size: 15px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
 
-        </a> 
+        <img style="z-index: 3; left: 5px; bottom: 17px; height:35%; position: absolute;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg">
+
+        <img style="z-index: 1; left: 0px; position: absolute;" src="https://hb.imgix.net/670effa4256a6d0c53335de9da574d17165b92e8.jpeg?auto=compress,format&dpr=1&fit=clip&h=177&w=308&s=92b6e42677f443d1bdd220175300962d">
+        <img style="z-index: 1; left: 240px; position: absolute;" src="https://hb.imgix.net/ce5ce6a0e622a47e02f6b95109d7d06e186e769c.jpeg?auto=compress,format&dpr=1&fit=clip&h=177&w=308&s=bdffc6acc8515abe2e3aab2eb52333f9">
+        <img style="z-index: 1; left: 480px; position: absolute;" src="https://hb.imgix.net/3c7f534f6c05060aca7c859a2591ca1b652864b8.jpeg?auto=compress,format&dpr=1&fit=clip&h=177&w=308&s=3d69bd90ff072e406abfe180d9ac9e48">
+        
+        <img style="z-index: 1; height: 75%; width: 30%; right: 26px; position: absolute;" src="https://hb.imgix.net/7134e21d86a28aead2a1af51ade6ae27cdc279e0.png?auto=compress,format&h=170&w=1200&s=387df1d0f8c5fe60ff3eee61fa2af673">
+
+        </div></a> 
     </template>
 
     <!-- HUMBLE CHOICE BANNER -->
@@ -124,7 +134,6 @@
     <template id="choice">
         <a class="link" href="https://www.humblebundle.com/subscription?partner=eastsidelag"
             onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
 
         <div class="center">
             <div class="message noclick" style="top: 10%">
@@ -158,7 +167,7 @@
     </script>
 
     <script>
-        const templates = ["azure", "rpgdev", "choice"];
+        const templates = ["azure", "bandai", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
