@@ -97,15 +97,25 @@
 
 <body>
 
-    <!-- AZURE IMAGE BANNER -->
+    <!-- STORM IMAGE BANNER -->
 
-    <template id="azure">
-        <a class="link" href="https://www.humblebundle.com/books/azure-cloud-computing-bundle-springer-books?partner=eastsidelag"
-            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
+    <template id="storm">
+        <a class="link" href="https://www.humblebundle.com/games/rising-storm?partner=eastsidelag"
+            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'><div>
 
-        <img style="z-index: 1; left: -50px; bottom: -53px; height: 360%; width: 110%; position: absolute;" src="https://hb.imgix.net/d1753aa6e2e4925f944dd15313c258ed857928a7.png?auto=compress,format&h=630&w=1200&s=c4f1342a27b59642322256c45320db87">
+        <div class="message noclick" style="z-index: 2; top: 75%; left: 66%; font-size: 15px;">
+            <b>Choose what % of your money goes to Thunderstore!</b>
+        </div>
 
-        </a> 
+        <img style="z-index: 3; left: 5px; bottom: 17px; height:35%; position: absolute;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg">
+
+        <img style="z-index: 1; left: 0px; position: absolute;" src="https://hb.imgix.net/e2eeda8c33ae7b44fe0a2a7c0e4d89a68eb57364.jpg?auto=compress,format&dpr=1&fit=clip&h=177&w=308&s=fc6f07e6b9600edb534e9bb08f2ada30">
+        <img style="z-index: 1; left: 240px; position: absolute;" src="https://hb.imgix.net/8b95196a5152054fc79c4766d508c5118500dc36.jpeg?auto=compress,format&dpr=1&fit=clip&h=177&w=308&s=653b7e8d3e398a3c7aae6280de86f873">
+        <img style="z-index: 1; left: 480px; position: absolute;" src="https://hb.imgix.net/84793e1421b03b0900d2df01d123d3f3a914590d.jpg?auto=compress,format&dpr=1&fit=clip&h=177&w=308&s=4fb05af24c00c02e18becf8475cf13ad">
+        
+        <img style="z-index: 1; height: 100%; width: 30%; right: 26px; position: absolute;" src="https://hb.imgix.net/21db14727544c4eeb3efb4a2784cca0ad7d7f596.png?auto=compress,format&h=170&w=1200&s=2e52fef9d9315c669fd43cb5ea384b7d">
+
+        </div></a> 
     </template>
 
     <!-- BANDAI IMAGE BANNER -->
@@ -167,7 +177,7 @@
     </script>
 
     <script>
-        const templates = ["azure", "bandai", "choice"];
+        const templates = ["storm", "bandai", "choice"];
         var templateName = templates[Math.floor(Math.random() * templates.length)];
 
         var url = window.location.href;
