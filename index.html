@@ -41,6 +41,8 @@
 
         .app {
             position: absolute;
+            min-width: 100px;
+            min-height: 100px;
             width: 100px;
             height: 100px;
         }
@@ -234,14 +236,6 @@
                 {
                     containers[i].style.width = window.innerWidth + "px";
                 }
-                if(parseInt(containers[i].style.top) < 0)
-                {
-                    containers[i].style.top = "0px";
-                }
-                if(parseInt(containers[i].style.left) < 0)
-                {
-                    containers[i].style.left = "0px";
-                }
                 if(parseInt(containers[i].style.top) > (window.innerHeight - parseInt(containers[i].style.height)))
                 {
                     containers[i].style.top = window.innerHeight-parseInt(containers[i].style.height) + "px";
@@ -249,6 +243,14 @@
                 if(parseInt(containers[i].style.left) > (window.innerWidth - parseInt(containers[i].style.width)))
                 {
                     containers[i].style.left = window.innerWidth-parseInt(containers[i].style.width) + "px";
+                }
+                if(parseInt(containers[i].style.top) < 0)
+                {
+                    containers[i].style.top = "0px";
+                }
+                if(parseInt(containers[i].style.left) < 0)
+                {
+                    containers[i].style.left = "0px";
                 }
             }
         }
@@ -455,6 +457,14 @@
                 {
                     apps[i].style.width = window.innerWidth + "px";
                 }
+                if(parseInt(apps[i].style.top) > (window.innerHeight - 100))
+                {
+                    apps[i].style.top = window.innerHeight-100 + "px";
+                }
+                if(parseInt(apps[i].style.left) > (window.innerWidth - 100))
+                {
+                    apps[i].style.left = window.innerWidth-100 + "px";
+                }
                 if(parseInt(apps[i].style.top) < 0)
                 {
                     apps[i].style.top = "0px";
@@ -462,14 +472,6 @@
                 if(parseInt(apps[i].style.left) < 0)
                 {
                     apps[i].style.left = "0px";
-                }
-                if(parseInt(apps[i].style.top) > (window.innerHeight - parseInt(apps[i].style.height)))
-                {
-                    apps[i].style.top = window.innerHeight-parseInt(apps[i].style.height) + "px";
-                }
-                if(parseInt(apps[i].style.left) > (window.innerWidth - parseInt(apps[i].style.width)))
-                {
-                    apps[i].style.left = window.innerWidth-parseInt(apps[i].style.width) + "px";
                 }
             }
         }
