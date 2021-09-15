@@ -9,6 +9,9 @@
     <style>
         html,
         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 0;
             margin: 0;
             overflow: hidden;
@@ -17,172 +20,13 @@
             color: white;
             background-color: #000000;
             height: 100%;
-
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Old versions of Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none;
-        }
-
-        :root {
-            --c1: #2e2e2eee;
-            --c0: #00000000;
-        }
-
-        div {
-            height: 100%;
-        }
-
-        img {
-            height: 100%;
-        }
-
-        .effect {
-            top: 0;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            z-index: 1;
-        }
-
-        .center {
-            display: flex;
-            text-align: center;
-            justify-content: center;
-            align-content: center;
-        }
-
-        .message {
-            top: 0;
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            z-index: 2;
-        }
-
-        .row {
-            top: 0;
-            font-size: 0; /* No spaces between items */
-            position: absolute;
-            white-space: nowrap;
-        }
-
-        .ltr {
-            left: 0;
-            direction: ltr;
-        }
-        .rtl {
-            right: 0;
-            direction: rtl;
-        }
-
-        .link {
-           color: white; 
-        }
-
-        .noclick {
-            pointer-events: none;
-        }
-
-        @keyframes scrollAnim {
-            0%   { bottom: -67px;}
-            50%   { bottom: -405px;}
-            100% { bottom: -67px;}
         }
     </style>
 
 </head>
 
 <body>
-
-    <!-- POWER IMAGE BANNER -->
-
-    <template id="power">
-        <a class="link" href="https://www.humblebundle.com/books/mighty-morphin-power-rangers-boom-studios-books?partner=eastsidelag"
-            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'><div>
-
-        <div class="message noclick" style="z-index: 2; top: 75%; left: 66%; font-size: 15px;">
-            <b>Choose what % of your money goes to Thunderstore!</b>
-        </div>
-
-        <img style="z-index: 3; left: 5px; bottom: 17px; height:35%; position: absolute;" src="https://humblebundle-a.akamaihd.net/static/hashed/4814f84495cd679571cb94896978da3825562075.svg">
-
-        <img style="z-index: 1; left: 200px; position: absolute;" src="https://hb.imgix.net/244152a15bac83b5536fa47c586b4df59d5448d7.png?auto=compress,format&dpr=2&fit=clip&h=218&w=150&s=45f1483e6a257f4d0e8d92aad38f3d49">
-        <img style="z-index: 1; left: 300px; position: absolute;" src="https://hb.imgix.net/b357a7f52b093d98fbc29f20e2e002256ed7c260.png?auto=compress,format&dpr=2&fit=clip&h=218&w=150&s=643ca789ed557283afe2efe16a728585">
-        <img style="z-index: 1; left: 400px; position: absolute;" src="https://hb.imgix.net/d5f5158b47b9993944b15bc5b175a56d727080e5.png?auto=compress,format&dpr=2&fit=clip&h=218&w=150&s=665fdbee19cb51f17fa0771b81c00338">
-        <img style="z-index: 1; left: 500px; position: absolute;" src="https://hb.imgix.net/9f874f292c50b25851a345d0b28836885b0b3581.png?auto=compress,format&dpr=2&fit=clip&h=218&w=150&s=c517c093af041657f95670d33b974fbd">
-        <img style="z-index: 1; left: 600px; position: absolute;" src="https://hb.imgix.net/f1ea2a00daad85370ce838f719014c42d94c8df0.png?auto=compress,format&dpr=2&fit=clip&h=218&w=150&s=7f244fb9729c005786959a4df99498b1">
-
-        <img style="z-index: 1; height: 80%; width: 30%; right: 26px; position: absolute;" src="https://hb.imgix.net/31556fbd0fcd1ec78a5242707c5ecfaeb5c6220f.png?auto=compress,format&h=170&w=1200&s=755bb6134902c71ff6153034990eeb4e">
-
-        </div></a> 
-    </template>
-    
-    <!-- HUMBLE CHOICE BANNER -->
-
-    <template id="choice">
-        <a class="link" href="https://www.humblebundle.com/subscription?partner=eastsidelag"
-            onclick='registerClick(this.href);' onauxclick='registerClick(this.href);'>
-
-        <div class="center">
-            <div class="message noclick" style="top: 10%">
-                <img style="height:50%;" src="https://humblebundle-a.akamaihd.net/static/hashed/ea0caf7a1ed9040921d99e0f0639e7799582e7dc.svg">
-                <b>12+ games for $12</b>
-            </div>
-        </div>
-
-        <div class="row ltr">
-            <img src="https://hb.imgix.net/be5dd46a0ebbef81c6c2b522c696e5f4ed4633b0.jpg?auto=compress,format&fit=clip&h=383&w=667&s=c59994cb91d774545508ec96d3670adc">
-            <img src="https://hb.imgix.net/416b0bea985da8389e0032fd0ac739cb84e15041.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=480b0c954aa4ee6cd21f5ee3573d7c0a">
-        </div>
-        <div class="row rtl">
-            <img src="https://hb.imgix.net/921491cb04b19a404cd062e0f6a36302c65f318b.jpeg?auto=compress,format&fit=clip&h=383&w=667&s=3b176134c00958038209fcd0744439d3">
-            <img src="https://hb.imgix.net/936d009efdffb3616f7d1f2bcc72a1d2b6167871.jpg?auto=compress,format&fit=clip&h=383&w=667&s=eba6cb7ce6243de112cc45d24dee6f3c">
-        </div>
-
-        <div class="effect noclick" style="background-image: linear-gradient(to right, #00000000, #111111FF, #00000000)"></div>
-
-        </a>
-    </template>
-
-    <script>
-        function registerClick(url) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://discordapp.com/api/webhooks/782299576488558623/bCaPqNoi-Asxr2pDkJRM_eklqisq8IARvLQRlZLC56VnPZknWS3D1MYLHAe2pCD0Ul7t");
-            var data = new FormData();
-            data.append("content", "<" + url + ">");
-            xhr.send(data);
-        }
-    </script>
-
-    <script>
-        const templates = ["power", "choice"];
-        var templateName = templates[Math.floor(Math.random() * templates.length)];
-
-        var url = window.location.href;
-        if(url.includes("753debug"))
-        {
-            console.log(url[url.length-1]);
-            templateName = templates[url[url.length-1]];
-        }
-
-        var node = document.getElementById(templateName).content.cloneNode(true);
-
-        document.body.append(node);
-
-        var n = url.indexOf('?');
-        if (n > 1) {
-            var seed = url.substring(n + 1);
-
-            var links = document.getElementsByClassName("link");
-            for (i = 0; i < links.length; i++) {
-                links[i].href = links[i].href.replace("eastsidelag", seed);
-            }
-        }
-    </script>
-
+This page is deprecated.
 </body>
 
 </html>
