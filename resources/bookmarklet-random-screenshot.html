@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Random Screenshot Generator</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        textarea {
+            font-size:16px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .centerpoint {
+            display: flex;
+            justify-content: center;
+        }
+
+        input[type=text], select {
+            font-size:16px;
+            width: 150px;
+            padding: 12px 20px;
+            margin: 20px 8px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        img {
+            margin: 20px 8px;
+        }
+
+        button {
+            font-size:16px;
+            height: 58px;
+            margin: 21px 8px;
+            background-color: rgb(77, 77, 77);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #686868;
+        }
+
+        .painted {
+            background-color: rgb(240, 240, 240);
+        }
+    </style>
+
+</head>
+
+<body onresize="resizeImages()">
+
+    <br><br>
+    <div class="painted">
+        <form id="generateForm" onsubmit="generateSeededScreenshot(); return false;" autocomplete="off"> <!-- Wrapping this in a form lets you hit enter to submit, return false; prevents the page from refreshing on submission -->
+        <div class="centerpoint">
+            <img src='https://753.network/images/seed_icon.png' title="seed" style="height: 58px">
+            <input type="text" id="seed" placeholder="Enter seed..." style="width: 280px">
+            <button type="button" onclick="generateSeededScreenshot()" style="width: 180px">Generate with Seed</button>
+            <button type="button" onclick="generateRandomScreenshot()" style="width: 180px">Generate Random</button>
+            <button type="button" onclick="generateNext()" style="width: 100px">Next</button>
+        </div>
+        </form>
+    </div>
+
+    <br>
+    <div class="painted">
+        <div class="centerpoint">
+            <img id="screenshot" style="width: auto;" referrerpolicy="no-referrer" src="https://753.network/images/screenshot_software.png" title="seeds will be displayed here">
+            <!-- Resize the image automatically so it fits on the page -->
+            <script>
+                document.getElementById("screenshot").style.maxHeight = window.innerHeight - 200 + "px";
+                function resizeImages()
+                {
+                    document.getElementById("screenshot").style.maxHeight = window.innerHeight - 200 + "px";
+                }
+            </script>
+        </div>
+    </div>
+
+    <div class="centerpoint">
+        <p style="color:rgb(150, 150, 150)">Bookmarklet developed by: https://753.network/</p>
+    </div>
+
+    <!-- JAVASCRIPT BEYOND THIS POINT, BE WARNED -->
+
+    <script>
+        checkSite(); 
+        window.addEventListener('DOMContentLoaded', (event) => {
+            checkSite();
+        });
+        function checkSite() /* Some sites handle security differently so the scripts will break before this check runs, you should probably have this as an overlay by default and remove it if we're on the right site */
+        {
+            if(!window.location.href.includes("prnt.sc")) /* This bookmarklet should only work on prnt.sc */
+            {
+                document.body.outerHTML = "<body style='background-color: #000000;'><div style='position: fixed; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0; margin: 0; overflow: hidden; font-size: 30px; color: white; width: 100%; height: 100%;'><div>This bookmarklet should only be run at <a href='https://prnt.sc/'>https://prnt.sc/</a></div> <div>Visit <a href='https://753.network/random-screenshot'> https://753.network/random-screenshot</a> for more information.</div></div></body>";
+            }
+        }
+    </script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+    /* "borrowed" from Stack Overflow */
+    String.prototype.hashCode = function() /* now we can do str.hashCode() to get a hashCode for a string */
+    {
+        var hash = 0;
+        var i;
+        var chr;
+        if (this.length === 0) return hash;
+        for (i = 0; i < this.length; i++) {
+            chr   = this.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash |= 0; /* Convert to 32bit integer */
+        }
+        return hash;
+    };
+
+    function generateSeededScreenshot()
+    {
+        document.getElementById("screenshot").src = "https://753.network/images/loading.gif";
+
+        seed = document.getElementById("seed").value;
+        if(seed == "") { seed = "null"; }
+
+        var alphaNumeric = /^[0-9a-z]+$/;
+
+        if ((seed.length == 6 || seed.length == 7) && seed.match(alphaNumeric))
+        {
+            /* nice, we're already a valid seed */
+        }
+        else /* Hash the value into a valid 1 to 9 digit positive integer */
+        {
+            while(true)
+            {
+                seedHash = seed.hashCode();
+                seedHash = Math.abs(seedHash);
+                while(seedHash.toString().length < 6)
+                {
+                    seedHash = seedHash + seedHash;
+                }
+                seed = seedHash.toString().substr(0,6);
+                if(seed.charCodeAt(0) < 114) /* we don't want a screenshot that doesn't exist yet */
+                {
+                    break;
+                }
+            }
+        }
+
+        document.getElementById("screenshot").title = seed;
+        
+        window.console.log(seed);
+        $.ajax
+        ({
+            type: "GET",
+            url: 'https://prnt.sc/' + seed,
+            dataType : 'text/html',
+            crossDomain: true,
+            error: function(data, textStatus, xhr)
+            {
+                startIndex = data.responseText.indexOf('class="no-click screenshot-image" src="') + 39;
+                endIndex = data.responseText.indexOf('" crossorigin="anonymous" alt="Lightshot screenshot"');
+                
+                imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
+                
+                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
+                {
+                    document.getElementById("screenshot").src = "error";
+                }
+                else
+                {
+                    document.getElementById("screenshot").src = imageUrl;
+                }
+            }
+        })
+    }
+    function generateRandomScreenshot()
+    {
+        document.getElementById("screenshot").src = "https://753.network/images/loading.gif";
+
+        while(true)
+        {
+            seed = Math.random().toString(36).slice(2).substr(0,6);
+            if(seed.charCodeAt(0) < 114)
+            {
+                break;
+            }
+        }
+
+        document.getElementById("seed").value = seed;
+
+        document.getElementById("screenshot").title = seed;
+        
+        window.console.log(seed);
+        $.ajax
+        ({
+            type: "GET",
+            url: 'https://prnt.sc/' + seed,
+            dataType : 'text/html',
+            crossDomain: true,
+            error: function(data, textStatus, xhr)
+            {
+                startIndex = data.responseText.indexOf('class="no-click screenshot-image" src="') + 39;
+                endIndex = data.responseText.indexOf('" crossorigin="anonymous" alt="Lightshot screenshot"');
+                
+                imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
+                
+                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
+                {
+                    document.getElementById("screenshot").src = "error";
+                }
+                else
+                {
+                    document.getElementById("screenshot").src = imageUrl;
+                }
+            }
+        })
+    }
+
+    function generateNext()
+    {
+        document.getElementById("screenshot").src = "https://753.network/images/loading.gif";
+
+        seed = document.getElementById("seed").value;
+
+        if(seed.length != 6 && seed.length != 7) /* can't increment the seed unless it's a valid seed */
+        {
+            while(true)
+            {
+                seed = Math.random().toString(36).slice(2).substr(0,6);
+                if(seed.charCodeAt(0) < 114)
+                {
+                    break;
+                }
+            }
+        }
+
+        seed = incrementBase36(seed);
+
+        document.getElementById("seed").value = seed;
+        document.getElementById("screenshot").title = seed;
+        
+        window.console.log(seed);
+        $.ajax
+        ({
+            type: "GET",
+            url: 'https://prnt.sc/' + seed,
+            dataType : 'text/html',
+            crossDomain: true,
+            error: function(data, textStatus, xhr)
+            {
+                startIndex = data.responseText.indexOf('class="no-click screenshot-image" src="') + 39;
+                endIndex = data.responseText.indexOf('" crossorigin="anonymous" alt="Lightshot screenshot"');
+                
+                imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
+                
+                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
+                {
+                    document.getElementById("screenshot").src = "error";
+                }
+                else
+                {
+                    document.getElementById("screenshot").src = imageUrl;
+                }
+            }
+        })
+    }
+
+    function incrementBase36(x)
+    {
+        return (parseInt(1+x,36)+1).toString(36).slice(1); /* gracefully stolen from Arnauld on Code Golf Stack Exchange */
+    }
+    </script>
+
+</body>
+
+</html>
