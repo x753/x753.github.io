@@ -172,10 +172,11 @@
             crossDomain: true,
             error: function(data, textStatus, xhr)
             {
-                startIndex = data.responseText.indexOf('class="no-click screenshot-image" src="') + 39;
-                endIndex = data.responseText.indexOf('" crossorigin="anonymous" alt="Lightshot screenshot"');
+                startIndex = data.responseText.indexOf('class="no-click screenshot-image"') + 39;
+                endIndex = data.responseText.indexOf('crossorigin="anonymous"') - 2;
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
+                imageUrl = imageUrl.substring(imageUrl.indexOf('"') + 1, imageUrl.lastIndexOf('"'));
                 
                 if(imageUrl.substring(0,2) == "//" || imageUrl == "")
                 {
@@ -214,10 +215,11 @@
             crossDomain: true,
             error: function(data, textStatus, xhr)
             {
-                startIndex = data.responseText.indexOf('class="no-click screenshot-image" src="') + 39;
-                endIndex = data.responseText.indexOf('" crossorigin="anonymous" alt="Lightshot screenshot"');
+                startIndex = data.responseText.indexOf('class="no-click screenshot-image"') + 39;
+                endIndex = data.responseText.indexOf('crossorigin="anonymous"') - 2;
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
+                imageUrl = imageUrl.substring(imageUrl.indexOf('"') + 1, imageUrl.lastIndexOf('"'));
                 
                 if(imageUrl.substring(0,2) == "//" || imageUrl == "")
                 {
@@ -263,10 +265,11 @@
             crossDomain: true,
             error: function(data, textStatus, xhr)
             {
-                startIndex = data.responseText.indexOf('class="no-click screenshot-image" src="') + 39;
-                endIndex = data.responseText.indexOf('" crossorigin="anonymous" alt="Lightshot screenshot"');
+                startIndex = data.responseText.indexOf('class="no-click screenshot-image"') + 39;
+                endIndex = data.responseText.indexOf('crossorigin="anonymous"') - 2;
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
+                imageUrl = imageUrl.substring(imageUrl.indexOf('"') + 1, imageUrl.lastIndexOf('"'));
                 
                 if(imageUrl.substring(0,2) == "//" || imageUrl == "")
                 {
