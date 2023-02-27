@@ -32,7 +32,8 @@
             font-size:16px;
             width: 150px;
             padding: 12px 20px;
-            margin: 20px 8px;
+            margin-top: 10px;
+            margin-bottom: 5px;
             display: inline-block;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -40,9 +41,11 @@
         }
 
         button {
+            text-decoration: none;
+            margin: 10px;
+            padding: 10px 20px;
             font-size:16px;
             color: white;
-            padding: 14px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -59,20 +62,14 @@
             border: 3px dotted #a3a3a3;
         }
 
-        button {
-            text-decoration: none;
-            color: #ffffff;
-            margin-top: 10px;
-            padding: 10px 20px;
-            border: none;
-            outline: none;
-        }
-
         .ready {
             background-color: rgb(31, 85, 31);
         }
         .unready {
             background-color: rgb(82, 22, 22);
+        }
+        .waiting {
+            background-color: rgb(102, 80, 17);
         }
 
     </style>
@@ -80,6 +77,8 @@
 </head>
 
 <body>
+    <div style="font-size:32px; color:red;"><b>USE AT YOUR OWN RISK</b></div>
+
     <div style="font-size:26px;"><b>Select your Player.log file, found here:</b></div>
 
     <div style="font-size:22px;">%USERPROFILE%\AppData\LocalLow\ProjectMoon\LimbusCompany</div>
@@ -99,7 +98,10 @@
     </div>
     </form>
 
-    <button id="boost" class="choosefile unready">Boost my Account</button>
+    <button id="boost" style="font-size:32px;" class="choosefile unready">Boost my Account</button>
+
+    <div style="font-size:14px;">Experience is granted to your current team as if they had just completed stage 2-1.</div>
+    <div style="font-size:14px;">Some Battle Pass missions will be cleared automatically.</div>
 
     <script>
         const boostButton = document.getElementById('boost');
@@ -107,26 +109,43 @@
 
         boostButton.addEventListener('click', async _ => {
 
-        var requestData = '{"userAuth":{"uid":uidPlaceholder,"dbid":0,"authCode":"authCodePlaceholder","version":"1.0.0","synchronousDataVersion":2},"parameters":{"mainchapterid":1,"subchapterid":101,"nodeid":10102,"stageid":10101,"iswin":true,"turn":4,"formationid":0,"battlePassParameters":{"enemyKillCount":1000,"abnormalityKillCount":100,"isUsedDailyChar":true,"isUsedSeasonEgo":true,"isUsedSeasonAnnouncer":true},"supportCharacterId":-1,"supportParticipate":true}}';
-        
-        requestData = requestData.replace('uidPlaceholder',document.getElementById("uid").value);
-        requestData = requestData.replace('authCodePlaceholder',document.getElementById("authCode").value);
+            boostButton.classList.remove("ready");
+            boostButton.classList.add("waiting");
+            boostButton.disabled = true;
 
-        try {     
-            const response = await fetch('https://limbus-corrs-anywhere.herokuapp.com/https://www.limbuscompanyapi.com/api/ExitStageBattle', {
-                method: 'post',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: requestData,
-            });
-            console.log('Success!', response);
-            boostNum++;
-            boostButton.textContent = "Boost my Account +" + boostNum;
+            var requestData = '{"userAuth":{"uid":uidPlaceholder,"dbid":0,"authCode":"authCodePlaceholder","version":"1.0.0","synchronousDataVersion":2},"parameters":{"mainchapterid":1,"subchapterid":101,"nodeid":10102,"stageid":10101,"iswin":true,"turn":4,"formationid":0,"battlePassParameters":{"enemyKillCount":1000,"abnormalityKillCount":100,"isUsedDailyChar":true,"isUsedSeasonEgo":true,"isUsedSeasonAnnouncer":true},"supportCharacterId":-1,"supportParticipate":true}}';
             
-        } catch(err) {
-            console.error(`Error: ${err}`);
-        }
+            requestData = requestData.replace('uidPlaceholder',document.getElementById("uid").value);
+            requestData = requestData.replace('authCodePlaceholder',document.getElementById("authCode").value);
+
+            try {     
+                const response = await fetch('https://limbus-corrs-anywhere.herokuapp.com/https://www.limbuscompanyapi.com/api/ExitStageBattle', {
+                    method: 'post',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: requestData,
+                });
+                console.log('Success!', response);
+                if(response.status == 200)
+                {
+                    boostNum++;
+                    boostButton.textContent = "Boost my Account +" + boostNum;
+
+                    boostButton.classList.remove("waiting");
+                    boostButton.classList.add("ready");
+                    boostButton.disabled = false;
+                }
+                else
+                {
+                    boostButton.classList.remove("waiting");
+                    boostButton.classList.add("unready");
+                    boostButton.textContent = "ERROR, REFRESH THE PAGE";
+                }
+                
+            } catch(err) {
+                console.error(`Error: ${err}`);
+            }
         });
     </script>
 
