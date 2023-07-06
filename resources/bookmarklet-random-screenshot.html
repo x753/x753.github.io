@@ -58,6 +58,30 @@
         .painted {
             background-color: rgb(240, 240, 240);
         }
+
+        a:link {
+            color: #60c5ff;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #60c5ff;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #c485ff;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #c485ff;
+            background-color: transparent;
+            text-decoration: underline;
+        }
     </style>
 
 </head>
@@ -173,12 +197,12 @@
             error: function(data, textStatus, xhr)
             {
                 startIndex = data.responseText.indexOf('class="no-click screenshot-image"') + 35;
-                endIndex = data.responseText.indexOf('crossorigin="anonymous"');
+                endIndex = data.responseText.indexOf('alt="Lightshot screenshot"');
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
                 imageUrl = imageUrl.substring(imageUrl.indexOf('"') + 1, imageUrl.lastIndexOf('"'));
                 
-                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
+                if(imageUrl == "")
                 {
                     document.getElementById("screenshot").src = "error";
                 }
@@ -216,12 +240,12 @@
             error: function(data, textStatus, xhr)
             {
                 startIndex = data.responseText.indexOf('class="no-click screenshot-image"') + 35;
-                endIndex = data.responseText.indexOf('crossorigin="anonymous"');
+                endIndex = data.responseText.indexOf('alt="Lightshot screenshot"');
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
                 imageUrl = imageUrl.substring(imageUrl.indexOf('"') + 1, imageUrl.lastIndexOf('"'));
 
-                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
+                if(imageUrl == "")
                 {
                     document.getElementById("screenshot").src = "error";
                 }
@@ -266,12 +290,12 @@
             error: function(data, textStatus, xhr)
             {
                 startIndex = data.responseText.indexOf('class="no-click screenshot-image"') + 35;
-                endIndex = data.responseText.indexOf('crossorigin="anonymous"');
+                endIndex = data.responseText.indexOf('alt="Lightshot screenshot"');
                 
                 imageUrl = data.responseText.substr(startIndex, endIndex - startIndex);
                 imageUrl = imageUrl.substring(imageUrl.indexOf('"') + 1, imageUrl.lastIndexOf('"'));
                 
-                if(imageUrl.substring(0,2) == "//" || imageUrl == "")
+                if(imageUrl == "")
                 {
                     document.getElementById("screenshot").src = "error";
                 }
