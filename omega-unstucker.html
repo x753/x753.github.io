@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Omega Strikers Unstucker</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+        html, body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            font-size: 30px;
+            font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            color: white;
+            background-color: #000000;
+            height: 100%;
+            width: 100%;
+        }
+
+        div {
+            padding: 5px;
+        }
+
+        input[type=text] {
+            font-size:16px;
+            width: 150px;
+            padding: 12px 20px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        select {
+            font-size:16px;
+            width: 200px;
+            padding: 12px 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            text-decoration: none;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size:16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .dropbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            margin-top: 10px;
+            padding: 30px;
+            border: 3px dotted #a3a3a3;
+        }
+
+        .ready {
+            background-color: rgb(23, 67, 101);
+        }
+        .waiting {
+            background-color: rgb(102, 80, 17);
+        }
+        .finished {
+            background-color: rgb(31, 85, 31);
+        }
+        .unready {
+            background-color: rgb(82, 22, 22);
+        }
+
+        a:link {
+            color: #60c5ff;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #60c5ff;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #c485ff;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #c485ff;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="titleHeader" style="font-weight:bold; font-size:32px; color:orangered;"><b>Omega Strikers Unstucker</b></div>
+
+    <div style="font-size:26px;"><b>Select your Identity.json file, found here:</b></div>
+
+    <div id="fileLocation" style="font-size:22px;">%USERPROFILE%/AppData/Local/OmegaStrikers</div>
+    
+    <div class="dropbox" ondragenter="dragEnterHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);" ondrop="dropHandler(event);">
+        
+        <div style="font-size:26px;"><b>Drag and drop Identity.json file here</b></div>
+        <input id="fileinput" type="file" hidden accept=".json" id="fileID" style="display:none;">
+
+        <button id="choosefile" class="choosefile ready">or Choose File</button>
+    </div>
+
+    <div class="centerpoint" hidden>
+        <input type="text" id="jwt" placeholder="jwt" style="width: 200px" readonly>
+        <input type="text" id="refreshToken" placeholder="refreshToken" style="width: 200px" readonly>
+    </div>
+
+    <button id="unstuck" style="font-size:32px;" class="choosefile unready">Unstuck Me</button>
+
+    <div style="font-size:14px;">Restart your game after clicking Unstuck Me.</div>
+
+    <script>
+        const unstuckButton = document.getElementById('unstuck');
+
+        unstuckButton.addEventListener('click', async _ => {
+
+            unstuckButton.classList.remove("ready");
+            unstuckButton.classList.add("waiting");
+            unstuckButton.disabled = true;
+
+            var requestData = '{}';
+            var apiEndpoint = 'https://prometheus-proxy.odysseyinteractive.gg/api/v2/matchmaking/stop';
+
+            var jwt = document.getElementById("jwt").value;
+            var refreshToken = document.getElementById("refreshToken").value;
+
+            try {     
+                const response = await fetch(apiEndpoint, {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Authorization': `Bearer ${jwt}`,
+                        'X-Refresh-Token': refreshToken
+                    },
+                    body: requestData,
+                });
+                if(response.status == 200)
+                {
+                    unstuckButton.classList.remove("waiting");
+                    unstuckButton.classList.add("finished");
+
+                    setTimeout(buttonCooldown, 3000);
+                }
+                else
+                {
+                    unstuckButton.classList.remove("waiting");
+                    unstuckButton.classList.remove("ready");
+                    unstuckButton.classList.remove("finished");
+                    unstuckButton.classList.add("unready");
+                    unstuckButton.textContent = "ERROR, REFRESH THE PAGE";
+                }
+                
+            } catch(err) {
+                console.error(`Error: ${err}`);
+            }
+        });
+
+        function buttonCooldown() {
+            unstuckButton.classList.add("ready");
+            unstuckButton.classList.remove("finished");
+            unstuckButton.disabled = false;
+        }
+    </script>
+
+    <script>
+        var choosefile = document.getElementById("choosefile");
+        var input = document.getElementById("fileinput");
+        var unstuck = document.getElementById("unstuck");
+
+        choosefile.onclick = () => {
+            input.click();
+        };
+
+        input.addEventListener("change", function (e) {
+            var file = e.target.files[0];
+            choosefile.innerHTML = file.name;
+
+            var reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = () => {
+                extractAuth(reader.result);
+            };
+        });
+        
+        function dragEnterHandler(e) {
+            e.preventDefault();
+        }
+        function dragOverHandler(e) {
+            e.preventDefault();
+        }
+        function dragLeaveHandler(e) {
+            e.preventDefault();
+        }
+
+        function dropHandler(e) {
+            e.preventDefault();
+
+            var file = e.dataTransfer.files[0];
+            if(file.name.includes('.json'))
+            {
+                choosefile.innerHTML = file.name;
+
+                var reader = new FileReader();
+                reader.readAsText(file);
+                reader.onload = () => {
+                    extractAuth(reader.result);
+                };
+            }
+            
+        }
+
+        function extractAuth(result)
+        {
+            if(result.includes('accessTokens'))
+            {
+                choosefile.classList.add("finished");
+                choosefile.classList.remove("ready");
+                unstuck.classList.add("ready");
+                unstuck.classList.remove("unready");
+
+                var jwt = getStringBetween(result, '"jwt":"', '","re');
+                var refreshToken = getStringBetween(result, '"refreshToken":"', '"},"or');
+
+                document.getElementById("jwt").value = jwt;
+                document.getElementById("refreshToken").value = refreshToken;
+            }
+            else
+            {
+                choosefile.innerHTML = "invalid file";
+            }
+        }
+
+        function getStringBetween(str, start, end) {
+            const result = str.match(new RegExp(start + "(.*)" + end));
+
+            return result[1];
+        }
+
+    </script>
+
+</body>
+
+</html>
