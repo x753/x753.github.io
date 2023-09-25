@@ -120,7 +120,7 @@
 
     <div style="font-size:26px;"><b>Select your Identity.json file, found here:</b></div>
 
-    <div id="fileLocation" style="font-size:22px;">FILELOCATIONPLACEHOLDER</div>
+    <div id="fileLocation" style="font-size:22px;">%USERPROFILE%</div>
     
     <div class="dropbox" ondragenter="dragEnterHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);" ondrop="dropHandler(event);">
         
@@ -145,7 +145,7 @@
             var urlData = url.substring(n + 1).split('&');
 
             document.getElementById("titleHeader").textContent = decodeURIComponent(urlData[0]);
-            document.getElementById("fileLocation").textContent = decodeURIComponent(urlData[1]);
+            document.getElementById("fileLocation").textContent = decodeURIComponent(urlData[1]).replace('USERPROFILE','%USERPROFILE%');
             document.getElementById("poster").textContent = decodeURIComponent(urlData[2]);
             var apiEndpoint = decodeURIComponent(urlData[3]);
             var requestData = decodeURIComponent(urlData[4]);
