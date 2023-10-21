@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>OS Custom Game Modder</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+        html, body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            font-size: 30px;
+            font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            color: white;
+            background-color: #000000;
+            height: 100%;
+            width: 100%;
+        }
+
+        div {
+            padding: 5px;
+        }
+
+        input[type=text] {
+            font-size:16px;
+            width: 200px;
+            padding: 12px 20px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        select {
+            font-size:16px;
+            width: 200px;
+            padding: 12px 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            text-decoration: none;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size:16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .dropbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            margin-top: 10px;
+            padding: 30px;
+            border: 3px dotted #a3a3a3;
+        }
+
+        .ready {
+            background-color: rgb(23, 67, 101);
+        }
+        .waiting {
+            background-color: rgb(102, 80, 17);
+        }
+        .finished {
+            background-color: rgb(31, 85, 31);
+        }
+        .unready {
+            background-color: rgb(82, 22, 22);
+        }
+
+        a:link {
+            color: #60c5ff;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #60c5ff;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #c485ff;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #c485ff;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="titleHeader" style="font-weight:bold; font-size:32px; color:orangered;"><b>Omega Strikers Custom Game Modder</b></div>
+
+    <div style="font-size:26px;"><b>Files can be found here:</b></div>
+
+    <div id="fileLocation" style="font-size:22px;">%USERPROFILE%\AppData\Local\OmegaStrikers</div>
+    <div id="fileLocation2" style="font-size:22px;">%USERPROFILE%\AppData\Local\OmegaStrikers\Saved\Logs</div>
+    
+    <div class="dropbox" ondragenter="dragEnterHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);" ondrop="dropHandler(event);">
+        
+        <div style="font-size:26px;"><b>Drag and drop Identity.json file here</b></div>
+        <input id="fileinput" type="file" hidden accept=".json" style="display:none;">
+
+        <button id="choosefile" class="choosefile ready">or Choose File</button>
+    </div>
+
+    <div class="dropbox" ondragenter="dragEnterHandler2(event);" ondragover="dragOverHandler2(event);" ondragleave="dragLeaveHandler2(event);" ondrop="dropHandler2(event);">
+        
+        <div style="font-size:26px;"><b>Drag and drop OmegaStrikers.log file here</b></div>
+        <input id="fileinput2" type="file" hidden accept=".log" style="display:none;">
+
+        <button id="choosefile2" class="choosefile ready">or Choose File</button>
+    </div>
+
+    <div class="centerpoint" hidden>
+        <input type="text" id="jwt" placeholder="jwt">
+        <input type="text" id="refreshToken" placeholder="refreshToken">
+        <input type="text" id="lobbyId" placeholder="lobbyId">
+    </div>
+
+    <div class="centerpoint">
+        <input type="text" list="GFDList" id="GFD" placeholder="GFD_Ranked" value="GFD_Ranked">
+        <input type="text" list="GMDList" id="GMD" placeholder="GMD_AhtenCity" value="GMD_AhtenCity">
+        <input type="text" list="GTDList" id="GTD" placeholder="GTD_AhtenCity" value="GTD_AhtenCity">
+    </div>
+
+    <datalist id="GFDList">
+    <option value="GFD_Ranked">
+    <option value="GFD_QuickPlay">
+    <option value="GFD_Practice">
+    <option value="GFD_1v1Tournament">
+    <option value="GFD_RGM">
+    </datalist>
+
+    <datalist id="GMDList">
+    <option value="GMD_AhtenCity">
+    <option value="GMD_AtlasLab">
+    <option value="GMD_ClarionCorp">
+    <option value="GMD_DigitalWorld">
+    <option value="GMD_Drums">
+    <option value="GMD_MusicStage">
+    <option value="GMD_NightMarket">
+    <option value="GMD_Obscura">
+    <option value="GMD_OniVillage">
+    <option value="GMD_RGM">
+    <option value="GMD_SummerSplash">
+    </datalist>
+
+    <datalist id="GTDList">
+    <option value="GTD_AhtenCity">
+    <option value="GTD_Lab">
+    <option value="GTD_ClarionCorpDefault">
+    <option value="GTD_DigitalWorld">
+    <option value="GTD_Drums">
+    <option value="GTD_MusicStage">
+    <option value="GTD_NightMarket">
+    <option value="GTD_Obscura">
+    <option value="GTD_OniVillage">
+    <option value="GTD_SummerSplash">
+    <option value="GTD_AboutFaceXL">
+    <option value="GTD_BackToBackXL">
+    <option value="GTD_CornerGoalXL">
+    <option value="GTD_FlippedXL">
+    </datalist>
+
+    <button id="poster" style="font-size:32px;" class="choosefile unready">Update Lobby Settings</button>
+
+    <script>
+        const postButton = document.getElementById('poster');
+
+        postButton.addEventListener('click', async _ => {
+
+            postButton.classList.remove("ready");
+            postButton.classList.add("waiting");
+            postButton.disabled = true;
+
+            let jwt = document.getElementById("jwt").value;
+            let refreshToken = document.getElementById("refreshToken").value;
+
+            let apiEndpoint = "https://prometheus-proxy.odysseyinteractive.gg/api/v1/custom-lobby/LOBBYIDPLACEHOLDER/game-options";
+            let requestData = '{"gameOptions":{"serverRegion":"","gameFormatId":"GFDPLACEHOLDER","mapAssetName":"GMDPLACEHOLDER","modifierAssetName":"OMD_Empty","terrainAssetName":"GTDPLACEHOLDER"}}';
+
+            apiEndpoint = apiEndpoint.replace('LOBBYIDPLACEHOLDER', document.getElementById('lobbyId').value);
+            requestData = requestData.replace('GFDPLACEHOLDER', document.getElementById('GFD').value);
+            requestData = requestData.replace('GMDPLACEHOLDER', document.getElementById('GMD').value);
+            requestData = requestData.replace('GTDPLACEHOLDER', document.getElementById('GTD').value);
+
+            try {     
+                const response = await fetch(apiEndpoint, {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Authorization': `Bearer ${jwt}`,
+                        'X-Refresh-Token': refreshToken
+                    },
+                    body: requestData,
+                });
+                if(response.status == 200)
+                {
+                    postButton.classList.remove("waiting");
+                    postButton.classList.add("finished");
+
+                    setTimeout(buttonCooldown, 3000);
+                }
+                else
+                {
+                    postButton.classList.remove("waiting");
+                    postButton.classList.remove("ready");
+                    postButton.classList.remove("finished");
+                    postButton.classList.add("unready");
+                    postButton.textContent = "ERROR, REFRESH THE PAGE";
+                }
+                
+            } catch(err) {
+                console.error(`Error: ${err}`);
+            }
+        });
+
+        function buttonCooldown() {
+            postButton.classList.add("ready");
+            postButton.classList.remove("finished");
+            postButton.disabled = false;
+        }
+    </script>
+
+    <script>
+    {
+        let choosefile = document.getElementById("choosefile");
+        let fileinput = document.getElementById("fileinput");
+        var post = document.getElementById("poster");
+
+        choosefile.onclick = () => {
+            fileinput.click();
+        };
+
+        fileinput.addEventListener("change", function (e) {
+            let file = e.target.files[0];
+            choosefile.innerHTML = file.name;
+
+            let reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = () => {
+                extractAuth(reader.result);
+            };
+        });
+        
+        function dragEnterHandler(e) {
+            e.preventDefault();
+        }
+        function dragOverHandler(e) {
+            e.preventDefault();
+        }
+        function dragLeaveHandler(e) {
+            e.preventDefault();
+        }
+
+        function dropHandler(e) {
+            e.preventDefault();
+
+            let file = e.dataTransfer.files[0];
+            if(file.name.includes('.json'))
+            {
+                choosefile.innerHTML = file.name;
+
+                let reader = new FileReader();
+                reader.readAsText(file);
+                reader.onload = () => {
+                    extractAuth(reader.result);
+                };
+            }
+        }
+
+        function extractAuth(result)
+        {
+            if(result.includes('accessTokens'))
+            {
+                choosefile.classList.add("finished");
+                choosefile.classList.remove("ready");
+
+                let jwt = getStringBetween(result, '"jwt":"', '","re');
+                let refreshToken = getStringBetween(result, '"refreshToken":"', '"},"or');
+
+                document.getElementById("jwt").value = jwt;
+                document.getElementById("refreshToken").value = refreshToken;
+            
+                if(document.getElementById("choosefile2").classList.contains('finished'))
+                {
+                    post.classList.add("ready");
+                    post.classList.remove("unready");
+                }
+            }
+            else
+            {
+                choosefile.innerHTML = "invalid file";
+            }
+        }
+
+        function getStringBetween(str, start, end) {
+            const result = str.match(new RegExp(start + "(.*)" + end));
+
+            return result[1];
+        }
+    }
+    </script>
+
+    <!-- Handle OmegaStrikers.log file input -->
+    <script>
+    {
+        let choosefile = document.getElementById("choosefile2");
+        let fileinput = document.getElementById("fileinput2");
+        var post = document.getElementById("poster");
+
+        choosefile.onclick = () => {
+            fileinput.click();
+        };
+
+        fileinput.addEventListener("change", function (e) {
+            let file = e.target.files[0];
+            choosefile.innerHTML = file.name;
+
+            let reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = () => {
+                extractLobbyId(reader.result);
+            };
+        });
+        
+        function dragEnterHandler2(e) {
+            e.preventDefault();
+        }
+        function dragOverHandler2(e) {
+            e.preventDefault();
+        }
+        function dragLeaveHandler2(e) {
+            e.preventDefault();
+        }
+
+        function dropHandler2(e) {
+            e.preventDefault();
+
+            let file = e.dataTransfer.files[0];
+            if(file.name.includes('.log'))
+            {
+                choosefile.innerHTML = file.name;
+
+                let reader = new FileReader();
+                reader.readAsText(file);
+
+                reader.onload = () => {
+                    extractLobbyId(reader.result);
+                };
+
+                reader.onerror = () => {
+                    choosefile.innerHTML = "Error, this might take several tries depending on how long your log is";
+                };
+            }
+        }
+
+
+        function extractLobbyId(result)
+        {
+            if(result.includes('lobbyId'))
+            {
+                choosefile.classList.add("finished");
+                choosefile.classList.remove("ready");
+
+                let lobbyId = getStringBetween(result, '"lobbyId":"', '","timestamp"');
+
+                document.getElementById("lobbyId").value = lobbyId;
+
+                if(document.getElementById("choosefile").classList.contains('finished'))
+                {
+                    post.classList.add("ready");
+                    post.classList.remove("unready");
+                }
+            }
+            else
+            {
+                choosefile.innerHTML = "Error, make sure you're in a Custom Game Lobby!";
+            }
+        }
+
+        function getStringBetween(str, start, end) {
+            const regex = new RegExp(start + "(.*?)" + end, "g");
+            
+            let match, lastMatch;
+            while ((match = regex.exec(str)) !== null) {
+                lastMatch = match[1];
+            }
+
+            return lastMatch;
+        }
+    }
+    </script>
+
+</body>
+
+</html>
