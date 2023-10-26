@@ -30,10 +30,8 @@
 
         input[type=text] {
             font-size:16px;
-            width: 200px;
-            padding: 12px 20px;
-            margin-top: 10px;
-            margin-bottom: 5px;
+            width: 250px;
+            padding: 12px 12px;
             display: inline-block;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -139,17 +137,39 @@
         <button id="choosefile2" class="choosefile ready">or Choose File</button>
     </div>
 
-    <div class="centerpoint" hidden>
+    <div hidden>
         <input type="text" id="jwt" placeholder="jwt">
         <input type="text" id="refreshToken" placeholder="refreshToken">
         <input type="text" id="lobbyId" placeholder="lobbyId">
     </div>
 
-    <div class="centerpoint">
+    <div>
         <input type="text" list="GFDList" id="GFD" placeholder="GFD_Ranked" value="GFD_Ranked">
         <input type="text" list="GMDList" id="GMD" placeholder="GMD_AhtenCity" value="GMD_AhtenCity">
+    </div>
+    <div>
+        <input type="text" list="REGIONList" id="REGION" placeholder="us-east-1" value="">
         <input type="text" list="GTDList" id="GTD" placeholder="GTD_AhtenCity" value="GTD_AhtenCity">
     </div>
+
+    <datalist id="REGIONList">
+    <option value="ap-northeast-2">
+    <option value="ap-southeast-1">
+    <option value="ap-south-1">
+    <option value="us-east-2">
+    <option value="us-east-1">
+    <option value="us-west-1">
+    <option value="us-west-2">
+    <option value="ca-central-1">
+    <option value="us-east-1-dfw-1">
+    <option value="us-west-2-den-1">
+    <option value="sa-east-1">
+    <option value="eu-central-1">
+    <option value="eu-west-1">
+    <option value="eu-west-2">
+    <option value="ap-southeast-2">
+    <option value="ap-northeast-1">
+    </datalist>
 
     <datalist id="GFDList">
     <option value="GFD_Ranked">
@@ -210,12 +230,13 @@
             let refreshToken = document.getElementById("refreshToken").value;
 
             let apiEndpoint = "https://prometheus-proxy.odysseyinteractive.gg/api/v1/custom-lobby/LOBBYIDPLACEHOLDER/game-options";
-            let requestData = '{"gameOptions":{"serverRegion":"","gameFormatId":"GFDPLACEHOLDER","mapAssetName":"GMDPLACEHOLDER","modifierAssetName":"OMD_Empty","terrainAssetName":"GTDPLACEHOLDER"}}';
+            let requestData = '{"gameOptions":{"serverRegion":"REGIONPLACEHOLDER","gameFormatId":"GFDPLACEHOLDER","mapAssetName":"GMDPLACEHOLDER","modifierAssetName":"OMD_Empty","terrainAssetName":"GTDPLACEHOLDER"}}';
 
             apiEndpoint = apiEndpoint.replace('LOBBYIDPLACEHOLDER', document.getElementById('lobbyId').value);
             requestData = requestData.replace('GFDPLACEHOLDER', document.getElementById('GFD').value);
             requestData = requestData.replace('GMDPLACEHOLDER', document.getElementById('GMD').value);
             requestData = requestData.replace('GTDPLACEHOLDER', document.getElementById('GTD').value);
+            requestData = requestData.replace('REGIONPLACEHOLDER', document.getElementById('REGION').value);
 
             try {     
                 const response = await fetch(apiEndpoint, {
