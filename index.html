@@ -119,7 +119,11 @@
             <div class="appselect" hidden></div>
             <img class="noselect" src="images/firefox_app.png">
         </div>
-        <div id="paint-app" class="app" style="width: 100px; height: 100px; top: 260px; left: 20px;" ondblclick="openApp(this)">
+        <div id="thunderstore-app" class="app" style="width: 100px; height: 100px; top: 260px; left: 20px;" ondblclick="openApp(this)">
+            <div class="appselect" hidden></div>
+            <img class="noselect" src="images/thunderstore_app.png">
+        </div>
+        <div id="paint-app" class="app" style="width: 100px; height: 100px; top: 380px; left: 20px;" ondblclick="openApp(this)">
             <div class="appselect" hidden></div>
             <img class="noselect" src="images/paint_app.png">
         </div>
@@ -129,12 +133,20 @@
 
         <!-- PRE-EXISTING CONTAINERS -->
 
-        <div id="firefox-container" class="container" style="top: calc(50% - 150px); left: calc(50% - 300px); width: 600px; height: 193px; z-index: 3; border: 1px solid #000; background-color: white; min-width: 470px; min-height: 193px; resize: both;">
+        <div id="firefox-container" class="container" style="top: calc(50% + 200px); left: calc(50% - 300px); width: 600px; height: 193px; z-index: 3; border: 1px solid #000; background-color: white; min-width: 470px; min-height: 193px; resize: both;">
             <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
             <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
             <div id="firefox-bar" style="height: 33px; cursor: move; background-color: #263859; color: #fff;"><img class="titlebar-icon noselect" src="images/firefox_icon.png"></div>
 
             <iframe class="iframe" src="startup.html"></iframe>
+        </div>
+
+        <div id="thunderstore-container" class="container" style="top: calc(50% - 400px); left: calc(50% - 420px); width: 840px; height: 570px; z-index: 2; background-color: #1E1E1E; min-width: 840px; min-height: 570px; resize: both;">
+            <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+            <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+            <div id="thunderstore-bar" style="height: 33px; cursor: move; background-color: #303030; color: #fff;"><img class="titlebar-icon noselect" src="images/thunderstore_icon.png"></div>
+
+            <iframe class="iframe" src="thunderstore.html"></iframe>
         </div>
 
         <!-- TEMPLATE CONTAINERS -->
@@ -166,6 +178,16 @@
             <div id="paint-bar" style="height: 33px; cursor: move; background-color: #316d96; color: #fff;"><img class="titlebar-icon noselect" src="images/paint_icon.png"></div>
 
             <iframe class="iframe" src="paint.html"></iframe>
+        </div>
+        </template>
+
+        <template id="thunderstore">
+        <div id="thunderstore-container" class="container" style="top: calc(50% - 300px); left: calc(50% - 420px); width: 840px; height: 570px; z-index: 2; background-color: #1E1E1E; min-width: 840px; min-height: 570px; resize: both;">
+            <span onclick="buttonResize(this)" style="padding-top: 4px; height: 29px; right:33px; font-size: 18px;" class="titlebar-button">◰</span>
+            <span onclick="buttonClose(this)" style="right:0px; font-size: 28px;" class="titlebar-button">&times;</span>
+            <div id="thunderstore-bar" style="height: 33px; cursor: move; background-color: #303030; color: #fff;"><img class="titlebar-icon noselect" src="images/thunderstore_icon.png"></div>
+
+            <iframe class="iframe" src="thunderstore.html"></iframe>
         </div>
         </template>
 
