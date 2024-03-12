@@ -148,18 +148,12 @@
         {
             var urlData = url.substring(n + 1).split('&');
 
-            document.getElementById("customData").value = decodeURIComponent(urlData[5]);
-
-            for(let i = 0; i < urlData.length; i++)
-            {
-                urlData[i] = urlData[i].replace('CUSTOMDATAPLACEHOLDER', document.getElementById("customData").value);
-            }
-
             document.getElementById("titleHeader").textContent = decodeURIComponent(urlData[0]);
             document.getElementById("fileLocation").textContent = decodeURIComponent(urlData[1]).replace('USERPROFILE','%USERPROFILE%');
             document.getElementById("poster").textContent = decodeURIComponent(urlData[2]);
             var apiEndpoint = decodeURIComponent(urlData[3]);
             var requestData = decodeURIComponent(urlData[4]);
+            document.getElementById("customData").value = decodeURIComponent(urlData[5]);
         }
         else
         {
@@ -177,7 +171,9 @@
             var jwt = document.getElementById("jwt").value;
             var refreshToken = document.getElementById("refreshToken").value;
 
-            try {     
+            var customRequestData = requestData.replace('CUSTOMDATAPLACEHOLDER', document.getElementById("customData").value);
+
+            try {
                 const response = await fetch(apiEndpoint, {
                     method: 'post',
                     headers: {
@@ -185,7 +181,7 @@
                         'X-Authorization': `Bearer ${jwt}`,
                         'X-Refresh-Token': refreshToken
                     },
-                    body: requestData,
+                    body: customRequestData,
                 });
                 if(response.status == 200)
                 {
